@@ -1,0 +1,5 @@
+content     webpg-firefox       extension/
+locale      webpg-firefox       en-US                       locale/en-US/
+skin        webpg-firefox       classic/1.0                 extension/skin/
+overlay     chrome://browser/content/browser.xul            chrome://webpg-firefox/content/XULContent/firefoxOverlay.xul
+style	    chrome://global/content/customizeToolbar.xul    chrome://webpg-firefox/content/skin/overlay.css
