@@ -1,4 +1,6 @@
 build/
+extension/plugins
+webpg-firefox-*.xpi
 *.swp
 *.patch
 *~

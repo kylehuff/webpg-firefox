@@ -1,1 +1,2 @@
 pref("extensions.webpg-firefox.decorate_inline", true);
+pref("extensions.webpg-firefox.gmail_integration", false);

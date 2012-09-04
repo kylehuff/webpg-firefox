@@ -19,7 +19,9 @@
 
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                    .getService(Components.interfaces.nsIWindowMediator);
-            var browserWindow = wm.getMostRecentWindow("navigator:browser");
+            var winType = (webpg.utils.detectedBrowser == "firefox") ?
+                "navigator:browser" : "mail:3pane";
+            var browserWindow = wm.getMostRecentWindow(winType);
 
 		    var optionsFrame = document.getElementById('optionsFrame');
 		    optionsFrame.setAttribute('src','chrome://webpg-firefox/content/options.html');

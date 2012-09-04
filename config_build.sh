@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build config for build.sh
-VERSION="0.7.2"
+VERSION="0.8.3"
 APP_NAME=webpg-firefox-v${VERSION}
 CHROME_PROVIDERS="extension locale extension/skin"
 CLEAN_UP=1
