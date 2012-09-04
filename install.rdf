@@ -3,16 +3,18 @@
          xmlns:NC="http://home.netscape.com/NC-rdf#"
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <RDF:Description RDF:about="rdf:#$g5s0x"
-                   em:id="toolkit@mozilla.org"
-                   em:minVersion="1.5"
-                   em:maxVersion="3.7" />
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="13.*"
+                   em:maxVersion="18.0a1" />
+  <RDF:Description RDF:about="rdf:#$g5s0r"
+                   em:id="{3550f703-e582-4d05-9a08-453d09bdfdc6}"
+                   em:minVersion="13.*"
+                   em:maxVersion="18.0a1" />
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="webpg-firefox@curetheitch.com"
-                   em:version="0.8.5"
-                   em:minVersion="13.*"
-                   em:maxVersion="18.0a1"
+                   em:version="0.8.6"
                    em:type="2"
-                   em:name="WebPG"
+                   em:name="WebPG for Firefox"
                    em:description="An extension which provides GnuPG/GPG/PGP related functions to Moizilla Firefox"
                    em:creator="Kyle L. Huff"
                    em:homepageURL="http://www.curetheitch.com/projects/webpg-firefox"
@@ -21,6 +23,7 @@
                    em:iconURL="chrome://webpg-firefox/skin/images/webpg-48.png"
                   >
     <em:targetApplication RDF:resource="rdf:#$g5s0x"/>
+    <em:targetApplication RDF:resource="rdf:#$g5s0r"/>
     <em:unpack>true</em:unpack>
   </RDF:Description>
 </RDF:RDF>
