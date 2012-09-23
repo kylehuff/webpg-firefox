@@ -3,6 +3,9 @@
 <!DOCTYPE overlay SYSTEM "chrome://webpg-firefox/locale/webpg.dtd">
 <overlay id="webpg-overlay" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <script src="../jquery/js/jquery-1.7.2.min.js"/>
+    <script type="text/javascript">
+        jQuery = jQuery.noConflict(true);
+    </script>
     <script src="../constants.js"/>
     <script src="../utils.js"/>
     <script src="../preferences.js"/>
