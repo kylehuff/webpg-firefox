@@ -12,7 +12,7 @@
                    em:maxVersion="18.0a1" />
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="webpg-firefox@curetheitch.com"
-                   em:version="0.8.7"
+                   em:version="0.8.8"
                    em:type="2"
                    em:name="WebPG for Firefox"
                    em:description="An extension which provides GnuPG/GPG/PGP related functions to Moizilla Firefox"
