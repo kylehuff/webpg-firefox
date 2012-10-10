@@ -1,3 +1,11 @@
+----- NIVEUSLUNA'S FORK README -----
+
+This is an attempt to make WebPG for Firefox work on SeaMonkey. I'm having issues. See below.
+
+I seem to have the extension's javascript code working for SeaMonkey, but I think some changes need to be made to the NPAPI plugin. Specifically, adding SeaMonkey and its firefox-equivalent versions to the supported lists.
+
+----- and now back to your regularly scheduled upstream README -----
+
 WebPG provides GnuPG, GPG, PGP related Public/Private Key operations and management in Mozilla Firefox
 
 Features as of Version 0.8.3 -
