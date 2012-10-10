@@ -15,7 +15,7 @@
                    em:version="0.8.8"
                    em:type="2"
                    em:name="WebPG for Firefox"
-                   em:description="An extension which provides GnuPG/GPG/PGP related functions to Moizilla Firefox"
+                   em:description="An extension which provides GnuPG/GPG/PGP related functions to Mozilla Firefox"
                    em:creator="Kyle L. Huff"
                    em:homepageURL="http://www.curetheitch.com/projects/webpg-firefox"
                    em:optionsURL="chrome://webpg-firefox/content/XULContent/options.xul?options_tab=0"
