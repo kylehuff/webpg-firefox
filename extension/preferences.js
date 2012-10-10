@@ -316,7 +316,7 @@ if (webpg.utils.detectedBrowser == "chrome") {
     }
     webpg.localStorage = window.localStorage;
 // If this is Firefox, set up required objects
-} else if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "thunderbird") {
+} else if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "thunderbird" || webpg.utils.detectedBrowser == "seamonkey") {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
            .getService(Components.interfaces.nsIWindowMediator);
     var winType = (webpg.utils.detectedBrowser == "firefox") ?

@@ -17,7 +17,7 @@ webpg.gmail = {
     setup: function(navDiv) {
         if (navDiv.find("#webpg-action-menu").length < 1) {
             // If we are running firefox, inject the CSS file
-            if (webpg.utils.detectedBrowser == "firefox") {
+            if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                 var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"]
                     .getService(Components.interfaces.nsIStyleSheetService);
                 var ios = Components.classes["@mozilla.org/network/io-service;1"]
@@ -82,7 +82,7 @@ webpg.gmail = {
             Retrieves the gmail UI message editor iframe
     */
     getCanvasFrame: function() {
-        if (webpg.utils.detectedBrowser == "firefox")
+        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey")
             return jQuery(content.document.getElementById("canvas_frame"))
                 .length > 0 ? jQuery(content.document.getElementById("canvas_frame")) :
                 jQuery(content.document);
@@ -111,7 +111,7 @@ webpg.gmail = {
             e - <event> The HTML Event dispatched
     */
     refreshText: function(e) {
-        if (webpg.utils.detectedBrowser == "firefox")
+        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey")
             e.srcElement = e.target;
         if (e.srcElement.getAttribute && e.srcElement.getAttribute("role") == "button") {
             if (e.srcElement.textContent && e.srcElement.textContent.length > 0) {
@@ -645,7 +645,7 @@ webpg.utils.sendRequest({
         if (response.result.gmail_integration == "true") {
             webpg.gmail.sign_gmail = response.result.sign_gmail;
             // Retrieve a reference to the appropriate window object
-            if (webpg.utils.detectedBrowser == "firefox") {
+            if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                 var appcontent = document.getElementById("appcontent");
                 appcontent.addEventListener("DOMContentLoaded", function(aEvent) {
                     content.addEventListener("DOMSubtreeModified", gmailChanges, false);

@@ -40,7 +40,7 @@ webpg.overlay = {
             msg: "decorate_inline" },
             function(response) {
                 if (response.result.decorate_inline == "true") {
-                    if (webpg.utils.detectedBrowser == "firefox") {
+                    if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                         // Begin parsing the document for PGP Data
                         gBrowser.addEventListener("DOMContentLoaded",
                             function(aEvent) { webpg.inline.init(doc) }, false);
@@ -77,7 +77,7 @@ webpg.overlay = {
         } else if (request.msg == "removeiframe"){
             if (request.iframe_id) {
                 var iframe = document.getElementById(request.iframe_id);
-                if (webpg.utils.detectedBrowser == "firefox")
+                if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey")
                     content.document.body.removeChild(iframe);
                 else if (webpg.utils.detectedBrowser == "chrome")
                     document.body.removeChild(iframe);
@@ -131,7 +131,7 @@ webpg.overlay = {
                     'message_type': "encrypted_message",
                     'noninline': true
                 }
-                if (webpg.utils.detectedBrowser == "firefox")
+                if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey")
                     webpg.utils.sendRequest(params);
                 else
                     results_frame.onload = function() {
@@ -143,7 +143,7 @@ webpg.overlay = {
             var target = webpg.overlay.insert_target;
             var iframe = webpg.inline.addDialogFrame();
 
-            if (webpg.utils.detectedBrowser == "firefox")
+            if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey")
                 content.document.body.appendChild(iframe);
             else if (webpg.utils.detectedBrowser == "chrome")
                 document.body.appendChild(iframe);
@@ -153,7 +153,7 @@ webpg.overlay = {
             if (request.dialog_type == "encrypt")
                 theURL += "&encrypt_data=" + escape(request.data);
 
-            if (webpg.utils.detectedBrowser == "firefox")
+            if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey")
                 iframe.contentWindow.location.href = theURL;
             else if (webpg.utils.detectedBrowser == "chrome")
                 iframe.src = theURL;
@@ -320,7 +320,7 @@ webpg.overlay = {
                 break;
 
 		    case webpg.constants.overlayActions.MANAGER:
-		        if (webpg.utils.detectedBrowser == "firefox") {
+		        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                     webpg.utils.openNewTab(webpg.utils.resourcePath +
                         "XULContent/options.xul?options_tab=1");
 			    } else if (webpg.utils.detectedBrowser == "chrome") {
@@ -332,7 +332,7 @@ webpg.overlay = {
 			    break;
 
             case webpg.constants.overlayActions.OPTS:
-		        if (webpg.utils.detectedBrowser == "firefox") {
+		        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                     webpg.utils.openNewTab(webpg.utils.resourcePath +
                         "XULContent/options.xul?options_tab=0");
 			    } else if (webpg.utils.detectedBrowser == "chrome") {
@@ -344,7 +344,7 @@ webpg.overlay = {
 			    break;
 
             case webpg.constants.overlayActions.ABOUT:
-		        if (webpg.utils.detectedBrowser == "firefox") {
+		        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                     webpg.utils.openNewTab(webpg.utils.resourcePath +
                         "XULContent/options.xul?options_tab=2");
 			    } else if (webpg.utils.detectedBrowser == "chrome") {
@@ -371,7 +371,7 @@ webpg.overlay = {
 
 };
 
-if (webpg.utils.detectedBrowser == "firefox") {
+if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
     var appcontent = document.getElementById("appcontent");
     appcontent.addEventListener("DOMContentLoaded", webpg.overlay.init, true);
 } else {

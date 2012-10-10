@@ -16,7 +16,7 @@ webpg.keymanager = {
             browserWindow - <window> A reference to the main browser window/object
     */
     init: function(browserWindow) {
-        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "thunderbird") {
+        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "thunderbird" || webpg.utils.detectedBrowser == "seamonkey") {
             webpg.background = browserWindow;
             webpg.secret_keys = browserWindow.secret_keys;
         } else if (webpg.utils.detectedBrowser == "chrome") {

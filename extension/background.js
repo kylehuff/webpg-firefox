@@ -394,7 +394,7 @@ webpg.background = {
     },
 
     gpgGenKeyProgress: function(data) {
-        if (webpg.utils.detectedBrowser == "firefox") {
+        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                        .getService(Components.interfaces.nsIWindowMediator);
             var enumerator = wm.getEnumerator(null);
@@ -441,7 +441,7 @@ webpg.background = {
             true : false;
 
         // Notify the user
-        if (webpg.utils.detectedBrowser == "firefox") {
+        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                    .getService(Components.interfaces.nsIWindowMediator);
             var browserWindow = wm.getMostRecentWindow("navigator:browser");

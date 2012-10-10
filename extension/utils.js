@@ -12,7 +12,7 @@ webpg.utils = {
             Initializes the webpg.utils object and setups up required overrides.
     */
     init: function() {
-        if (this.detectedBrowser == "firefox" || this.detectedBrowser == "thunderbird") {
+        if (this.detectedBrowser == "firefox" || this.detectedBrowser == "thunderbird" || this.detectedBrowser == "seamonkey") {
             // We are using Firefox, so make `console.log` an alias to
             //  something that provides more information than the standard
             //  console logging utility.
@@ -77,6 +77,8 @@ webpg.utils = {
             return "chrome";
         else if (navigator.userAgent.toLowerCase().search("thunderbird") > -1)
             return "thunderbird";
+		else if (navigator.userAgent.toLowerCase().search("seamonkey") > -1)
+            return "seamonkey";
         else
             return "unknown";
     })(),
@@ -88,7 +90,8 @@ webpg.utils = {
     */
     resourcePath: function() {
         if (navigator.userAgent.toLowerCase().search("firefox") > -1 ||
-        navigator.userAgent.toLowerCase().search("thunderbird") > -1)
+        navigator.userAgent.toLowerCase().search("thunderbird") > -1 ||
+		navigator.userAgent.toLowerCase().search("seamonkey") > -1)
             return "chrome://webpg-firefox/content/";   
         else if (navigator.userAgent.toLowerCase().search("chrome") > -1)
             return chrome.extension.getURL("");
@@ -196,7 +199,8 @@ webpg.utils = {
     _onRequest: {
         addListener: function(callback) { // analogue of chrome.extension.onRequest.addListener
             if (webpg.utils.detectedBrowser == "firefox" ||
-            webpg.utils.detectedBrowser == "thunderbird") {
+            webpg.utils.detectedBrowser == "thunderbird" ||
+			webpg.utils.detectedBrowser == "seamonkey") {
                 return document.addEventListener("listener-query", function(event) {
                     var node = event.target, doc = node.ownerDocument;
 
@@ -228,7 +232,7 @@ webpg.utils = {
             doc - <document> The document to add the listener to 
     */
     sendRequest: function(data, callback, doc) { // analogue of chrome.extension.sendRequest
-        if (this.detectedBrowser == "firefox" || this.detectedBrowser == "thunderbird") {
+        if (this.detectedBrowser == "firefox" || this.detectedBrowser == "thunderbird" || this.detectedBrowser == "seamonkey") {
             var request = document.createTextNode("");
             request.setUserData("data", data, null);
             if (callback) {
@@ -265,7 +269,7 @@ webpg.utils = {
     */
     tabs: {
         sendRequest: function(target, request) {
-            if (webpg.utils.detectedBrowser == "firefox") {
+            if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                 if (!request.target_id) {
                     webpg.utils.sendRequest(request);
                 } else {
@@ -291,7 +295,7 @@ webpg.utils = {
             id - <str> The unique ID of the frame to locate
     */
     getFrameById: function(id) {
-        if (webpg.utils.detectedBrowser == "firefox") {
+        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
             var iframes = gBrowser.contentDocument.getElementsByTagName("iframe");
             for (var i=0; i < iframes.length; i++) {
                 if (iframes[i].id == id)
@@ -369,6 +373,26 @@ webpg.utils = {
                 window.open(url, wTitle, wFlags);
                 break;
 
+				
+			case "seamonkey":
+				if (url.search("options.html") > -1)
+                    url = url.replace("options.html", "XULContent/options.xul")
+                        .replace("?", "?options_tab=0&");
+                if (url.search("key_manager.html") > -1)
+                    url = url.replace("key_manager.html", "XULContent/options.xul")
+                        .replace("?", "?options_tab=1&");
+                //var tBrowser = top.document.getElementById("content");
+                //var tab = tBrowser.addTab(url);
+                //tBrowser.selectedTab = tab;
+                wTitle = (url.search("options_tab=0") > -1) ? "WebPG Options" :
+                    (url.search("options_tab=1") > -1) ? "WebPG Key Manager" :
+                    (url.search("options_tab=2") > -1) ? "About WebPG" : "";
+                var wFlags = "titlebar=no,menubar=no,location=no";
+                wFlags += "scrollbars=yes,status=no,centerscreen=yes";
+                window.open(url, wTitle, wFlags);
+                break;
+			
+			
             case "chrome":
                 if (tabIndex) {
                     chrome.tabs.create({'url': url, 'index': tabIndex})
@@ -393,7 +417,7 @@ webpg.utils = {
         var selectionText;
         var preSelection;
         var postSelection;
-        if (this.detectedBrowser == "firefox") {
+        if (this.detectedBrowser == "firefox" || this.detectedBrowser == "seamonkey") {
             var selectionObject = getBrowser().contentWindow.getSelection();
             var selectionTarget = document.commandDispatcher.focusedElement;
             var selectionText = selectionObject.toString();
@@ -429,7 +453,7 @@ webpg.utils = {
                 callback - <func> A function to execute when completed.
         */
         removeAll: function(callback) {
-            if (webpg.utils.detectedBrowser == "firefox") {
+            if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                 jQuery(".context-menu-item").each(function(iter, element) {
                     element.hidden = true;
                 });
@@ -449,7 +473,7 @@ webpg.utils = {
         add: function(action) {
             switch (action) {
                 case webpg.constants.overlayActions.EXPORT:
-                    if (webpg.utils.detectedBrowser == "firefox") {
+                    if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                         jQuery(".webpg-menu-export")[0].hidden = false;
                     } else if (webpg.utils.detectedBrowser == "chrome") {
                         var id = "webpg-context-insert-pubkey";
@@ -469,7 +493,7 @@ webpg.utils = {
                     break;
                 
                 case webpg.constants.overlayActions.PSIGN:
-                    if (webpg.utils.detectedBrowser == "firefox") {
+                    if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                         jQuery(".webpg-menu-sign")[0].hidden = false;
                     } else if (webpg.utils.detectedBrowser == "chrome") {
                         var id = "webpg-context-clearsign";
@@ -489,7 +513,7 @@ webpg.utils = {
                     break;
 
                 case webpg.constants.overlayActions.IMPORT:
-                    if (webpg.utils.detectedBrowser == "firefox") {
+                    if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                         jQuery(".webpg-menu-import")[0].hidden = false;
                     } else if (webpg.utils.detectedBrowser == "chrome") {
                         var id = "webpg-context-import";
@@ -509,7 +533,7 @@ webpg.utils = {
                     break;
 
                 case webpg.constants.overlayActions.CRYPT:
-                    if (webpg.utils.detectedBrowser == "firefox") {
+                    if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                         jQuery(".webpg-menu-crypt")[0].hidden = false;
                     } else if (webpg.utils.detectedBrowser == "chrome") {
                         var id = "webpg-context-encrypt";
@@ -529,7 +553,7 @@ webpg.utils = {
                     break;
 
                 case webpg.constants.overlayActions.DECRYPT:
-                    if (webpg.utils.detectedBrowser == "firefox") {
+                    if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                         jQuery(".webpg-menu-decrypt")[0].hidden = false;
                     } else if (webpg.utils.detectedBrowser == "chrome") {
                         var id = "webpg-context-decrypt";
@@ -549,7 +573,7 @@ webpg.utils = {
                     break;
 
                 case webpg.constants.overlayActions.VERIF:
-                    if (webpg.utils.detectedBrowser == "firefox") {
+                    if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                         jQuery(".webpg-menu-verif")[0].hidden = false;
                     } else if (webpg.utils.detectedBrowser == "chrome") {
                         var id = "webpg-context-verify";
@@ -569,7 +593,7 @@ webpg.utils = {
                     break;
 
                 case webpg.constants.overlayActions.OPTS:
-                    if (webpg.utils.detectedBrowser == "firefox") {
+                    if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                         jQuery(".webpg-menu-options")[0].hidden = false;
                     } else if (webpg.utils.detectedBrowser == "chrome") {
                         var id = "webpg-context-separator";
@@ -601,7 +625,7 @@ webpg.utils = {
                     break;
                     
                 case webpg.constants.overlayActions.MANAGER:
-                    if (webpg.utils.detectedBrowser == "firefox") {
+                    if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                         jQuery(".webpg-menu-manager")[0].hidden = false;
                     } else if (webpg.utils.detectedBrowser == "chrome") {
                         var id = "webpg-context-manager";

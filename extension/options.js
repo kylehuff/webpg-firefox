@@ -4,7 +4,7 @@ if (typeof(webpg)=='undefined') { webpg = {}; }
 webpg.options = {
 
     init: function(browserWindow) {
-        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "thunderbird")
+        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "thunderbird" || webpg.utils.detectedBrowser == "seamonkey")
             webpg.plugin = browserWindow.plugin;
         else if (webpg.utils.detectedBrowser == "chrome")
             webpg.plugin = chrome.extension.getBackgroundPage().plugin;

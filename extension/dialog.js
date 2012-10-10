@@ -30,7 +30,7 @@ jQuery(function(){
         title: "Select Recipient(s)",
         autoOpen: true,
         close: function(event) {
-            if (webpg.utils.detectedBrowser == "firefox") {
+            if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                 var iframe = window.parent.document.getElementById(window.frameElement.id);
                 window.parent.document.body.removeChild(iframe);
             } else if (webpg.utils.detectedBrowser == "chrome") {
@@ -58,7 +58,7 @@ jQuery(function(){
                     });
                     break;
             }
-            if (webpg.utils.detectedBrowser == "firefox") {
+            if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                 var keylist = webpg.background.plugin.getPublicKeyList();
                 populateKeylist(keylist);
             } else if (webpg.utils.detectedBrowser == "chrome") {
@@ -75,7 +75,7 @@ jQuery(function(){
                         encrypt_to_list[encrypt_to_list.length] = document.forms.keylist_form.keylist_sel_list[i].id.split('_')[1];
                     }
                 };
-                if (webpg.utils.detectedBrowser == "firefox") {
+                if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                     var ev_element =  window.parent.document.getElementById(window.frameElement.id);
                     var encryptEvent = new CustomEvent('sendResult', {
                         detail: {
@@ -98,7 +98,7 @@ jQuery(function(){
                         export_list[export_list.length] = document.forms.keylist_form.keylist_sel_list[i].id.split('_')[1];
                     }
                 };
-                if (webpg.utils.detectedBrowser == "firefox") {
+                if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                     var ev_element =  window.parent.document.getElementById(window.frameElement.id);
                     var exportEvent = new CustomEvent('sendResult', {
                         detail: {

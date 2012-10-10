@@ -26,7 +26,7 @@ webpg.inline = {
         //if (!webpg.inline.enabledForPage(doc.location))
         //    return;
 
-        if (webpg.utils.detectedBrowser == "firefox") {
+        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
             if(typeof(doc.nodeName)!='undefined' && doc.nodeName != "#document")
                 return;
 
@@ -238,7 +238,7 @@ webpg.inline = {
         switch(blockType) {
             case webpg.constants.PGPBlocks.PGP_KEY:
                 console.log("WebPG found a public key");
-                if (webpg.utils.detectedBrowser == "firefox") {
+                if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey") {
                     webpg.utils.sendRequest({
                         'msg': "sendtoiframe",
                         'block_type': blockType,
@@ -354,7 +354,7 @@ webpg.inline = {
         if (range) {
             range.insertNode(iframe);
             var theURL = webpg.utils.resourcePath + "webpg_results.html?id=" + id;
-            if (webpg.utils.detectedBrowser == "firefox")
+            if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey")
                 iframe.contentWindow.location.href = theURL;
             else
                 iframe.src = theURL;
@@ -375,7 +375,7 @@ webpg.inline = {
         jQuery(iframe).insertAfter(jQuery(element));
         jQuery(element).hide();
         var theURL = webpg.utils.resourcePath + "webpg_results.html?id=" + iframe.id;
-        if (webpg.utils.detectedBrowser == "firefox")
+        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "seamonkey")
             iframe.contentWindow.location.href = theURL;
         else
             iframe.src = theURL;
