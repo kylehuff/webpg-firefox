@@ -1,8 +1,21 @@
 /* <![CDATA[ */
 if (typeof(webpg)=='undefined') { webpg = {}; }
 
+/*
+    Class: webpg.options
+        Provides the methods for the options page
+*/
 webpg.options = {
 
+    /*
+        Function: init
+            Sets up the required references to webpg.background,
+            and performs initial plugin tests
+
+        Parameters:
+            browserWindow - <window> The Window object housing firefoxOverlay.xul
+            or thunderbirdOverlay.xul in Mozilla applications - not passed in Google Chrome
+    */
     init: function(browserWindow) {
         if (webpg.utils.detectedBrowser['vendor'] == "mozilla")
             webpg.plugin = browserWindow.plugin;

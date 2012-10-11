@@ -1,6 +1,14 @@
 /* <![CDATA[ */
+/*
+    Class: webpg.about
+        Proivides the class to handle the "about" page
+*/
 webpg.about = {
-    init: function(extensionManager) {
+    /*
+        Function: init
+            Sets up the page to reflect the correct host application
+    */
+    init: function() {
         if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
             if (webpg.utils.detectedBrowser['product'] == "firefox")
                 var browserString = "Firefox";

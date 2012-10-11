@@ -61,7 +61,10 @@ webpg.background = {
         }
     },
 
-
+    /*
+        Function: _onRequest
+            Called when a message is passed to the page
+    */
     // Called when a message is passed.
     _onRequest: function(request, sender, sendResponse) {
         // set the default response to null
@@ -393,6 +396,13 @@ webpg.background = {
         sendResponse({'result': response});
     },
 
+    /*
+        Function: gpgGenKeyProgress
+            Called by webpg-npapi to update the current status of the key generation operation
+
+        Parameters:
+            data - <str> The ASCII representation of the current operation status
+    */
     gpgGenKeyProgress: function(data) {
         if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -433,6 +443,13 @@ webpg.background = {
         }
     },
 
+    /*
+        Function: gpgGenKeyComplete
+            Called by webpg-npapi when a given key generation option has completed
+
+        Parameters:
+            data - <str> The ASCII representation of the current operation status
+    */
     gpgGenKeyComplete: function(data) {
         // Send the data to the GenKeyProgress method
         webpg.background.gpgGenKeyProgress(data);

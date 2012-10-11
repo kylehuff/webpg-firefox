@@ -23,6 +23,7 @@ webpg.inline = {
         this.doc = doc;
 
         // Determine if inline decration has been disabled for this page
+        // TODO: Implement this
         //if (!webpg.inline.enabledForPage(doc.location))
         //    return;
 

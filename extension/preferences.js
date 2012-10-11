@@ -319,8 +319,8 @@ if (webpg.utils.detectedBrowser['product'] == "chrome") {
 } else if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
            .getService(Components.interfaces.nsIWindowMediator);
-    var winType = (webpg.utils.detectedBrowser['product'] == "firefox") ?
-        "navigator:browser" : "mail:3pane";
+    var winType = (webpg.utils.detectedBrowser['product'] == "thunderbird") ?
+        "mail:3pane" : "navigator:browser";
     var browserWindow = wm.getMostRecentWindow(winType);
     // We are running on Mozilla, we need to set our localStorage object to
     //  use the 'mozilla.org/preference-service'

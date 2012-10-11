@@ -2,7 +2,7 @@
 if (typeof(webpg)=='undefined') { webpg = {}; }
 
 /*
-    Class: webpg.utils
+    Class:   webpg.utils
         Provides reusable, generic methods for browser specific tasks.
 */
 webpg.utils = {
@@ -71,14 +71,6 @@ webpg.utils = {
         Function: detectedBrowser
             Determines the current running browser and returns an object
             containing the vendor and the product name.
-
-        @return <obj>
-        @verbatim
-{
-    "vendor":"mozilla",
-    "product":"firefox"
-}
-        @endverbatim
     */
     detectedBrowser: (function() {
         if (navigator.userAgent.toLowerCase().search("seamonkey") > -1)
@@ -114,7 +106,7 @@ webpg.utils = {
             Searches the location.search query string for a named parameter
 
         Parameters:
-            parameterName - <str> The name of the parameter to return
+            parameterName - The name of the parameter to return
     */
     getParameterByName: function(parameterName) {
         var match = RegExp('[?&]' + parameterName + '=([^&]*)')
@@ -193,107 +185,6 @@ webpg.utils = {
         return str.replace( /[&'"<>]/g, function(m) {
             return "&" + map[m] + ";";
         });
-    },
-
-    /*
-        Function: _onRequest.addListener
-            This function creates a listener object for interaction between
-            privileged and non-privileged pages
-
-        Parameters:
-            callback - <func> The callback to be called upon completion
-    */
-    //  This method had to be renamed to _onRequest in order to pass
-    //  validation for addons.mozilla.org, which erroneously detects
-    //  this as a handleEvent call, not a user defined method. Lame.
-    _onRequest: {
-        addListener: function(callback) { // analogue of chrome.extension.onRequest.addListener
-            if (webpg.utils.detectedBrowser['vendor'] == "mozilla" &&
-              webpg.utils.detectedBrowser['product'] != "thunderbird") {
-                return document.addEventListener("listener-query", function(event) {
-                    var node = event.target, doc = node.ownerDocument;
-
-                    return callback(node.getUserData("data"), doc, function(data) {
-                        if (!node.getUserData("callback")) {
-                            return doc.documentElement.removeChild(node);
-                        }
-
-                        node.setUserData("response", data, null);
-
-                        var listener = doc.createEvent("HTMLEvents");
-                        listener.initEvent("listener-response", true, false);
-                        return node.dispatchEvent(listener);
-                    });
-                }, false, true);
-            } else if (webpg.utils.detectedBrowser['product'] == "chrome") {
-                chrome.extension.onRequest.addListener(callback);
-            }
-        },
-    },
-
-    /*
-        Function: sendRequest
-            Sends a request event to the background page or content script
-
-        Parameters:
-            data - <json obj> A JSON object with parameters and data to pass
-            callback - <func> The callback to be called upon completion
-            doc - <document> The document to add the listener to 
-    */
-    sendRequest: function(data, callback, doc) { // analogue of chrome.extension.sendRequest
-        if (this.detectedBrowser['vendor'] == "mozilla") {
-            var request = document.createTextNode("");
-            request.setUserData("data", data, null);
-            if (callback) {
-                request.setUserData("callback", callback, null);
-
-                document.addEventListener("listener-response", function(event) {
-                    var node = event.target, callback = node.getUserData("callback"), response = node.getUserData("response");
-                    document.documentElement.removeChild(node);
-                    document.removeEventListener("listener-response", arguments.callee, false);
-                    return callback(response);
-                }, false);
-            }
-            document.documentElement.appendChild(request);
-
-            var sender = document.createEvent("HTMLEvents");
-            sender.initEvent("listener-query", true, false);
-            return request.dispatchEvent(sender);
-        } else {
-            // Check if the callback is null, otherwise the chrome bindings will freak out.
-            if (callback == null)
-                chrome.extension.sendRequest(data);
-            else
-                chrome.extension.sendRequest(data, callback);
-        }
-    },
-
-    /*
-        Function: tabs.sendRequest
-            Sends a request to a given tab/frame
-
-        Parameters:
-            target - <obj> An object that contains at minimum, the id for target
-            request - <json obj> A JSON object with parameters and data to send
-    */
-    tabs: {
-        sendRequest: function(target, request) {
-            if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
-                if (!request.target_id) {
-                    webpg.utils.sendRequest(request);
-                } else {
-                    var iframe = webpg.utils.getFrameById(request.target_id);
-                    if (iframe) {
-                        iframe.onload = function(aEvent) {
-                            var tw = aEvent.originalTarget;
-                            tw.contentWindow.postMessage(request, "*");
-                        }
-                    }
-                }
-            } else if (webpg.utils.detectedBrowser['product'] == "chrome") {
-                chrome.tabs.sendRequest(target.id, request);
-            }
-        },
     },
 
     /*
@@ -435,9 +326,123 @@ webpg.utils = {
         return {'selectionText': selectionText, 'pre_selection': preSelection, 'post_selection': postSelection};
     },
 
+    /*
+        Function: sendRequest
+            Sends a request event to the background page or content script
+
+        Parameters:
+            data - <json obj> A JSON object with parameters and data to pass
+            callback - <func> The callback to be called upon completion
+            doc - <document> The document to add the listener to 
+    */
+    sendRequest: function(data, callback, doc) { // analogue of chrome.extension.sendRequest
+        if (this.detectedBrowser['vendor'] == "mozilla") {
+            var request = document.createTextNode("");
+            request.setUserData("data", data, null);
+            if (callback) {
+                request.setUserData("callback", callback, null);
+
+                document.addEventListener("listener-response", function(event) {
+                    var node = event.target, callback = node.getUserData("callback"), response = node.getUserData("response");
+                    document.documentElement.removeChild(node);
+                    document.removeEventListener("listener-response", arguments.callee, false);
+                    return callback(response);
+                }, false);
+            }
+            document.documentElement.appendChild(request);
+
+            var sender = document.createEvent("HTMLEvents");
+            sender.initEvent("listener-query", true, false);
+            return request.dispatchEvent(sender);
+        } else {
+            // Check if the callback is null, otherwise the chrome bindings will freak out.
+            if (callback == null)
+                chrome.extension.sendRequest(data);
+            else
+                chrome.extension.sendRequest(data, callback);
+        }
+    },
+
+    /*
+        Class:  webpg.utils._onRequest
+            Provides the document listeners for receiving events
+    */
+    //  This class had to be renamed to _onRequest in order to pass
+    //  validation for addons.mozilla.org, which erroneously detects
+    //  this as a handleEvent call, not a user defined method. Lame.
+    _onRequest: {
+        /*
+            Function: addListener
+                This function creates a listener object for interaction between
+                privileged and non-privileged pages
+
+            Parameters:
+                callback - <func> The callback to be called upon completion
+        */
+        addListener: function(callback) { // analogue of chrome.extension.onRequest.addListener
+            if (webpg.utils.detectedBrowser['vendor'] == "mozilla" &&
+              webpg.utils.detectedBrowser['product'] != "thunderbird") {
+                return document.addEventListener("listener-query", function(event) {
+                    var node = event.target, doc = node.ownerDocument;
+
+                    return callback(node.getUserData("data"), doc, function(data) {
+                        if (!node.getUserData("callback")) {
+                            return doc.documentElement.removeChild(node);
+                        }
+
+                        node.setUserData("response", data, null);
+
+                        var listener = doc.createEvent("HTMLEvents");
+                        listener.initEvent("listener-response", true, false);
+                        return node.dispatchEvent(listener);
+                    });
+                }, false, true);
+            } else if (webpg.utils.detectedBrowser['product'] == "chrome") {
+                chrome.extension.onRequest.addListener(callback);
+            }
+        },
+    },
+
+
+    /*
+        Class: webpg.utils.tabs
+            Creates a unified class for managing tabs in various browsers
+    */
+    tabs: {
+        /*
+            Function: sendRequest
+                Sends a request to a given tab/frame
+
+            Parameters:
+                target - <obj> An object that contains at minimum, the id for target
+                request - <json obj> A JSON object with parameters and data to send
+        */
+        sendRequest: function(target, request) {
+            if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
+                if (!request.target_id) {
+                    webpg.utils.sendRequest(request);
+                } else {
+                    var iframe = webpg.utils.getFrameById(request.target_id);
+                    if (iframe) {
+                        iframe.onload = function(aEvent) {
+                            var tw = aEvent.originalTarget;
+                            tw.contentWindow.postMessage(request, "*");
+                        }
+                    }
+                }
+            } else if (webpg.utils.detectedBrowser['product'] == "chrome") {
+                chrome.tabs.sendRequest(target.id, request);
+            }
+        },
+    },
+
+    /*
+        Class: webpg.utils.contextMenus
+            Creates a unified class for managing contextMenus in various browsers
+    */
     contextMenus: {
         /*
-            Function: contextMenus.removeAll
+            Function: removeAll
                 Removes or hides all items in the context menu.
 
             Parameters:
@@ -455,7 +460,7 @@ webpg.utils = {
         },
 
         /*
-            Function: contextMenus.add
+            Function: add
                 Adds items to the context menu
 
             Parameters:

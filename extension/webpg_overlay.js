@@ -8,7 +8,9 @@ if (typeof(webpg)=='undefined') { webpg = {}; }
 
 /*
    Class: webpg.overlay
-    This class implements the overlay/content-script for the extension
+    This class implements the overlay/content-script for the extension.
+    It is loaded with each new page request and handles setting up
+    the required structure(s) for parsing/modifying page content.
 */
 webpg.overlay = {
 
@@ -52,6 +54,17 @@ webpg.overlay = {
         );
     },
 
+
+    /*
+        Function: _onRequest
+            Provides the document listeners for receiving events
+
+        Parameters:
+            request - <obj> The request object
+            sender  - <obj> The sender (tab/page) of the request
+            sendResponse - <func> The function to execute with the
+                response as the parameter
+    */
     _onRequest: function(request, sender, sendResponse) {
         var response = null;
         if (request.msg == "log") {
@@ -200,6 +213,13 @@ webpg.overlay = {
         }
     },
 
+    /*
+        Function: contextHandler
+            The receiver for all context events
+
+        Parameters:
+            event - <evt> The context event
+    */
     contextHandler: function(event) {
         context_menuitems = {};
         if (!webpg.overlay.block_target)
@@ -240,8 +260,8 @@ webpg.overlay = {
         Parameters:
             event - <event> The original event
             action - <str> The action to perform
+            sender  - <obj> The sender (tab/page) of the request
     */
-
 	onContextCommand: function(event, action, sender) {
 	    selection = webpg.utils.getSelectedText();
 	    switch (action) {
