@@ -4,9 +4,9 @@ if (typeof(webpg)=='undefined') { webpg = {}; }
 webpg.options = {
 
     init: function(browserWindow) {
-        if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "thunderbird")
+        if (webpg.utils.detectedBrowser['vendor'] == "mozilla")
             webpg.plugin = browserWindow.plugin;
-        else if (webpg.utils.detectedBrowser == "chrome")
+        else if (webpg.utils.detectedBrowser['product'] == "chrome")
             webpg.plugin = chrome.extension.getBackgroundPage().plugin;
 
         jQuery('#step-1').ready(function(){
@@ -14,7 +14,7 @@ webpg.options = {
         });
         
         function doSystemCheck() {
-            if (webpg.utils.detectedBrowser == "chrome")
+            if (webpg.utils.detectedBrowser['product'] == "chrome")
                 pf = window.clientInformation.platform.substr(0,3);
             else
                 pf = navigator.oscpu.substr(0,3);
@@ -66,7 +66,7 @@ webpg.options = {
                         'link' : null,
                     }
                 }
-                webpg.utils.log(errors['NPAPI']['detail']);
+                console.log(errors['NPAPI']['detail']);
             }
             errors_found = false;
             for (error in errors) {
@@ -100,7 +100,8 @@ webpg.options = {
                 jQuery('#valid-options').hide();
             } else {
                 // Only display the inline check if this is not the app version of webpg-chrome
-                if ((webpg.utils.detectedBrowser == "chrome") &&
+                // TODO: We probably don't want to show the "display inline" option for Thunderbird 
+                if ((webpg.utils.detectedBrowser['product'] == "chrome") &&
                     !chrome.app.getDetails().hasOwnProperty("content_scripts")){
                         jQuery('#enable-decorate-inline').hide();
                 } else {

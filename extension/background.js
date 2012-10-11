@@ -394,7 +394,7 @@ webpg.background = {
     },
 
     gpgGenKeyProgress: function(data) {
-        if (webpg.utils.detectedBrowser == "firefox") {
+        if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                        .getService(Components.interfaces.nsIWindowMediator);
             var enumerator = wm.getEnumerator(null);
@@ -426,7 +426,7 @@ webpg.background = {
                     doc.body.dispatchEvent(evtObj);
                 }
             }
-        } else if (webpg.utils.detectedBrowser == "chrome") {
+        } else if (webpg.utils.detectedBrowser['product'] == "chrome") {
             var port = chrome.extension.connect({name: "gpgGenKeyProgress"});
             port.postMessage({"type": "progress", "data": data});
             port.disconnect()
@@ -441,7 +441,7 @@ webpg.background = {
             true : false;
 
         // Notify the user
-        if (webpg.utils.detectedBrowser == "firefox") {
+        if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                    .getService(Components.interfaces.nsIWindowMediator);
             var browserWindow = wm.getMostRecentWindow("navigator:browser");
@@ -467,7 +467,7 @@ webpg.background = {
             nb.appendNotification(message, 'keygen-complete',
                  'chrome://webpg-firefox/skin/images/webpg-32.png',
                   priority, buttons);
-        } else if (webpg.utils.detectedBrowser == "chrome") {
+        } else if (webpg.utils.detectedBrowser['product'] == "chrome") {
             var title = (valid) ? "WebPG - Key Generation Complete!" :
                 "WebPG Key Generation Failed!";
             var message = (valid) ? "The generation of your new Key is now complete." :

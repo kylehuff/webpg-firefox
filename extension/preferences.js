@@ -306,7 +306,7 @@ webpg.preferences = {
     },
 };
 
-if (webpg.utils.detectedBrowser == "chrome") {
+if (webpg.utils.detectedBrowser['product'] == "chrome") {
     try {
         var browserWindow = chrome.extension.getBackgroundPage();
     } catch (err) {
@@ -316,10 +316,10 @@ if (webpg.utils.detectedBrowser == "chrome") {
     }
     webpg.localStorage = window.localStorage;
 // If this is Firefox, set up required objects
-} else if (webpg.utils.detectedBrowser == "firefox" || webpg.utils.detectedBrowser == "thunderbird") {
+} else if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
            .getService(Components.interfaces.nsIWindowMediator);
-    var winType = (webpg.utils.detectedBrowser == "firefox") ?
+    var winType = (webpg.utils.detectedBrowser['product'] == "firefox") ?
         "navigator:browser" : "mail:3pane";
     var browserWindow = wm.getMostRecentWindow(winType);
     // We are running on Mozilla, we need to set our localStorage object to
