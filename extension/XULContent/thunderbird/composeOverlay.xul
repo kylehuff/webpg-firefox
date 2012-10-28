@@ -26,14 +26,14 @@
                 <menuitem id="webpg-msg-noaction"
                     class="webpg-msg-noaction"
                     type="radio"
-                    label="Do not use WebPG for this message"
+                    label="&webpgCompose.labelDoNotUseForThisMessage;"
                     oncommand="webpg.thunderbird.compose.setSendAction('NOACTION');"
                     name="webpg-send-action"
                 />
                 <menuitem id="webpg-msg-sign"
                     class="webpg-msg-sign"
                     type="radio"
-                    label="Sign Inline (uses default key; EXPERIMENTAL)"
+                    label="&webpgCompose.labelSignInline;"
                     oncommand="webpg.thunderbird.compose.setSendAction('PLAINSIGN');"
                     name="webpg-send-action"
                 />
