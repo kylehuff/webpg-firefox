@@ -68,6 +68,6 @@
     <!-- Firefox Context Menu -->
 
     <window id="main-window">
-        <html:object id="webpgPlugin" type="application/x-webpg" height="1" width="1"></html:object> 
+        <html:object id="webpgPlugin" type="application/x-webpg" height="1" width="1" style="visibility:hidden;"></html:object> 
     </window>
 </overlay>
