@@ -18,3 +18,12 @@ Features as of Version 0.8.3 -
 In order for this to operate you *must* have some software installed depending on your operating system; namely, GnuPG and a key agent.
 
 Keep in mind, this is beta software, it will probably have lots of bugs -- use at your own risk, and please inform me of any bugs/issues via webpg-bugs@curetheitch.com
+
+To build the extension [Linux or OSX], clone or download this repository, and from the root directory execute:
+
+```
+./config_build.sh
+./build.sh
+```
+
+This should create the XPI file and load the extension in Firefox for installation.

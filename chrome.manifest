@@ -1,7 +1,15 @@
 content     webpg-firefox       extension/
-locale      webpg-firefox       en-US                       locale/en-US/
 skin        webpg-firefox       classic/1.0                 extension/skin/
+# Firefox
 overlay     chrome://browser/content/browser.xul            chrome://webpg-firefox/content/XULContent/firefoxOverlay.xul
+# SeaMonkey
+overlay     chrome://navigator/content/navigator.xul        chrome://webpg-firefox/content/XULContent/firefoxOverlay.xul    application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
+# Thunderbird Main
 overlay     chrome://messenger/content/messenger.xul        chrome://webpg-firefox/content/XULContent/thunderbird/thunderbirdOverlay.xul
+# Thunderbird Message Composer
 overlay     chrome://messenger/content/messengercompose/messengercompose.xul    chrome://webpg-firefox/content/XULContent/thunderbird/composeOverlay.xul
 style	    chrome://global/content/customizeToolbar.xul    chrome://webpg-firefox/content/skin/overlay.css
+
+# Locales
+locale      webpg-firefox       en-US           locale/en_US/
+locale      webpg-firefox       ar              locale/ar/

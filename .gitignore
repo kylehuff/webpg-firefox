@@ -1,6 +1,8 @@
 build/
 extension/plugins
 webpg-firefox-*.xpi
+changelog-*.txt
 *.swp
 *.patch
 *~
+gh-pages/

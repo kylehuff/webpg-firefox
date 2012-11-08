@@ -18,6 +18,7 @@
         <stringbundle id="webpg-strings" src="chrome://webpg-firefox/locale/webpg.properties"/>
     </stringbundleset>
 
+    <!-- Firefox Tools Menu -->
     <menupopup id="menu_ToolsPopup">
         <menuseparator/>
         <menu id="menu-webpg" label="&webpgMenu.label;" class="menu-iconic webpg-menu">
@@ -28,7 +29,23 @@
             </menupopup>
         </menu>
     </menupopup>
+    <!-- Firefox Tools Menu -->
 
+    <!-- SeaMonkey Tools Menu -->
+    <menupopup id="taskPopup">
+        <menuseparator/>
+        <menu id="menu-webpg" label="&webpgMenu.label;" class="menu-iconic webpg-menu">
+            <menupopup id="webpg-menu-popup">
+                <menuitem class="webpg-menu-manager menuitem-iconic" label="&webpgMenu.labelManager;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
+                <menuitem class="webpg-menu-options menuitem-iconic" label="&webpgMenu.labelOptions;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>
+                <menuitem class="webpg-menu-about menuitem-iconic" label="&webpgMenu.labelAbout;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ABOUT)"/>
+            </menupopup>
+        </menu>
+    </menupopup>
+    <!-- SeaMonkey Tools Menu -->
+
+    <!-- Firefox Context Menu -->
+    <!-- SeaMonkey Context Menu -->
     <popup id="contentAreaContextMenu">
         <menuseparator/>
         <menu id="context-webpg" class="menu-iconic webpg-menu" label="&webpgContext.label;" src="chrome://webpg-firefox/skin/images/webpg-32.png">
@@ -47,8 +64,10 @@
             </menupopup>
         </menu>
     </popup>
+    <!-- SeaMonkey Context Menu -->
+    <!-- Firefox Context Menu -->
 
     <window id="main-window">
-        <html:object id="webpgPlugin" type="application/x-webpg" height="1" width="1"></html:object> 
+        <html:object id="webpgPlugin" type="application/x-webpg" height="1" width="1" style="visibility:hidden;"></html:object> 
     </window>
 </overlay>

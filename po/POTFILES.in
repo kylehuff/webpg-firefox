@@ -1,0 +1,13 @@
+# List of source files containing translatable strings.
+
+extension/background.js
+extension/dialog.js
+extension/error.js
+extension/gmail.js
+extension/key_manager.js
+extension/options.js
+extension/utils.js
+extension/webpg_results.js
+extension/XULContent/firefoxOverlay.xul
+extension/XULContent/options.xul
+extension/XULContent/thunderbird/composeOverlay.xul
