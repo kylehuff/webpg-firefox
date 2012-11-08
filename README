@@ -1,3 +1,11 @@
+----- NIVEUSLUNA'S FORK README -----
+
+This is an attempt to make WebPG for Firefox work on SeaMonkey. Hasn't been tested yet. Needs to be rebuilt.
+
+install.rdf has been modified from upstream to make SeaMonkey API versions match up with the listed Firefox and Thunderbird versions.
+
+----- and now back to your regularly scheduled upstream README -----
+
 WebPG provides GnuPG, GPG, PGP related Public/Private Key operations and management in Mozilla Firefox
 
 Features as of Version 0.8.3 -

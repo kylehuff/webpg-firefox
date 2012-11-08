@@ -191,6 +191,7 @@ webpg.utils = {
     },
 
     /*
+			webpg.utils.detectedBrowser == "seamonkey") {
         Function: getFrameById
             Iterates through the windows to find a frame matching the given ID
 
@@ -301,6 +302,26 @@ webpg.utils = {
                 }
                 break;
 
+				
+			case "seamonkey":
+				if (url.search("options.html") > -1)
+                    url = url.replace("options.html", "XULContent/options.xul")
+                        .replace("?", "?options_tab=0&");
+                if (url.search("key_manager.html") > -1)
+                    url = url.replace("key_manager.html", "XULContent/options.xul")
+                        .replace("?", "?options_tab=1&");
+                //var tBrowser = top.document.getElementById("content");
+                //var tab = tBrowser.addTab(url);
+                //tBrowser.selectedTab = tab;
+                wTitle = (url.search("options_tab=0") > -1) ? "WebPG Options" :
+                    (url.search("options_tab=1") > -1) ? "WebPG Key Manager" :
+                    (url.search("options_tab=2") > -1) ? "About WebPG" : "";
+                var wFlags = "titlebar=no,menubar=no,location=no";
+                wFlags += "scrollbars=yes,status=no,centerscreen=yes";
+                window.open(url, wTitle, wFlags);
+                break;
+			
+			
             case "chrome":
                 if (tabIndex) {
                     chrome.tabs.create({'url': url, 'index': tabIndex})
