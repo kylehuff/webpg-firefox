@@ -1,8 +1,8 @@
 ----- NIVEUSLUNA'S FORK README -----
 
-This is an attempt to make WebPG for Firefox work on SeaMonkey. I'm having issues. See below.
+This is an attempt to make WebPG for Firefox work on SeaMonkey. Hasn't been tested yet. Needs to be rebuilt.
 
-I seem to have the extension's javascript code working for SeaMonkey, but I think some changes need to be made to the NPAPI plugin. Specifically, adding SeaMonkey and its firefox-equivalent versions to the supported lists.
+install.rdf has been modified from upstream to make SeaMonkey API versions match up with the listed Firefox and Thunderbird versions.
 
 ----- and now back to your regularly scheduled upstream README -----
 
