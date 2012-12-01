@@ -6,6 +6,7 @@
 <!ENTITY Open_Key_Manager "فتح إدارة المفاتيح">
 <!ENTITY WebPG_Key_Generation_Failed "WebPG الجيل مفتاح فشل">
 <!ENTITY The_generation_of_your_new_key_is_now_complete "توليد المفتاح الخاص بك هو الآن كاملة">
+<!ENTITY Import "">
 <!ENTITY Select_Recipient_s_ "حدد المستلمين">
 <!ENTITY Error_loading_WebPG "خطأ في تحميل WebPG">
 <!ENTITY We_encountered_a_problem_while_attempting_to_load_WebPG "واجهنا مشكلة أثناء محاولة تحميل WebPG">
@@ -248,7 +249,7 @@
 <!ENTITY UNUSABLE_KEY "">
 <!ENTITY NO_USER_ID "">
 <!ENTITY webpgMenu.label "WebPG">
-<!ENTITY webpgMenu.labelManager "مفتاح مدير">
+<!ENTITY webpgMenu.labelKeyManager "مفتاح مدير">
 <!ENTITY webpgMenu.labelOptions "خيارات">
 <!ENTITY webpgMenu.labelAbout "حول">
 <!ENTITY webpgContext.label "WebPG">
@@ -258,12 +259,13 @@
 <!ENTITY webpgContext.labelCryptSign "تشفير والتوقيع">
 <!ENTITY webpgContext.labelDecry "فك تشفير">
 <!ENTITY webpgContext.labelImport "استيراد">
-<!ENTITY webpgContext.labelExport "تصدير">
-<!ENTITY webpgContext.labelManager "مفتاح مدير">
+<!ENTITY webpgContext.labelExportPublicKey "تصدير">
+<!ENTITY webpgContext.labelKeyManager "مفتاح مدير">
 <!ENTITY webpgContext.labelOptions "خيارات">
 <!ENTITY webpgContext.labelErase "محو">
-<!ENTITY pane1.title "خيارات عامة">
-<!ENTITY pane2.title "مفتاح مدير">
-<!ENTITY pane3.title "حول">
+<!ENTITY paneTitle.labelOptions "خيارات">
+<!ENTITY paneTitle.labelKeyManager "مفتاح مدير">
+<!ENTITY paneTitle.labelAbout "حول">
 <!ENTITY webpgCompose.labelDoNotUseForThisMessage "لا تستخدم WebPG لهذه الرسالة">
 <!ENTITY webpgCompose.labelSignInline "علامة واضحة">
+<!ENTITY webpgContext.labelExport "تصدير">

@@ -6,13 +6,13 @@
     <stringbundleset id="stringbundleset">
         <stringbundle id="webpg-strings" src="chrome://webpg-firefox/locale/webpg.properties"/>
     </stringbundleset>
-    <prefpane id="options" label="&pane1.title;" flex="1" image="chrome://webpg-firefox/skin/images/webpg-48.png">
+    <prefpane id="options" label="&paneTitle.labelOptions;" flex="1" image="chrome://webpg-firefox/skin/images/webpg-48.png">
         <iframe style="min-height:500px;height:100%;" flex="1" id="optionsFrame" type="content"/>
     </prefpane>
-    <prefpane id="keylist" label="&pane2.title;" flex="1" image="chrome://webpg-firefox/skin/images/badges/stock_keypair.png">
+    <prefpane id="keylist" label="&paneTitle.labelKeyManager;" flex="1" image="chrome://webpg-firefox/skin/images/badges/stock_keypair.png">
         <iframe style="min-height:500px;height:100%;" flex="1" id="keylistFrame" type="content"/>
     </prefpane>
-    <prefpane id="about" label="&pane3.title;" flex="1" image="chrome://webpg-firefox/skin/images/about-48.png">
+    <prefpane id="about" label="&paneTitle.labelAbout;" flex="1" image="chrome://webpg-firefox/skin/images/about-48.png">
         <iframe style="min-height:500px;height:100%;" flex="1" id="aboutFrame" type="content"/>
     </prefpane>
     <script>
@@ -66,5 +66,6 @@
             }
         }
     </script>
+    <script src="../constants.js"/>
     <script src="../utils.js"/>
 </prefwindow>

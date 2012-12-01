@@ -6,6 +6,7 @@
 <!ENTITY Open_Key_Manager "Open Key Manager">
 <!ENTITY WebPG_Key_Generation_Failed "WebPG Key Generation Failed">
 <!ENTITY The_generation_of_your_new_key_is_now_complete "The generation of your new key is now complete">
+<!ENTITY Import "">
 <!ENTITY Select_Recipient_s_ "Select Recipients(s)">
 <!ENTITY Error_loading_WebPG "Error loading WebPG">
 <!ENTITY We_encountered_a_problem_while_attempting_to_load_WebPG "We encountered a problem while attempting to load WebPG">
@@ -248,7 +249,7 @@
 <!ENTITY UNUSABLE_KEY "UNUSABLE KEY">
 <!ENTITY NO_USER_ID "NO USER ID">
 <!ENTITY webpgMenu.label "WebPG">
-<!ENTITY webpgMenu.labelManager "Key manager">
+<!ENTITY webpgMenu.labelKeyManager "Key manager">
 <!ENTITY webpgMenu.labelOptions "Options">
 <!ENTITY webpgMenu.labelAbout "About">
 <!ENTITY webpgContext.label "WebPG">
@@ -258,12 +259,13 @@
 <!ENTITY webpgContext.labelCryptSign "Sign and Encrypt">
 <!ENTITY webpgContext.labelDecry "Decrypt">
 <!ENTITY webpgContext.labelImport "Import">
-<!ENTITY webpgContext.labelExport "Export">
-<!ENTITY webpgContext.labelManager "Key Manager">
+<!ENTITY webpgContext.labelExportPublicKey "Export Public Key">
+<!ENTITY webpgContext.labelKeyManager "Key Manager">
 <!ENTITY webpgContext.labelOptions "Options">
 <!ENTITY webpgContext.labelErase "Erase">
-<!ENTITY pane1.title "General">
-<!ENTITY pane2.title "Keylist(s)">
-<!ENTITY pane3.title "About">
+<!ENTITY paneTitle.labelOptions "Options">
+<!ENTITY paneTitle.labelKeyManager "Key Manager">
+<!ENTITY paneTitle.labelAbout "About">
 <!ENTITY webpgCompose.labelDoNotUseForThisMessage "Do not use WebPG for this message">
 <!ENTITY webpgCompose.labelSignInline "Sign Inline (uses default key; EXPERIMENTAL)">
+<!ENTITY webpgContext.labelExport "Export Public Key">

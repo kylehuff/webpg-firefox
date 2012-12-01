@@ -4,7 +4,8 @@
 <overlay id="webpg-overlay" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <script src="../jquery/js/jquery-1.7.2.min.js"/>
     <script type="text/javascript">
-        jQuery = jQuery.noConflict(true);
+        // Enforce jQuery.noConflict if not already performed
+        if (typeof(jQuery)!='undefined') { var jq = jQuery.noConflict(true); }
     </script>
     <script src="../constants.js"/>
     <script src="../utils.js"/>
@@ -23,7 +24,7 @@
         <menuseparator/>
         <menu id="menu-webpg" label="&webpgMenu.label;" class="menu-iconic webpg-menu">
             <menupopup id="webpg-menu-popup">
-                <menuitem class="webpg-menu-manager menuitem-iconic" label="&webpgMenu.labelManager;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
+                <menuitem class="webpg-menu-manager menuitem-iconic" label="&webpgMenu.labelKeyManager;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
                 <menuitem class="webpg-menu-options menuitem-iconic" label="&webpgMenu.labelOptions;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>
                 <menuitem class="webpg-menu-about menuitem-iconic" label="&webpgMenu.labelAbout;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ABOUT)"/>
             </menupopup>
@@ -36,7 +37,7 @@
         <menuseparator/>
         <menu id="menu-webpg" label="&webpgMenu.label;" class="menu-iconic webpg-menu">
             <menupopup id="webpg-menu-popup">
-                <menuitem class="webpg-menu-manager menuitem-iconic" label="&webpgMenu.labelManager;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
+                <menuitem class="webpg-menu-manager menuitem-iconic" label="&webpgMenu.labelKeyManager;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
                 <menuitem class="webpg-menu-options menuitem-iconic" label="&webpgMenu.labelOptions;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>
                 <menuitem class="webpg-menu-about menuitem-iconic" label="&webpgMenu.labelAbout;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ABOUT)"/>
             </menupopup>
@@ -56,9 +57,9 @@
                 <menuitem class="webpg-menu-cryptsign context-menu-item menuitem-iconic" label="&webpgContext.labelCryptSign;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.CRYPTSIGN)"/>
                 <menuitem class="webpg-menu-decrypt context-menu-item menuitem-iconic" label="&webpgContext.labelDecry;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.DECRYPT)"/>
                 <menuitem class="webpg-menu-import context-menu-item menuitem-iconic" label="&webpgContext.labelImport;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.IMPORT)"/>
-                <menuitem class="webpg-menu-export context-menu-item menuitem-iconic" label="&webpgContext.labelExport;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.EXPORT)"/>
+                <menuitem class="webpg-menu-export context-menu-item menuitem-iconic" label="&webpgContext.labelExportPublicKey;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.EXPORT)"/>
                 <menuseparator/>
-                <menuitem class="webpg-menu-manager menuitem-iconic" label="&webpgContext.labelManager;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
+                <menuitem class="webpg-menu-manager menuitem-iconic" label="&webpgContext.labelKeyManager;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
                 <menuitem class="webpg-menu-options menuitem-iconic" label="&webpgContext.labelOptions;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>
                 <menuitem style="display: none;" id="webpg-menu-memo-pop" class="webpg-menu-rease menuitem-iconic" label="&webpgContext.labelErase;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ERASE)"/>
             </menupopup>
