@@ -53,7 +53,7 @@ msgstr "The generation of your new key is now complete"
 
 #: extension/dialog.js:31
 msgid "Import"
-msgstr ""
+msgstr "Import"
 
 #: extension/dialog.js:31
 msgid "Select Recipient(s)"
@@ -378,9 +378,8 @@ msgid "Expiration Date"
 msgstr "Expiration Date"
 
 #: extension/key_manager.js:281
-#, fuzzy
 msgid "Click to generate a new key"
-msgstr "Click to genereate a new key"
+msgstr "Click to generate a new key"
 
 #: extension/key_manager.js:291
 msgid "Click to enable key"
@@ -1067,9 +1066,8 @@ msgid "webpgMenu.label"
 msgstr "WebPG"
 
 #: extension/XULContent/firefoxOverlay.xul:27
-#, fuzzy
 msgid "webpgMenu.labelKeyManager"
-msgstr "Key manager"
+msgstr "Key Manager"
 
 #: extension/XULContent/firefoxOverlay.xul:28
 msgid "webpgMenu.labelOptions"
@@ -1108,12 +1106,10 @@ msgid "webpgContext.labelImport"
 msgstr "Import"
 
 #: extension/XULContent/firefoxOverlay.xul:60
-#, fuzzy
 msgid "webpgContext.labelExportPublicKey"
-msgstr "Export"
+msgstr "Export Public Key"
 
 #: extension/XULContent/firefoxOverlay.xul:62
-#, fuzzy
 msgid "webpgContext.labelKeyManager"
 msgstr "Key Manager"
 
@@ -1126,17 +1122,14 @@ msgid "webpgContext.labelErase"
 msgstr "Erase"
 
 #: extension/XULContent/options.xul:83
-#, fuzzy
 msgid "paneTitle.labelOptions"
 msgstr "Options"
 
 #: extension/XULContent/options.xul:86
-#, fuzzy
 msgid "paneTitle.labelKeyManager"
 msgstr "Key Manager"
 
 #: extension/XULContent/options.xul:89
-#, fuzzy
 msgid "paneTitle.labelAbout"
 msgstr "About"
 
@@ -1150,13 +1143,4 @@ msgstr "Sign Inline (uses default key; EXPERIMENTAL)"
 
 #: extension/XULContent/thunderbird/composeOverlay.xul:231
 msgid "webpgContext.labelExport"
-msgstr "Export"
-
-#~ msgid "pane1.title"
-#~ msgstr "General"
-
-#~ msgid "pane2.title"
-#~ msgstr "Keylist(s)"
-
-#~ msgid "pane3.title"
-#~ msgstr "About"
+msgstr "Export Public Key"
