@@ -1,12 +1,12 @@
 <!ENTITY About_WebPG "حول WebPG">
-<!ENTITY Finished "">
+<!ENTITY Finished "منتهي">
 <!ENTITY WebPG_Plugin_failed_to_load "WebPG فشل تحميل البرنامج المساعد">
 <!ENTITY Key_Generation_Complete "أكملت إنشاء المفتاح">
 <!ENTITY Key_Generation "مفتاح الجيل">
 <!ENTITY Open_Key_Manager "فتح إدارة المفاتيح">
 <!ENTITY WebPG_Key_Generation_Failed "WebPG الجيل مفتاح فشل">
 <!ENTITY The_generation_of_your_new_key_is_now_complete "توليد المفتاح الخاص بك هو الآن كاملة">
-<!ENTITY Import "">
+<!ENTITY Import "استورد">
 <!ENTITY Select_Recipient_s_ "حدد المستلمين">
 <!ENTITY Error_loading_WebPG "خطأ في تحميل WebPG">
 <!ENTITY We_encountered_a_problem_while_attempting_to_load_WebPG "واجهنا مشكلة أثناء محاولة تحميل WebPG">
@@ -20,16 +20,16 @@
 <!ENTITY Error_Code "رمز الخطأ">
 <!ENTITY Error_String "خطأ سلسلة">
 <!ENTITY File "ملف">
-<!ENTITY Line "خط">
-<!ENTITY Unknown_Error "خطأ غير معروف">
-<!ENTITY System_Information "نظام المعلومات">
+<!ENTITY Line "السطر">
+<!ENTITY Unknown_Error "خطأ مجهول">
+<!ENTITY System_Information "معلومات النظام">
 <!ENTITY Platform "منصة">
 <!ENTITY App_Version "التطبيق الإصدار">
-<!ENTITY User_Agent "وكيل المستخدم">
-<!ENTITY Product "نتاج">
+<!ENTITY User_Agent "عميل المستخدم">
+<!ENTITY Product "المنتج">
 <!ENTITY Sub_product "المنتج الفرعي">
-<!ENTITY Vendor "بائع">
-<!ENTITY Language "لغة">
+<!ENTITY Vendor "المُنتِج">
+<!ENTITY Language "للغة">
 <!ENTITY You_do_not_have_any_keys_for "لم يكن لديك أي مفاتيح">
 <!ENTITY or "أو">
 <!ENTITY You_have_more_than_1_public_key_matching_that_address "لديك أكثر من 1 المفتاح العمومي مطابقة هذا العنوان">
@@ -45,38 +45,38 @@
 <!ENTITY Private_Keys "مفاتيح خاصة">
 <!ENTITY Public_Keys "مفاتيح العامة">
 <!ENTITY Search_Filter "بحث / فلتر">
-<!ENTITY Your_Name "">
-<!ENTITY Your_Email "">
-<!ENTITY Comment "">
-<!ENTITY Passphrase "تغيير عبارة المرور">
-<!ENTITY Repeat_Passphrase "تغيير عبارة المرور">
-<!ENTITY Advanced_Options "خيارات">
-<!ENTITY Public_Key_Algorithm "مفتاح خوارزمية">
-<!ENTITY Public_Key_Size "مفاتيح العامة">
-<!ENTITY Private_Key_Algorithm "مفتاح خوارزمية">
-<!ENTITY Private_Key_Size "مفاتيح خاصة">
-<!ENTITY Expire_in "انقضاء">
+<!ENTITY Your_Name "اسمك">
+<!ENTITY Your_Email "البريد الإلكتروني الخاص بك">
+<!ENTITY Comment "التعليق">
+<!ENTITY Passphrase "عبارة المرور">
+<!ENTITY Repeat_Passphrase "تكرار عبارة المرور">
+<!ENTITY Advanced_Options "خيارات متقدمة">
+<!ENTITY Public_Key_Algorithm "مفتاح خوارزمية العامة">
+<!ENTITY Public_Key_Size "مفتاح الحجم العام">
+<!ENTITY Private_Key_Algorithm "مفتاح خوارزمية خاصة">
+<!ENTITY Private_Key_Size "مفتاح الحجم خاصة">
+<!ENTITY Expire_in "تنتهي في">
 <!ENTITY Never "أبدا">
-<!ENTITY n30_days "">
-<!ENTITY n90_days "">
-<!ENTITY n1_year "">
-<!ENTITY Subkey_Options "خيارات">
-<!ENTITY encrypt_only "تشفير">
-<!ENTITY set_your_own_capabilities "استخدام على مسؤوليتك الخاصة">
+<!ENTITY n30_days "30 يوما">
+<!ENTITY n90_days "90 يوما">
+<!ENTITY n1_year "1 سنة">
+<!ENTITY Subkey_Options "خيارات للمفتاح الفرعي">
+<!ENTITY encrypt_only "التشفير فقط">
+<!ENTITY set_your_own_capabilities "تعيين القدرات الخاصة بك">
 <!ENTITY Sign "توقيع فقط">
 <!ENTITY Authenticate "مصادقة">
-<!ENTITY Revoke_this_Key "حذف هذا المفتاح">
-<!ENTITY Revoke_this_UID "سحب">
-<!ENTITY Revoke_this_Signature "حذف هذا التوقيع">
+<!ENTITY Revoke_this_Key "إلغاء هذا مفتاح">
+<!ENTITY Revoke_this_UID "إلغاء هذا المستخدم معرف">
+<!ENTITY Revoke_this_Signature "إلغاء هذا التوقيع">
 <!ENTITY Delete_this_Signature "حذف هذا التوقيع">
 <!ENTITY Delete_this_UID "حذف هذا معرف المستخدم">
 <!ENTITY Delete_this_Key "حذف هذا المفتاح">
-<!ENTITY This_key_will_be_permanently_deleted "">
-<!ENTITY Are_you_sure "">
+<!ENTITY This_key_will_be_permanently_deleted "سيتم حذف هذا المفتاح بشكل دائم">
+<!ENTITY Are_you_sure "هل أنت متأكد">
 <!ENTITY Change_Expiration "تاريخ انتهاء الصلاحية الجديد">
 <!ENTITY Sign_this_UID "التوقيع على هذه هوية المستخدم">
 <!ENTITY Key_Details "مفتاح التفاصيل">
-<!ENTITY Export_Public_Key "استيراد هذا المفتاح">
+<!ENTITY Export_Public_Key "تصدير للمفتاح العام">
 <!ENTITY Add_UID "إضافة المستخدم معرف">
 <!ENTITY Are_you_sure_you_wish_to_revoke_this_Key "هل أنت متأكد أنك ترغب في الغاء هذا معرف المستخدم">
 <!ENTITY Are_you_sure_you_wish_to_revoke_this_UID "هل أنت متأكد أنك ترغب في الغاء هذا التحديد المستخدم">
@@ -87,13 +87,13 @@
 <!ENTITY Never_Expire "أبدا انتهاء">
 <!ENTITY Expiration_Date "تاريخ انتهاء الصلاحية">
 <!ENTITY Click_to_generate_a_new_key "انقر لإنشاء مفتاح جديد">
-<!ENTITY Click_to_enable_key "">
-<!ENTITY Click_to_set_default_key "هذا هو المفتاح الخاص بك الافتراضي">
-<!ENTITY Generating_Key "إنشاء مفتاح جديد">
-<!ENTITY Waiting_for_entropy "">
-<!ENTITY Building_key "إنشاء المفتاح، يرجى الانتظار">
-<!ENTITY please_wait "إنشاء المفتاح، يرجى الانتظار">
-<!ENTITY trust "">
+<!ENTITY Click_to_enable_key "انقر فوق لتمكين مفتاح">
+<!ENTITY Click_to_set_default_key "انقر لتحديد المفتاح الافتراضي">
+<!ENTITY Generating_Key "توليد المفتاح">
+<!ENTITY Waiting_for_entropy "في انتظار بايت أكثر عشوائية">
+<!ENTITY Building_key "توليد المفتاح">
+<!ENTITY please_wait "يرجى الانتظار">
+<!ENTITY trust "الثقة">
 <!ENTITY Generate_New_Key "إنشاء مفتاح جديد">
 <!ENTITY Create "خلق">
 <!ENTITY Name_Required "الاسم مطلوب">
@@ -167,9 +167,9 @@
 <!ENTITY You_have_not_enabled_any_keys_for_use_with_webpg "لديك لم يتم تمكين أي مفاتيح للاستخدام مع webpg">
 <!ENTITY please_click_here "الرجاء الضغط هنا">
 <!ENTITY and_select_1_or_more_keys_for_use_with_webpg "وحدد 1 أو أكثر مفاتيح للاستخدام مع webpg">
-<!ENTITY You_have_not_generated_any_keys "لديك لم يتم تمكين أي مفاتيح للاستخدام مع webpg">
-<!ENTITY and_generate_a_key_to_use_with_webpg "وحدد 1 أو أكثر مفاتيح للاستخدام مع webpg">
-<!ENTITY Already_signed_with_this_key "">
+<!ENTITY You_have_not_generated_any_keys "لديك لم يتم إنشاء أية مفاتيح">
+<!ENTITY and_generate_a_key_to_use_with_webpg "وإنشاء مفتاح لاستخدامه مع WebPG">
+<!ENTITY Already_signed_with_this_key "وقعت بالفعل مع هذا المفتاح">
 <!ENTITY Signature_added_using_this_key "إنشاء التوقيع باستخدام هذا المفتاح">
 <!ENTITY Cannot_create_signatures_without_gpgconf_utility_installed "لا يمكن إنشاء التواقيع دون تثبيت gpgconf">
 <!ENTITY Cannot_sign_a_revoked_UID "غير قادر على التوقيع من قبل المستخدم المعرف الذي تم إبطال">
@@ -198,15 +198,15 @@
 <!ENTITY There_was_a_problem_loading_the_plugin "هناك مشكلة تهيئة البرنامج المساعد">
 <!ENTITY the_plugin_might_be_incompatibly_compiled_for_this_architechture "قد تجميع البرنامج المساعد لا يكون للهندسة المعمارية الخاصة بك">
 <!ENTITY click_here_for_help_resolving_this_issue "انقر هنا للحصول على المساعدة لحل هذه المشكلة">
-<!ENTITY Enable_Inline_formatting_of_PGP_Messages_and_Keys "">
-<!ENTITY Always_encrypt_to_your_default_key_in_addition_to_the_recipient "">
-<!ENTITY Enable_WebPG_GMAIL_integration "جوجل التكامل تجريبية WebPG">
-<!ENTITY EXPERIMENTAL "">
-<!ENTITY Sign_outgoing_messages_in_GMAIL "">
-<!ENTITY GnuPG_home_directory "">
-<!ENTITY GnuPG_binary "">
-<!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "">
-<!ENTITY There_is_a_problem_with_your_configuration "قد يكون هناك مشكلة في التثبيت GPG">
+<!ENTITY Enable_Inline_formatting_of_PGP_Messages_and_Keys "تمكين التنسيق التلقائي للرسائل ومفاتيح">
+<!ENTITY Always_encrypt_to_your_default_key_in_addition_to_the_recipient "تشفير المفتاح دائما الافتراضي الخاص بك بالإضافة إلى المستلم">
+<!ENTITY Enable_WebPG_GMAIL_integration "تمكين GMAIL التكامل">
+<!ENTITY EXPERIMENTAL "تجريبي">
+<!ENTITY Sign_outgoing_messages_in_GMAIL "توقيع الرسائل الصادرة في GMAIL">
+<!ENTITY GnuPG_home_directory "GnuPG الدليل الرئيسي">
+<!ENTITY GnuPG_binary "GnuPG قابل للتنفيذ">
+<!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "النظام الخاص بك ويبدو أن تكوين بشكل صحيح ل WebPG">
+<!ENTITY There_is_a_problem_with_your_configuration "هناك مشكلة مع التكوين الخاص بك">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "جوجل التكامل تجريبية WebPG">
 <!ENTITY use_at_your_own_risk "استخدام على مسؤوليتك الخاصة">
 <!ENTITY Text_copied_to_clipboard "تم نسخ النص إلى الحافظة">
@@ -235,7 +235,7 @@
 <!ENTITY THE_SIGNATURE_MIGHT_BE_TAMPERED_WITH "تم تغيير التوقيع">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_KEY "وقد وقع هذه الرسالة مع المفتاح">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_AN_EXPIRED_PUBLIC_KEY "وقد وقع هذه الرسالة مع المفتاح العمومي الذي انتهت مدة صلاحية">
-<!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_A_PUBLIC_KEY_NOT_IN_YOUR_KEYRING "وقد وقع هذه الرسالة مع المفتاح العمومي الذي انتهت مدة صلاحية">
+<!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_A_PUBLIC_KEY_NOT_IN_YOUR_KEYRING "وقد وقع هذه الرسالة مع مفاتيح العامة التي ليست في الدائري مفتاح">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_FAILED "التوقيع على هذه الرسالة غير صالح">
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "قد يكون العبث بالرسالة">
 <!ENTITY PGP_PUBLIC_KEY "PGP مفاتيح العامة">
@@ -246,8 +246,8 @@
 <!ENTITY IMPORT_THIS_KEY "استيراد هذا المفتاح">
 <!ENTITY DELETE_THIS_KEY "حذف هذا المفتاح">
 <!ENTITY HIDE_ORIGINAL "إخفاء الأصلي">
-<!ENTITY UNUSABLE_KEY "">
-<!ENTITY NO_USER_ID "">
+<!ENTITY UNUSABLE_KEY "غير صالحة للاستعمال مفتاح">
+<!ENTITY NO_USER_ID "مفقود هوية المستخدم">
 <!ENTITY webpgMenu.label "WebPG">
 <!ENTITY webpgMenu.labelKeyManager "مفتاح مدير">
 <!ENTITY webpgMenu.labelOptions "خيارات">
@@ -259,7 +259,7 @@
 <!ENTITY webpgContext.labelCryptSign "تشفير والتوقيع">
 <!ENTITY webpgContext.labelDecry "فك تشفير">
 <!ENTITY webpgContext.labelImport "استيراد">
-<!ENTITY webpgContext.labelExportPublicKey "تصدير">
+<!ENTITY webpgContext.labelExportPublicKey "تصدير للمفتاح العام">
 <!ENTITY webpgContext.labelKeyManager "مفتاح مدير">
 <!ENTITY webpgContext.labelOptions "خيارات">
 <!ENTITY webpgContext.labelErase "محو">
@@ -268,4 +268,4 @@
 <!ENTITY paneTitle.labelAbout "حول">
 <!ENTITY webpgCompose.labelDoNotUseForThisMessage "لا تستخدم WebPG لهذه الرسالة">
 <!ENTITY webpgCompose.labelSignInline "علامة واضحة">
-<!ENTITY webpgContext.labelExport "تصدير">
+<!ENTITY webpgContext.labelExport "تصدير للمفتاح العام">

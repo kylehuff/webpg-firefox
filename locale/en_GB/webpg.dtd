@@ -6,7 +6,7 @@
 <!ENTITY Open_Key_Manager "Open Key Manager">
 <!ENTITY WebPG_Key_Generation_Failed "WebPG Key Generation Failed">
 <!ENTITY The_generation_of_your_new_key_is_now_complete "The generation of your new key is now complete">
-<!ENTITY Import "">
+<!ENTITY Import "Import">
 <!ENTITY Select_Recipient_s_ "Select Recipients(s)">
 <!ENTITY Error_loading_WebPG "Error loading WebPG">
 <!ENTITY We_encountered_a_problem_while_attempting_to_load_WebPG "We encountered a problem while attempting to load WebPG">
@@ -86,7 +86,7 @@
 <!ENTITY New_Expiration_Date "New Expiration Date">
 <!ENTITY Never_Expire "Never Expire">
 <!ENTITY Expiration_Date "Expiration Date">
-<!ENTITY Click_to_generate_a_new_key "Click to genereate a new key">
+<!ENTITY Click_to_generate_a_new_key "Click to generate a new key">
 <!ENTITY Click_to_enable_key "Click to enable key">
 <!ENTITY Click_to_set_default_key "Click to set default key">
 <!ENTITY Generating_Key "Generating Key...">
@@ -249,7 +249,7 @@
 <!ENTITY UNUSABLE_KEY "UNUSABLE KEY">
 <!ENTITY NO_USER_ID "NO USER ID">
 <!ENTITY webpgMenu.label "WebPG">
-<!ENTITY webpgMenu.labelKeyManager "Key manager">
+<!ENTITY webpgMenu.labelKeyManager "Key Manager">
 <!ENTITY webpgMenu.labelOptions "Options">
 <!ENTITY webpgMenu.labelAbout "About">
 <!ENTITY webpgContext.label "WebPG">
@@ -259,7 +259,7 @@
 <!ENTITY webpgContext.labelCryptSign "Sign and Encrypt">
 <!ENTITY webpgContext.labelDecry "Decrypt">
 <!ENTITY webpgContext.labelImport "Import">
-<!ENTITY webpgContext.labelExportPublicKey "Export">
+<!ENTITY webpgContext.labelExportPublicKey "Export Public Key">
 <!ENTITY webpgContext.labelKeyManager "Key Manager">
 <!ENTITY webpgContext.labelOptions "Options">
 <!ENTITY webpgContext.labelErase "Erase">
@@ -268,4 +268,4 @@
 <!ENTITY paneTitle.labelAbout "About">
 <!ENTITY webpgCompose.labelDoNotUseForThisMessage "Do not use WebPG for this message">
 <!ENTITY webpgCompose.labelSignInline "Sign Inline (uses default key; EXPERIMENTAL)">
-<!ENTITY webpgContext.labelExport "Export">
+<!ENTITY webpgContext.labelExport "Export Public Key">
