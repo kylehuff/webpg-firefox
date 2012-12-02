@@ -13,3 +13,5 @@ style	    chrome://global/content/customizeToolbar.xul    chrome://webpg-firefox
 # Locales
 locale      webpg-firefox       en-US           locale/en_US/
 locale      webpg-firefox       ar              locale/ar/
+locale      webpg-firefox       de              locale/de/
+locale      webpg-firefox       pl              locale/pl/
