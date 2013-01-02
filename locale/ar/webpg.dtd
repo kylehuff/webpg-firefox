@@ -8,6 +8,9 @@
 <!ENTITY The_generation_of_your_new_key_is_now_complete "توليد المفتاح الخاص بك هو الآن كاملة">
 <!ENTITY Import "استورد">
 <!ENTITY Select_Recipient_s_ "حدد المستلمين">
+<!ENTITY Search_Filter "بحث / فلتر">
+<!ENTITY UIDs "مستخدم المعرفات">
+<!ENTITY Key_does_not_support_this_operation "">
 <!ENTITY Error_loading_WebPG "خطأ في تحميل WebPG">
 <!ENTITY We_encountered_a_problem_while_attempting_to_load_WebPG "واجهنا مشكلة أثناء محاولة تحميل WebPG">
 <!ENTITY Error "خطأ">
@@ -30,6 +33,11 @@
 <!ENTITY Sub_product "المنتج الفرعي">
 <!ENTITY Vendor "المُنتِج">
 <!ENTITY Language "للغة">
+<!ENTITY This_message_already_contains_PGPG_data "">
+<!ENTITY Would_you_like_to_Encrypt_anyway_ "">
+<!ENTITY This_message_already_contains_PGP_data "">
+<!ENTITY Would_you_like_to_Sign_anyway_ "">
+<!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway_ "">
 <!ENTITY You_do_not_have_any_keys_for "لم يكن لديك أي مفاتيح">
 <!ENTITY or "أو">
 <!ENTITY You_have_more_than_1_public_key_matching_that_address "لديك أكثر من 1 المفتاح العمومي مطابقة هذا العنوان">
@@ -41,10 +49,11 @@
 <!ENTITY Sign_and_Encrypt "توقيع وتشفير">
 <!ENTITY Symmetric_Encryption "متماثل التشفير">
 <!ENTITY Do_not_use_WebPG_for_this_message "لا تستخدم WebPG لهذه الرسالة">
+<!ENTITY Decrypt "">
+<!ENTITY Verify "">
 <!ENTITY WebPG_Key_Manager "مفتاح مدير WebPG">
 <!ENTITY Private_Keys "مفاتيح خاصة">
 <!ENTITY Public_Keys "مفاتيح العامة">
-<!ENTITY Search_Filter "بحث / فلتر">
 <!ENTITY Your_Name "اسمك">
 <!ENTITY Your_Email "البريد الإلكتروني الخاص بك">
 <!ENTITY Comment "التعليق">
@@ -113,12 +122,16 @@
 <!ENTITY Expired "انقضاء">
 <!ENTITY Invalid "غير صالح">
 <!ENTITY Revoked "سحب">
+<!ENTITY no_email_address_provided "لم يقدم أي عنوان بريد إلكتروني">
 <!ENTITY Cannot_unset_your_default_key "هذا هو المفتاح الخاص بك الافتراضي">
 <!ENTITY Trust_Assignment "تعيين الثقة">
 <!ENTITY Unknown "غير معروف">
 <!ENTITY Marginal "هامشي">
 <!ENTITY Full "تماما">
 <!ENTITY Ultimate "نهائي">
+<!ENTITY None "">
+<!ENTITY New_group "">
+<!ENTITY Group_Assignment "">
 <!ENTITY Change_Passphrase "تغيير عبارة المرور">
 <!ENTITY Add_Subkey "إضافة مفتاح الفرعي">
 <!ENTITY Enable_this_Key "تمكين هذا المفتاح لتوقيع">
@@ -126,7 +139,6 @@
 <!ENTITY KeyID "مفتاح معرف">
 <!ENTITY Key_Created "تم إنشاؤها على">
 <!ENTITY Expires "انقضاء">
-<!ENTITY UIDs "مستخدم المعرفات">
 <!ENTITY Fingerprint "بصمة">
 <!ENTITY Status "حالة">
 <!ENTITY Key_Algorithm "مفتاح خوارزمية">
@@ -134,13 +146,14 @@
 <!ENTITY Key_Options "خيارات">
 <!ENTITY Operations "خيارات">
 <!ENTITY Export_this_Key "استيراد هذا المفتاح">
+<!ENTITY Publish_to_Keyserver "">
+<!ENTITY Refresh_from_Keyserver "">
 <!ENTITY Subkeys "المفاتيح الفرعية">
 <!ENTITY Subkey_Details "مفتاح الفرعي التفاصيل">
 <!ENTITY Flags "الأعلام">
 <!ENTITY Delete_this_Subkey "حذف هذا المفتاح">
 <!ENTITY Revoke_this_Subkey "حذف هذا المفتاح">
 <!ENTITY User_IDs "مستخدم المعرفات">
-<!ENTITY no_email_address_provided "لم يقدم أي عنوان بريد إلكتروني">
 <!ENTITY Make_primary "جعل الابتدائية">
 <!ENTITY Revoke_UID "سحب">
 <!ENTITY REVOKED "فاسخ">
@@ -162,6 +175,16 @@
 <!ENTITY Key_is_superseded "وقد تم استبدال مفتاح">
 <!ENTITY Key_is_no_longer_used "لم يعد يستخدم مفتاح">
 <!ENTITY Description "وصف">
+<!ENTITY Publish "">
+<!ENTITY Sending_key_to_Keyserver "">
+<!ENTITY There_was_a_problem_sending_this_key_to_the_Keyserver "">
+<!ENTITY No_Keyserver_defined "">
+<!ENTITY Keyserver "">
+<!ENTITY Try_Again "">
+<!ENTITY Key_Published_to_Keyserver "">
+<!ENTITY Publish_Again "">
+<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "">
+<!ENTITY Key_not_found_on_keyserver "">
 <!ENTITY User_ID_is_no_longer_valid "هوية المستخدم لم يعد صالحا">
 <!ENTITY Please_select_which_of_your_keys_to_create_the_signature_with "الرجاء اختيار أي من المفاتيح الخاصة بك لإنشاء التوقيع مع">
 <!ENTITY You_have_not_enabled_any_keys_for_use_with_webpg "لديك لم يتم تمكين أي مفاتيح للاستخدام مع webpg">
@@ -171,7 +194,9 @@
 <!ENTITY and_generate_a_key_to_use_with_webpg "وإنشاء مفتاح لاستخدامه مع WebPG">
 <!ENTITY Already_signed_with_this_key "وقعت بالفعل مع هذا المفتاح">
 <!ENTITY Signature_added_using_this_key "إنشاء التوقيع باستخدام هذا المفتاح">
+<!ENTITY Cannot_Publish_Keys_without_gpgconf_utility_installed "">
 <!ENTITY Cannot_create_signatures_without_gpgconf_utility_installed "لا يمكن إنشاء التواقيع دون تثبيت gpgconf">
+<!ENTITY Cannot_Publish_Keys_without_Keyserver_configured "">
 <!ENTITY Cannot_sign_a_revoked_UID "غير قادر على التوقيع من قبل المستخدم المعرف الذي تم إبطال">
 <!ENTITY Cannot_make_a_revoked_UID_primary "لا يمكنك تعيين معرف من المستخدم كما الأولية إذا كان المستخدم معرف تم إبطال">
 <!ENTITY Cannot_sign_an_expired_key "لا يمكن التوقيع على مفتاح منتهية الصلاحية">
@@ -189,8 +214,6 @@
 <!ENTITY It_appears_you_have_a_key_agent_configured "يبدو لديك مفتاح وكيل تكوينه">
 <!ENTITY gpgconf_was_detected "تم الكشف عن gpgconf">
 <!ENTITY you_can_use_the_signature_methods "يمكنك استخدام أساليب التوقيع">
-<!ENTITY libgpgme_was_unable_to_load "وكان غير قادر على تهيئة libgpgme">
-<!ENTITY libgpgme_is_required_for_operation "مطلوب للعمل libgpgme">
 <!ENTITY You_do_not_appear_to_have_a_key_agent_configured "لا يبدو أن لديك مفتاح وكيل تكوينه">
 <!ENTITY A_working_key_agent_is_required "يجب على مفتاح صالح وكيل تكون موجودة">
 <!ENTITY gpgconf_does_not_appear_to_be_installed "gpgconf لا يظهر ليتم تثبيتها">
@@ -236,6 +259,7 @@
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_KEY "وقد وقع هذه الرسالة مع المفتاح">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_AN_EXPIRED_PUBLIC_KEY "وقد وقع هذه الرسالة مع المفتاح العمومي الذي انتهت مدة صلاحية">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_A_PUBLIC_KEY_NOT_IN_YOUR_KEYRING "وقد وقع هذه الرسالة مع مفاتيح العامة التي ليست في الدائري مفتاح">
+<!ENTITY SEARCH_FOR_KEYS_ON_KEYSERVER "">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_FAILED "التوقيع على هذه الرسالة غير صالح">
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "قد يكون العبث بالرسالة">
 <!ENTITY PGP_PUBLIC_KEY "PGP مفاتيح العامة">

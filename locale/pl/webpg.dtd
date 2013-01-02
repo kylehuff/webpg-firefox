@@ -8,6 +8,9 @@
 <!ENTITY The_generation_of_your_new_key_is_now_complete "Twój nowy klucz jest gotowy">
 <!ENTITY Import "Importuj">
 <!ENTITY Select_Recipient_s_ "Wybierz odbiorcę (odbiorców)">
+<!ENTITY Search_Filter "Znajdź/Filtruj">
+<!ENTITY UIDs "Tożsamości">
+<!ENTITY Key_does_not_support_this_operation "">
 <!ENTITY Error_loading_WebPG "Błąd podczas ładowania WebPG">
 <!ENTITY We_encountered_a_problem_while_attempting_to_load_WebPG "Wystąpił problem podczas próby wczytania WebPG">
 <!ENTITY Error "Błąd">
@@ -30,6 +33,11 @@
 <!ENTITY Sub_product "Numer buildu">
 <!ENTITY Vendor "Producent">
 <!ENTITY Language "Język">
+<!ENTITY This_message_already_contains_PGPG_data "">
+<!ENTITY Would_you_like_to_Encrypt_anyway_ "">
+<!ENTITY This_message_already_contains_PGP_data "">
+<!ENTITY Would_you_like_to_Sign_anyway_ "">
+<!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway_ "">
 <!ENTITY You_do_not_have_any_keys_for "Nie masz żadnych kluczy dla następujących odbiorców:">
 <!ENTITY or ";">
 <!ENTITY You_have_more_than_1_public_key_matching_that_address "Posiadasz więcej niż 1 klucz publiczny odpowiadający temu adresowi">
@@ -41,10 +49,11 @@
 <!ENTITY Sign_and_Encrypt "Podpisz i zaszyfruj">
 <!ENTITY Symmetric_Encryption "Zaszyfruj symetrycznie (na hasło)">
 <!ENTITY Do_not_use_WebPG_for_this_message "Nie używaj WebPG dla tej wiadomości">
+<!ENTITY Decrypt "">
+<!ENTITY Verify "">
 <!ENTITY WebPG_Key_Manager "Zarządzanie kluczami WebPG">
 <!ENTITY Private_Keys "Klucze prywatne">
 <!ENTITY Public_Keys "Klucze publiczne">
-<!ENTITY Search_Filter "Znajdź/Filtruj">
 <!ENTITY Your_Name "Twoje imię">
 <!ENTITY Your_Email "Twój email">
 <!ENTITY Comment "Opis">
@@ -113,12 +122,16 @@
 <!ENTITY Expired "Wygasły">
 <!ENTITY Invalid "Nieprawidłowy">
 <!ENTITY Revoked "Unieważniony">
+<!ENTITY no_email_address_provided "nie podano adresu email">
 <!ENTITY Cannot_unset_your_default_key "Nie można wyłączyć twojego domyślnego klucza">
 <!ENTITY Trust_Assignment "Zaufanie">
 <!ENTITY Unknown "Nieznane">
 <!ENTITY Marginal "Niewielkie">
 <!ENTITY Full "Pełne">
 <!ENTITY Ultimate "Całkowite">
+<!ENTITY None "">
+<!ENTITY New_group "">
+<!ENTITY Group_Assignment "">
 <!ENTITY Change_Passphrase "Zmień hasło">
 <!ENTITY Add_Subkey "Dodaj klucz wewnętrzny">
 <!ENTITY Enable_this_Key "Włącz ten klucz">
@@ -126,7 +139,6 @@
 <!ENTITY KeyID "Identyfikator klucza">
 <!ENTITY Key_Created "Klucz utworzony">
 <!ENTITY Expires "Wygasa">
-<!ENTITY UIDs "Tożsamości">
 <!ENTITY Fingerprint "Odcisk klucza">
 <!ENTITY Status "Status">
 <!ENTITY Key_Algorithm "Algorytm klucza">
@@ -134,13 +146,14 @@
 <!ENTITY Key_Options "Ustawienia klucza">
 <!ENTITY Operations "Działania">
 <!ENTITY Export_this_Key "Eksportuj ten klucz">
+<!ENTITY Publish_to_Keyserver "">
+<!ENTITY Refresh_from_Keyserver "">
 <!ENTITY Subkeys "Klucze wewnętrzne">
 <!ENTITY Subkey_Details "Szczegóły klucza wewnętrznego">
 <!ENTITY Flags "Flagi">
 <!ENTITY Delete_this_Subkey "Usuń ten klucz wewnętrzny">
 <!ENTITY Revoke_this_Subkey "Wycofaj ten klucz wewnętrzny">
 <!ENTITY User_IDs "Tożsamości">
-<!ENTITY no_email_address_provided "nie podano adresu email">
 <!ENTITY Make_primary "Ustaw jako główną">
 <!ENTITY Revoke_UID "Wycofaj tożsamość">
 <!ENTITY REVOKED "WYCOFANA">
@@ -162,6 +175,16 @@
 <!ENTITY Key_is_superseded "Klucz został zastąpiony">
 <!ENTITY Key_is_no_longer_used "Klucz nie jest już używany">
 <!ENTITY Description "Opis">
+<!ENTITY Publish "">
+<!ENTITY Sending_key_to_Keyserver "">
+<!ENTITY There_was_a_problem_sending_this_key_to_the_Keyserver "">
+<!ENTITY No_Keyserver_defined "">
+<!ENTITY Keyserver "">
+<!ENTITY Try_Again "">
+<!ENTITY Key_Published_to_Keyserver "">
+<!ENTITY Publish_Again "">
+<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "">
+<!ENTITY Key_not_found_on_keyserver "">
 <!ENTITY User_ID_is_no_longer_valid "Tożsamość przestała być ważna">
 <!ENTITY Please_select_which_of_your_keys_to_create_the_signature_with "Wybierz które z twoich kluczy zostaną użyte do stworzenia podpisu">
 <!ENTITY You_have_not_enabled_any_keys_for_use_with_webpg "Żaden klucz nie jest włączony">
@@ -171,7 +194,9 @@
 <!ENTITY and_generate_a_key_to_use_with_webpg "i wygeneruj klucz do używania z webpg">
 <!ENTITY Already_signed_with_this_key "Już podpisano z użyciem tego klucza">
 <!ENTITY Signature_added_using_this_key "Dodany podpis z użyciem tego klucza">
+<!ENTITY Cannot_Publish_Keys_without_gpgconf_utility_installed "">
 <!ENTITY Cannot_create_signatures_without_gpgconf_utility_installed "Nie można tworzyć podpisów bez zainstalowanego programu gpgconf">
+<!ENTITY Cannot_Publish_Keys_without_Keyserver_configured "">
 <!ENTITY Cannot_sign_a_revoked_UID "Nie można podpisać wycofanej tożsamości">
 <!ENTITY Cannot_make_a_revoked_UID_primary "Nie można ustawić wycofanej tożsamości jako głównej">
 <!ENTITY Cannot_sign_an_expired_key "Nie można podpisać przeterminowanego klucza">
@@ -189,8 +214,6 @@
 <!ENTITY It_appears_you_have_a_key_agent_configured "Wygląda na to że skonfigurowałeś już agenta kluczy">
 <!ENTITY gpgconf_was_detected "gpgconf został wykryty">
 <!ENTITY you_can_use_the_signature_methods "możesz używać podpisów elektronicznych">
-<!ENTITY libgpgme_was_unable_to_load "nie można było załadować libgpgme">
-<!ENTITY libgpgme_is_required_for_operation "Do tej operacji wymagana jest biblioteka libgpgme">
 <!ENTITY You_do_not_appear_to_have_a_key_agent_configured "Wygląda na to że nie posiadasz skonfigurowanego agenta kluczy">
 <!ENTITY A_working_key_agent_is_required "Agent kluczy jest wymagany do poprawnego działania">
 <!ENTITY gpgconf_does_not_appear_to_be_installed "Wygląda na to że gpgconf nie jest zainstalowany">
@@ -236,6 +259,7 @@
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_KEY "TA WIADOMOŚĆ ZOSTAŁA PODPISANA KLUCZEM">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_AN_EXPIRED_PUBLIC_KEY "TA WIADOMOŚĆ ZOSTAŁA PODPISANA PRZETERMINOWANYM KLUCZEM PUBLICZNYM">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_A_PUBLIC_KEY_NOT_IN_YOUR_KEYRING "TA WIADOMOŚĆ ZOSTAŁA PODPISANA KLUCZEM PUBLICZNYM SPOZA TWOJEGO KEYRINGU">
+<!ENTITY SEARCH_FOR_KEYS_ON_KEYSERVER "">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_FAILED "PODPIS POD TĄ WIADOMOŚCIĄ JEST NIEPRAWIDŁOWY">
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "MOŻLIWE ŻE KTOŚ PRÓBOWAŁ PODROBIĆ WIADOMOŚĆ">
 <!ENTITY PGP_PUBLIC_KEY "KLUCZ PUBLICZNY PGP">

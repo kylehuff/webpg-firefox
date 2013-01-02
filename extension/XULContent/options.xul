@@ -2,21 +2,22 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://webpg-firefox/skin/webpgOverlay.css" type="text/css"?>
 <!DOCTYPE prefwindow SYSTEM "chrome://webpg-firefox/locale/webpg.dtd">
-<prefwindow id="optionsforwebpg" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="Preferences" onload="onLoad(this); sizeToContent();" style="min-width: 850px; min-height: 640px;">
+<prefwindow id="optionsforwebpg" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="Preferences" onload="onLoad(this);">
     <stringbundleset id="stringbundleset">
         <stringbundle id="webpg-strings" src="chrome://webpg-firefox/locale/webpg.properties"/>
     </stringbundleset>
     <prefpane id="options" label="&paneTitle.labelOptions;" flex="1" image="chrome://webpg-firefox/skin/images/webpg-48.png">
-        <iframe style="min-height:500px;height:100%;" flex="1" id="optionsFrame" type="content"/>
+        <iframe style="height:100%;width:100%;overflow: auto;" flex="1" id="optionsFrame" type="content"/>
     </prefpane>
     <prefpane id="keylist" label="&paneTitle.labelKeyManager;" flex="1" image="chrome://webpg-firefox/skin/images/badges/stock_keypair.png">
-        <iframe style="min-height:500px;height:100%;" flex="1" id="keylistFrame" type="content"/>
+        <iframe style="height:100%;width:100%;overflow: auto;" flex="1" id="keylistFrame" type="content"/>
     </prefpane>
     <prefpane id="about" label="&paneTitle.labelAbout;" flex="1" image="chrome://webpg-firefox/skin/images/about-48.png">
-        <iframe style="min-height:500px;height:100%;" flex="1" id="aboutFrame" type="content"/>
+        <iframe style="height:100%;width:100%;overflow: auto;" flex="1" id="aboutFrame" type="content"/>
     </prefpane>
     <script>
         function onLoad() {
+
             var tab = (window.location.search.search("options_tab")) ? 
                 webpg.utils.getParameterByName("options_tab") : -1;
 
@@ -25,6 +26,9 @@
             var winType = (webpg.utils.detectedBrowser['product'] == "thunderbird") ?
                 "mail:3pane" : "navigator:browser";
             var browserWindow = wm.getMostRecentWindow(winType);
+
+            window.resizeTo((browserWindow.screen.availWidth), (browserWindow.screen.availHeight));
+			window.moveTo(0, 0);
 
 		    var optionsFrame = document.getElementById('optionsFrame');
 		    optionsFrame.setAttribute('src','chrome://webpg-firefox/content/options.html');

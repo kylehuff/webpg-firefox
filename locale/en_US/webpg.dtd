@@ -6,8 +6,11 @@
 <!ENTITY Open_Key_Manager "Open Key Manager">
 <!ENTITY WebPG_Key_Generation_Failed "WebPG Key Generation Failed">
 <!ENTITY The_generation_of_your_new_key_is_now_complete "The generation of your new key is now complete">
-<!ENTITY Import "">
+<!ENTITY Import "Import">
 <!ENTITY Select_Recipient_s_ "Select Recipients(s)">
+<!ENTITY Search_Filter "Search/Filter">
+<!ENTITY UIDs "UIDs">
+<!ENTITY Key_does_not_support_this_operation "">
 <!ENTITY Error_loading_WebPG "Error loading WebPG">
 <!ENTITY We_encountered_a_problem_while_attempting_to_load_WebPG "We encountered a problem while attempting to load WebPG">
 <!ENTITY Error "Error">
@@ -30,6 +33,11 @@
 <!ENTITY Sub_product "Sub-product">
 <!ENTITY Vendor "Vendor">
 <!ENTITY Language "Language">
+<!ENTITY This_message_already_contains_PGPG_data "">
+<!ENTITY Would_you_like_to_Encrypt_anyway_ "">
+<!ENTITY This_message_already_contains_PGP_data "">
+<!ENTITY Would_you_like_to_Sign_anyway_ "">
+<!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway_ "">
 <!ENTITY You_do_not_have_any_keys_for "You do not have any keys for">
 <!ENTITY or "or">
 <!ENTITY You_have_more_than_1_public_key_matching_that_address "You have more than 1 public key matching that address">
@@ -41,10 +49,11 @@
 <!ENTITY Sign_and_Encrypt "Sign and Encrypt">
 <!ENTITY Symmetric_Encryption "Symmetric Encryption">
 <!ENTITY Do_not_use_WebPG_for_this_message "Do not use WebPG for this message">
+<!ENTITY Decrypt "Decrypt">
+<!ENTITY Verify "Verify">
 <!ENTITY WebPG_Key_Manager "WebPG Key Manager">
 <!ENTITY Private_Keys "Private Keys">
 <!ENTITY Public_Keys "Public Keys">
-<!ENTITY Search_Filter "Search/Filter">
 <!ENTITY Your_Name "Your Name">
 <!ENTITY Your_Email "Your Email">
 <!ENTITY Comment "Comment">
@@ -113,12 +122,16 @@
 <!ENTITY Expired "Expired">
 <!ENTITY Invalid "Invalid">
 <!ENTITY Revoked "Revoked">
+<!ENTITY no_email_address_provided "no email address provided">
 <!ENTITY Cannot_unset_your_default_key "Cannot unset your default key">
 <!ENTITY Trust_Assignment "Trust Assignment">
 <!ENTITY Unknown "Unknown">
 <!ENTITY Marginal "Marginal">
 <!ENTITY Full "Full">
 <!ENTITY Ultimate "Ultimate">
+<!ENTITY None "None">
+<!ENTITY New_group "New group">
+<!ENTITY Group_Assignment "Group Assignment">
 <!ENTITY Change_Passphrase "Change Passphrase">
 <!ENTITY Add_Subkey "Add Subkey">
 <!ENTITY Enable_this_Key "Enable this Key">
@@ -126,7 +139,6 @@
 <!ENTITY KeyID "KeyID">
 <!ENTITY Key_Created "Key Created">
 <!ENTITY Expires "Expires">
-<!ENTITY UIDs "UIDs">
 <!ENTITY Fingerprint "Fingerprint">
 <!ENTITY Status "Status">
 <!ENTITY Key_Algorithm "Key Algorithm">
@@ -134,13 +146,14 @@
 <!ENTITY Key_Options "Key Options">
 <!ENTITY Operations "Operations">
 <!ENTITY Export_this_Key "Export this Key">
+<!ENTITY Publish_to_Keyserver "Publish to Keyserver">
+<!ENTITY Refresh_from_Keyserver "Refresh from Keyserver">
 <!ENTITY Subkeys "Subkeys">
 <!ENTITY Subkey_Details "Subkey Details">
 <!ENTITY Flags "Flags">
 <!ENTITY Delete_this_Subkey "Delete this Subkey">
 <!ENTITY Revoke_this_Subkey "Revoke this key">
 <!ENTITY User_IDs "User IDs">
-<!ENTITY no_email_address_provided "no email address provided">
 <!ENTITY Make_primary "Make primary">
 <!ENTITY Revoke_UID "Revoke UID">
 <!ENTITY REVOKED "REVOKED">
@@ -162,6 +175,16 @@
 <!ENTITY Key_is_superseded "Key is superseded">
 <!ENTITY Key_is_no_longer_used "Key is no longer used">
 <!ENTITY Description "Description">
+<!ENTITY Publish "Publish">
+<!ENTITY Sending_key_to_Keyserver "Sending key to Keyserver">
+<!ENTITY There_was_a_problem_sending_this_key_to_the_Keyserver "There was a problem sending this key to the Keyserver">
+<!ENTITY No_Keyserver_defined "No Keyserver defined">
+<!ENTITY Keyserver "Keyserver">
+<!ENTITY Try_Again "Try Again">
+<!ENTITY Key_Published_to_Keyserver "Key Published to Keyserver">
+<!ENTITY Publish_Again "Publish Again">
+<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "Are you sure you want to Publish this key to the Keyserver">
+<!ENTITY Key_not_found_on_keyserver "">
 <!ENTITY User_ID_is_no_longer_valid "User ID is no longer valid">
 <!ENTITY Please_select_which_of_your_keys_to_create_the_signature_with "Please select which of your keys to create the signature with">
 <!ENTITY You_have_not_enabled_any_keys_for_use_with_webpg "You have not enabled any keys for use with webpg">
@@ -171,7 +194,9 @@
 <!ENTITY and_generate_a_key_to_use_with_webpg "and generate a key to use with webpg">
 <!ENTITY Already_signed_with_this_key "Already signed with this key">
 <!ENTITY Signature_added_using_this_key "Signature added using this key">
+<!ENTITY Cannot_Publish_Keys_without_gpgconf_utility_installed "Cannot Publish Keys without gpgconf utility installed">
 <!ENTITY Cannot_create_signatures_without_gpgconf_utility_installed "Cannot create signatures without gpgconf utility installed">
+<!ENTITY Cannot_Publish_Keys_without_Keyserver_configured "Cannot Publish Keys without Keyserver configured">
 <!ENTITY Cannot_sign_a_revoked_UID "Cannot sign a revoked UID">
 <!ENTITY Cannot_make_a_revoked_UID_primary "Cannot make a revoked UID primary">
 <!ENTITY Cannot_sign_an_expired_key "Cannot sign an expired key">
@@ -189,8 +214,6 @@
 <!ENTITY It_appears_you_have_a_key_agent_configured "It appears you have a key-agent configured">
 <!ENTITY gpgconf_was_detected "gpgconf was detected">
 <!ENTITY you_can_use_the_signature_methods "you can use the signature methods">
-<!ENTITY libgpgme_was_unable_to_load "libgpgme was unable to load">
-<!ENTITY libgpgme_is_required_for_operation "libgpgme is required for operation">
 <!ENTITY You_do_not_appear_to_have_a_key_agent_configured "You do not appear to have a key-agent configured">
 <!ENTITY A_working_key_agent_is_required "A working key-agent is required">
 <!ENTITY gpgconf_does_not_appear_to_be_installed "gpgconf does not appear to be installed">
@@ -236,6 +259,7 @@
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_KEY "THIS MESSAGE WAS SIGNED WITH KEY">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_AN_EXPIRED_PUBLIC_KEY "THIS MESSAGE WAS SIGNED WITH AN EXPIRED PUBLIC KEY">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_A_PUBLIC_KEY_NOT_IN_YOUR_KEYRING "THIS MESSAGE WAS SIGNED WITH A PUBLIC KEY NOT IN YOUR KEYRING">
+<!ENTITY SEARCH_FOR_KEYS_ON_KEYSERVER "">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_FAILED "THE SIGNATURE ON THIS MESSAGE FAILED">
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "THE MESSAGE MAY BE TAMPERED WITH">
 <!ENTITY PGP_PUBLIC_KEY "PGP PUBLIC KEY">

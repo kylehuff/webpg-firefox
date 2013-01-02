@@ -8,6 +8,9 @@
 <!ENTITY The_generation_of_your_new_key_is_now_complete "Die Erzeugung Ihres neuen Schlüssels ist nun abgeschlossen">
 <!ENTITY Import "Importieren">
 <!ENTITY Select_Recipient_s_ "einen oder mehrere Empfänger auswählen">
+<!ENTITY Search_Filter "Suchfilter">
+<!ENTITY UIDs "UIDs">
+<!ENTITY Key_does_not_support_this_operation "">
 <!ENTITY Error_loading_WebPG "Fehler beim Laden von WebPG">
 <!ENTITY We_encountered_a_problem_while_attempting_to_load_WebPG "Wir sind auf ein Problem gestoßen beim Versuch, WebPG zu laden">
 <!ENTITY Error "Fehler">
@@ -30,6 +33,11 @@
 <!ENTITY Sub_product "Produkt-Teil">
 <!ENTITY Vendor "Anbieter">
 <!ENTITY Language "Sprache">
+<!ENTITY This_message_already_contains_PGPG_data "">
+<!ENTITY Would_you_like_to_Encrypt_anyway_ "">
+<!ENTITY This_message_already_contains_PGP_data "">
+<!ENTITY Would_you_like_to_Sign_anyway_ "">
+<!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway_ "">
 <!ENTITY You_do_not_have_any_keys_for "Sie haben keinen Schlüssel für">
 <!ENTITY or "oder">
 <!ENTITY You_have_more_than_1_public_key_matching_that_address "Sie haben mehr als einen öffentlichen Schlüssel für diese Adresse">
@@ -41,10 +49,11 @@
 <!ENTITY Sign_and_Encrypt "Signieren und verschlüsseln">
 <!ENTITY Symmetric_Encryption "symmetrische Verschlüsselung">
 <!ENTITY Do_not_use_WebPG_for_this_message "Verwenden Sie WebPG nicht für diese Nachricht">
+<!ENTITY Decrypt "Entschlüsseln">
+<!ENTITY Verify "">
 <!ENTITY WebPG_Key_Manager "WebPG Schlüsselverwaltung">
 <!ENTITY Private_Keys "Private Schlüssel">
 <!ENTITY Public_Keys "Öffentliche Schlüssel">
-<!ENTITY Search_Filter "Suchfilter">
 <!ENTITY Your_Name "Ihr Name">
 <!ENTITY Your_Email "Ihre E-Mail-Adresse">
 <!ENTITY Comment "Kommentar">
@@ -113,12 +122,16 @@
 <!ENTITY Expired "Abgelaufen">
 <!ENTITY Invalid "Ungültig">
 <!ENTITY Revoked "Widerrufen">
+<!ENTITY no_email_address_provided "Keine E-Mail-Adresse angegeben">
 <!ENTITY Cannot_unset_your_default_key "Kann Standardschlüssel nicht deaktivieren">
 <!ENTITY Trust_Assignment "Vertrauenszuordnung">
 <!ENTITY Unknown "Unbekannt">
 <!ENTITY Marginal "Geringfügig">
 <!ENTITY Full "Vollständig">
 <!ENTITY Ultimate "Absolut">
+<!ENTITY None "">
+<!ENTITY New_group "">
+<!ENTITY Group_Assignment "">
 <!ENTITY Change_Passphrase "Passphrase ä_ndern">
 <!ENTITY Add_Subkey "Unterschlüssel hinzufügen">
 <!ENTITY Enable_this_Key "Diesen Schlüssel aktivieren">
@@ -126,7 +139,6 @@
 <!ENTITY KeyID "Schlüssel-ID">
 <!ENTITY Key_Created "Schlüssel erzeugt">
 <!ENTITY Expires "Läuft ab">
-<!ENTITY UIDs "UIDs">
 <!ENTITY Fingerprint "Fingerabdruck">
 <!ENTITY Status "Status">
 <!ENTITY Key_Algorithm "Schlüssel-Algorithmus">
@@ -134,18 +146,19 @@
 <!ENTITY Key_Options "Schlüsseleinstellungen">
 <!ENTITY Operations "Vorgänge">
 <!ENTITY Export_this_Key "Diesen Schlüssel exportieren">
+<!ENTITY Publish_to_Keyserver "">
+<!ENTITY Refresh_from_Keyserver "">
 <!ENTITY Subkeys "Unterschlüssel">
 <!ENTITY Subkey_Details "Unterschlüsseldetails">
 <!ENTITY Flags "Flags">
 <!ENTITY Delete_this_Subkey "Unterschlüssel löschen">
 <!ENTITY Revoke_this_Subkey "Unterschüssel widerrufen">
 <!ENTITY User_IDs "Benutzerkennungen">
-<!ENTITY no_email_address_provided "Keine E-Mail-Adresse angegeben">
 <!ENTITY Make_primary "Als primär kennzeichnen">
 <!ENTITY Revoke_UID "UID zurückziehen">
 <!ENTITY REVOKED "WIDERRUFEN">
 <!ENTITY self_signature "eigene Unterschrift">
-<!ENTITY local "Lokal">
+<!ENTITY local "lokal">
 <!ENTITY non_exportable "Nicht exportierbar">
 <!ENTITY other_signature "Andere Signatur">
 <!ENTITY Revoke "Widerrufen">
@@ -162,6 +175,16 @@
 <!ENTITY Key_is_superseded "Schlüssel ist überholt">
 <!ENTITY Key_is_no_longer_used "Schlüssel wird nicht mehr verwendet">
 <!ENTITY Description "Beschreibung">
+<!ENTITY Publish "">
+<!ENTITY Sending_key_to_Keyserver "">
+<!ENTITY There_was_a_problem_sending_this_key_to_the_Keyserver "">
+<!ENTITY No_Keyserver_defined "">
+<!ENTITY Keyserver "">
+<!ENTITY Try_Again "">
+<!ENTITY Key_Published_to_Keyserver "">
+<!ENTITY Publish_Again "">
+<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "">
+<!ENTITY Key_not_found_on_keyserver "">
 <!ENTITY User_ID_is_no_longer_valid "User-ID ist nicht mehr gültig">
 <!ENTITY Please_select_which_of_your_keys_to_create_the_signature_with "werden soll">
 <!ENTITY You_have_not_enabled_any_keys_for_use_with_webpg "Sie haben keinen Schlüssel für die Benutzung mit WebPG aktiviert">
@@ -171,7 +194,9 @@
 <!ENTITY and_generate_a_key_to_use_with_webpg "und erzeugen Sie einen Schlüssel zur Verwendung mit WebPG">
 <!ENTITY Already_signed_with_this_key "Bereits mit diesem Schlüssel unterzeichnet">
 <!ENTITY Signature_added_using_this_key "Unterschrift hinzugefügt unter Verwendung dieses Schlüssels">
+<!ENTITY Cannot_Publish_Keys_without_gpgconf_utility_installed "">
 <!ENTITY Cannot_create_signatures_without_gpgconf_utility_installed "Kann keine Unterschriften erzeugen ohne dass gpgconf installiert ist">
+<!ENTITY Cannot_Publish_Keys_without_Keyserver_configured "">
 <!ENTITY Cannot_sign_a_revoked_UID "Kann keine widerrufene UID signieren">
 <!ENTITY Cannot_make_a_revoked_UID_primary "Kann keine widerrufene UID als primär einstellen">
 <!ENTITY Cannot_sign_an_expired_key "Kann keinen abgelaufenen Schlüssel signieren">
@@ -189,8 +214,6 @@
 <!ENTITY It_appears_you_have_a_key_agent_configured "Es scheint, als hätten Sie einen Schlüsselagenten konfiguriert">
 <!ENTITY gpgconf_was_detected "gpgconf wurde gefunden">
 <!ENTITY you_can_use_the_signature_methods "Sie können die Signaturmethoden anwenden">
-<!ENTITY libgpgme_was_unable_to_load "libgpgme konnte nicht geladen werden">
-<!ENTITY libgpgme_is_required_for_operation "libgpgme ist für diesen Vorgang notwendig">
 <!ENTITY You_do_not_appear_to_have_a_key_agent_configured "Sie scheinen keinen Schlüsselagenten konfiguriert zu haben">
 <!ENTITY A_working_key_agent_is_required "Ein funktionierender Schlüsselagent ist notwendig">
 <!ENTITY gpgconf_does_not_appear_to_be_installed "gpgconf scheint nicht installiert zu sein">
@@ -236,6 +259,7 @@
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_KEY "DIESE NACHRICHT WURDE MIT FOLGENDEM SCHLÜSSEL SIGNIERT">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_AN_EXPIRED_PUBLIC_KEY "DIESE NACHRICHT WURDE MIT EINEM ABGELAUFENEN ÖFFENTLICHEN SCHLÜSSEL SIGNIERT">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_A_PUBLIC_KEY_NOT_IN_YOUR_KEYRING "ÖFFENTLICHEN SCHLÜSSEL SIGNIERT:">
+<!ENTITY SEARCH_FOR_KEYS_ON_KEYSERVER "">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_FAILED "DIE SIGNATUR BEI DIESER NACHRICHT IST NICHT IN ORDNUNG">
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "AN DIESER NACHRICHT WURDEN WOMÖGLICH UNBEFUGTE ÄNDERUNGEN VORGENOMMEN">
 <!ENTITY PGP_PUBLIC_KEY "ÖFFENTLICHER PGP SCHLÜSSEL">

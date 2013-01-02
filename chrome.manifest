@@ -1,4 +1,5 @@
 content     webpg-firefox       extension/
+content     webpg-firefox       extension/                  contentaccessible=yes
 skin        webpg-firefox       classic/1.0                 extension/skin/
 # Firefox
 overlay     chrome://browser/content/browser.xul            chrome://webpg-firefox/content/XULContent/firefoxOverlay.xul
