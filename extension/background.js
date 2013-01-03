@@ -76,7 +76,6 @@ webpg.background = {
             webpg.preferences.group.refresh_from_config();
             console.log("WebPG background initialized");
         } else {
-            //alert("error " + JSON.stringify(webpg.plugin.webpg_status));
             if (webpg.plugin.valid == undefined) {
                 webpg.plugin.webpg_status = {
                     "error": true,
@@ -246,7 +245,6 @@ webpg.background = {
             case 'doKeyImport':
                 //console.log("doKeyImport requested");
                 var import_status = {'imports': []};
-                console.log(import_status);
                 if (request.temp_context) {
                     temp_path = webpg.plugin.getTemporaryPath();
                     if (!temp_path)
@@ -268,7 +266,6 @@ webpg.background = {
                         // do nothing
                     }
                 }
-                console.log(import_status);
                 if (import_status.error || !import_status.imports.hasOwnProperty(0)) {
                     //console.log("NO IMPORT; Something failed", request, import_status);
                     import_status['imports'] =

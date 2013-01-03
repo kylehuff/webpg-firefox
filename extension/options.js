@@ -30,7 +30,7 @@ webpg.options = {
         jq('#step-1').ready(function(){
             doSystemCheck();
         });
-        
+
         function doSystemCheck() {
             var _ = webpg.utils.i18n.gettext;
             if (webpg.utils.detectedBrowser['product'] == "chrome")
@@ -155,17 +155,17 @@ webpg.options = {
 
                 jq("#gnupg-path-select").find(".webpg-options-text").
                     text(_("GnuPG home directory"));
-                    
+
                 jq("#gnupg-path-select").find("input:button").val(_("Save"))
 
                 jq("#gnupg-binary-select").find(".webpg-options-text").
                     text(_("GnuPG binary") + " (i.e. /usr/bin/gpg)");
-                    
+
                 jq("#gnupg-binary-select").find("input:button").val(_("Save"));
 
                 jq("#gnupg-keyserver-select").find(".webpg-options-text").
                     text(_("Keyserver") + " (i.e. hkp://subkeys.pgp.net)");
-                    
+
                 jq("#gnupg-keyserver-select").find("input:button").val(_("Save"));
 
                 jq("#system-good").find(".trust-desc").text(_("Your system appears to be configured correctly for WebPG"));
@@ -250,7 +250,7 @@ webpg.options = {
                     jq(this).data('oldVal', jq(this).val());
 
                     // Look for changes in the value
-                    jq(this).bind("propertychange keyup input paste", function(event){
+                    jq(this).bind("change propertychange keyup input paste", function(event){
                         // If value has changed...
                         if (jq(this).data('oldVal') != jq(this).val()) {
                             // Updated stored value
@@ -277,7 +277,7 @@ webpg.options = {
                     jq(this).data('oldVal', jq(this).val());
 
                     // Look for changes in the value
-                    jq(this).bind("propertychange keyup input paste", function(event){
+                    jq(this).bind("change propertychange keyup input paste", function(event){
                         // If value has changed...
                         if (jq(this).data('oldVal') != jq(this).val()) {
                             // Updated stored value
@@ -304,7 +304,7 @@ webpg.options = {
                     jq(this).data('oldVal', jq(this).val());
 
                     // Look for changes in the value
-                    jq(this).bind("propertychange keyup input paste", function(event){
+                    jq(this).bind("change propertychange keyup input paste", function(event){
                         // If value has changed...
                         if (jq(this).data('oldVal') != jq(this).val()) {
                             // Updated stored value
@@ -323,7 +323,7 @@ webpg.options = {
 
                 jq("#advanced-options-link").click(function(e){
                     jq("#advanced-options").toggle("slide");
-                });                
+                });
             }
         }
 

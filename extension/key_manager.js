@@ -2276,7 +2276,7 @@ webpg.keymanager = {
                     function() {
                         jq('#dialog-msg').text(
                             (val.length > 0) ? _("Searching for") + " \"" + val
-                            + "\"" : ("Please wait while we build the key list")
+                            + "\"" : _("Please wait while we build the key list")
                         );
                         jq(this).animate({"top": window.scrollY +
                             jq(this).innerHeight() + 100}, 1,

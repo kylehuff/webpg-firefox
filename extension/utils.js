@@ -404,7 +404,10 @@ webpg.utils = {
             selectionObject = window.getSelection();
         }
         
-        if (!selectionObject.toString().length > 0 && selectionTarget.nodeName == "IFRAME") {
+        if (!selectionObject.toString().length > 0 && selectionTarget.nodeName == "IFRAME" &&
+            selectionTarget.className.indexOf("webpg-result-frame") < 0 &&
+            selectionTarget.className.indexOf("webpg-dialog") < 0) {
+            console.log(selectionTarget.className);
             selectionTarget = selectionTarget.contentDocument.documentElement.ownerDocument;
             selectionObject = selectionTarget.getSelection();
             selectionTarget = selectionTarget.activeElement;

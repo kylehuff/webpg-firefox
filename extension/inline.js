@@ -269,12 +269,11 @@ webpg.inline = {
         var str = s.serializeToString(d);
         var xmlnsReg = new RegExp(" xmlns=\"http://www.w3.org/1999/xhtml\"", "gi");
         var wbrReg = new RegExp("\<wbr\>", "gi");
-        
+
         str = str.replace(xmlnsReg, "");
         str = str.replace(wbrReg, "");
 
-        var html = (node.parentNode) ? node.parentNode.innerHTML :
-            node.parentNode.innerHTML;
+        var html = node.parentNode.innerHTML;
 
         while (html.lastIndexOf("\n") + 1 == html.length) {
             html = html.substring(0, html.lastIndexOf("\n"));
@@ -301,7 +300,7 @@ webpg.inline = {
         var fragment = range.extractContents();
 
         var results_frame = webpg.inline.addResultsFrame(node, range);
-        
+
         var doc = (webpg.inline.doc) ? webpg.inline.doc : document;
 
         var originalNodeData = doc.createElement("span");
@@ -366,6 +365,12 @@ webpg.inline = {
                     data: scontent},
                     function(response) {
                         if (response.result.gpg_error_code == "58" || !response.result.error) {
+                            webpg.utils.sendRequest({
+                                'msg': "sendtoiframe",
+                                'block_type': blockType,
+                                'target_id': results_frame.id,
+                                'verify_result': response.result}
+                            );
                             if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
                                 webpg.utils.sendRequest({
                                     'msg': "sendtoiframe",
@@ -416,7 +421,24 @@ webpg.inline = {
                             'block_type': blockType,
                             'target_id': results_frame.id,
                             'verify_result': response.result
-                         });
+                        });
+                        if (webpg.utils.detectedBrowser['vendor'] == "mozilla") {
+                            webpg.utils.sendRequest({
+                                'msg': "sendtoiframe",
+                                'block_type': blockType,
+                                'target_id': results_frame.id,
+                                'verify_result': response.result
+                            });
+                        } else {
+                            results_frame.onload = function() {
+                                webpg.utils.sendRequest({
+                                    'msg': "sendtoiframe",
+                                    'block_type': blockType,
+                                    'target_id': results_frame.id,
+                                    'verify_result': response.result
+                                });
+                            };
+                        }
                     }
                 );
                 break;
@@ -425,11 +447,11 @@ webpg.inline = {
 
     addWebPGToolbar: function(element) {
         var _ = webpg.utils.i18n.gettext;
-        element.style.whiteSpace = "pre";     
+        element.style.whiteSpace = "pre";
         var doc = (webpg.inline.doc) ? webpg.inline.doc : document;
         var toolbar = doc.createElement("div");
         var toolbarWidth = 0;
-        
+
         toolbar.setAttribute("style", "padding: 0 8px; font-weight: bold; " +
             "font-family: arial,sans-serif; font-size: 11px; position:absolute;" +
             "background-color: #f1f1f1;" +
@@ -440,7 +462,7 @@ webpg.inline = {
 
         jq(element).hover(
             function(e) {
-                element.focus();
+                webpg.overlay.insert_target = element;
                 var _x = 0;
                 var _y = 0;
                 var el = element;
@@ -669,7 +691,7 @@ webpg.inline = {
     addElementBadge: function(doc, posX, id, control) {
 
         var badge = doc.createElement("span");
-        
+
         if (control.nodeName.toLowerCase() == "textarea") {
             posX = "-50";
             posY = "-6";
@@ -679,7 +701,7 @@ webpg.inline = {
 
         badge.setAttribute("style", "width:30px;" +
             "display:inline-block;position:relative;top:" + posY + "px;left:" + posX + "px;" +
-            "padding:1px 2px 3px 0;border-radius: 70px");
+            "padding:1px 2px 3px 0;border-radius: 70px; z-index:9000;");
         badge.setAttribute("id", "webpg-badge-toggle-" + id);
         badge.setAttribute("class", "webpg-badge-toggle");
 
@@ -736,6 +758,7 @@ webpg.inline = {
         iframe.style.width = "100%";
         iframe.style.minHeight = "220px";
         iframe.style.backgroundColor = "#efefef";
+        iframe.style.zIndex = "9999";
         if (this.mode == "icon")
             iframe.style.display = 'none';
         webpg.utils._onRequest.addListener(function(request) {
@@ -783,14 +806,15 @@ webpg.inline = {
     addResultsReplacementFrame: function(element){
         var iframe = this.addResultsFrame();
         var doc = (webpg.inline.doc) ? webpg.inline.doc : document;
+        iframe.style.minWidth = 300;
         if (element.style.width)
-            iframe.style.minWidth = element.style.width;
+            iframe.style.width = element.style.width;
         jq(iframe).insertAfter(jq(element));
         jq(element).hide();
         webpg.utils._onRequest.addListener(function(request) {
-            if (request.msg == "toggle") {
-                jq(element).toggle();
-                jq(iframe).toggle();
+            if (request.msg == "toggle" && request.target_id == iframe.id) {
+                jq(element).show();
+                jq(iframe).remove();
             }
         });
         var theURL = webpg.utils.resourcePath + "webpg_results.html?id=" + iframe.id;
@@ -811,6 +835,7 @@ webpg.inline = {
         var id = (new Date()).getTime();
         iframe.setAttribute('id', id);
         iframe.id = id;
+        iframe.className = "webpg-dialog";
         iframe.scrolling = "no";
         iframe.frameBorder = "none";
         iframe.style.position = "absolute";
@@ -822,6 +847,7 @@ webpg.inline = {
         iframe.style.marginTop = "50px";
         iframe.style.zIndex = "9999";
         iframe.style.backgroundColor = "transparent";
+
         if (webpg.overlay.insert_target)
             jq(iframe).insertAfter(webpg.overlay.insert_target);
 
@@ -829,6 +855,7 @@ webpg.inline = {
             iframe.contentWindow.location.href = theURL;
         else if (webpg.utils.detectedBrowser['product'] == "chrome")
             iframe.src = theURL;
+
         return iframe;
     },
 }

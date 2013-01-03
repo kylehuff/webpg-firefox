@@ -20,8 +20,6 @@ webpg.inline_results = {
             new RegExp("([^?=&]+)(=([^&]*))?", "g"),
             function($0, $1, $2, $3) { qs[$1] = $3; }
         );
-        
-        webpg.inline_results.requestReceived = false;
 
         webpg.utils._onRequest.addListener(this.processRequest);
         window.addEventListener("message", this.receiveMessage, false);
@@ -133,14 +131,11 @@ webpg.inline_results = {
                 case webpg.constants.PGPBlocks.PGP_ENCRYPTED:
                     icon.src = "skin/images/badges/stock_encrypted.png";
                     jq(icon).addClass('footer_icon');
-
                     var gpg_error_code = request.verify_result.gpg_error_code;
+                    jq('#header').html("<a name=\"" + scrub(qs.id) + "\">" + _("PGP ENCRYPTED OR SIGNED MESSAGE") + "</a>");
                     if (gpg_error_code == "58") {
-                        jq('#header').html("<a name=\"" + scrub(qs.id) + "\">" + _("PGP ENCRYPTED OR SIGNED MESSAGE") + "</a>");
                         jq('#footer').addClass("signature_bad_sig");
                         jq('#footer').html(_("UNABLE TO DECRYPT OR VERIFY THIS MESSAGE") + "<br/\>");
-                    } else {
-                        jq('#header').append("<a name=\"" + scrub(qs.id) + "\">" + _("PGP ENCRYPTED MESSAGE") + "</a>");
                     }
                     if (request.verify_result.error) {
                         jq('#signature_text')[0].textContent = request.verify_result.original_text;
@@ -187,7 +182,7 @@ webpg.inline_results = {
                                     jq('#footer').append("<a class=\"decrypt_message\" href=\"#" + scrub(qs.id) + "\"\">" + _("DECRYPT THIS MESSAGE") + "</a> |");
                                 }
                             } else {
-                                jq('#footer').append("<a class=\"decrypt_message\" href=\"#" + scrub(qs.id) + "\"\">" + _("DECRYPT THIS MESSAGE") + "</a> | ");
+                                jq('#footer').html("<a class=\"decrypt_message\" href=\"#" + scrub(qs.id) + "\"\">" + _("DECRYPT THIS MESSAGE") + "</a> | ");
                             }
                         }
                     } else if (!request.verify_result.error) {

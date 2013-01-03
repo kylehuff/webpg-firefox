@@ -96,10 +96,7 @@ webpg.overlay = {
             if (request.iframe_id) {
                 try {
                     var iframe = document.getElementById(request.iframe_id);
-                    if (webpg.utils.detectedBrowser['vendor'] == "mozilla")
-                        content.document.body.removeChild(iframe);
-                    else if (webpg.utils.detectedBrowser['product'] == "chrome")
-                        document.body.removeChild(iframe);
+                    jq(iframe).remove();
                     webpg.overlay.block_target = false;
                 } catch (err) {
                     jq(iframe).hide();
@@ -215,11 +212,12 @@ webpg.overlay = {
                     / 3);
             var posX = (window.outerWidth
                     / 3) - 100;
+
             jq(iframe).animate({"top": window.scrollY}, 1, function() {
                 jq(iframe).animate({"top": posY}, 1);
                 jq(iframe).animate({"left": posX}, 1);
             });
-            
+
             // the sendResult event is for communicating with the iframe
             //  from firefox; Google Chrome/Chromium uses the
             //  chrome.extension.sendRequest method.

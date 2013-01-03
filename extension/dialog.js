@@ -1,5 +1,10 @@
+/* <![CDATA[ */
+if (typeof(webpg)=='undefined') { webpg = {}; }
 // Enforce jQuery.noConflict if not already performed
 if (typeof(jQuery)!='undefined') { var jq = jQuery.noConflict(true); }
+
+webpg.dialog = {}
+webpg.dialog.selectedKeys = [];
 
 jq(function(){
     /*
@@ -136,6 +141,8 @@ jq(function(){
                         }
 
                         var nkeylist = (val.length > 0) ? searchResults : null;
+                        if (this.value == "")
+                            nkeylist = webpg.pubkeylist
                         populateKeylist(nkeylist, qs.dialog_type);
                     });
                     break;
@@ -324,7 +331,15 @@ jq(function(){
                         'type': "checkbox",
                         'name': "keylist_sel_list",
                         'disabled': (!enabled),
-                        'title': title
+                        'title': title,
+                        'checked': (webpg.dialog.selectedKeys.indexOf(idx) > -1),
+                        'click': function(e) {
+                            if (this.checked) {
+                                webpg.dialog.selectedKeys.push(this.id.split("_")[1]);
+                            } else {
+                                webpg.dialog.selectedKeys.pop(this.id.split("_")[1]);
+                            }
+                        }
                     })
                 ).append(jq("<label></label>", {
                         'id': "lbl-key_" + webpg.utils.escape(idx),
@@ -339,3 +354,4 @@ jq(function(){
         jq("#keylist_form").append(ul);
     }
 });
+/* ]]> */
