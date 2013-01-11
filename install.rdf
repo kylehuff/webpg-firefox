@@ -22,7 +22,8 @@
                    em:id="{a79fe89b-6662-4ff4-8e88-09950ad4dfde}"
                    em:minVersion="0.1"
                    em:maxVersion="9.9" />
-  <!-- WebPG Extension -->
+
+  <!-- WebPG Extension master/default description -->
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="webpg-firefox@curetheitch.com"
                    em:version="0.9.2"
@@ -30,15 +31,39 @@
                    em:name="WebPG for Firefox"
                    em:description="An extension which provides GnuPG/GPG/PGP related functions to Mozilla Firefox, SeaMonkey and Thunderbird"
                    em:creator="Kyle L. Huff"
-                   em:homepageURL="http://www.curetheitch.com/projects/webpg-firefox"
+                   em:homepageURL="http://webpg.org"
                    em:optionsURL="chrome://webpg-firefox/content/XULContent/options.xul?options_tab=0"
                    em:aboutURL="chrome://webpg-firefox/content/XULContent/options.xul?options_tab=2"
                    em:iconURL="chrome://webpg-firefox/skin/images/webpg-48.png"
                   >
+
+    <!-- Localizations -->
+    <!-- TODO: stubs created for support translations; need translations for description field -->
+    <em:localized>
+        <RDF:Description
+            em:locale="ar"
+            em:description="امتداد الذي يوفر GnuPG / GPG / PGP المهام ذات لموزيلا فايرفوكس و ثندربيرد"
+           >
+        </RDF:Description>
+    </em:localized>
+    <em:localized>
+        <RDF:Description
+            em:locale="de"
+           >
+        </RDF:Description>
+    </em:localized>
+    <em:localized>
+        <RDF:Description
+            em:locale="pl"
+           >
+        </RDF:Description>
+    </em:localized>
+
     <em:targetApplication RDF:resource="rdf:#$g5s0x"/>
     <em:targetApplication RDF:resource="rdf:#$g5s0r"/>
     <em:targetApplication RDF:resource="rdf:#$g5s0l"/>
     <em:targetApplication RDF:resource="rdf:#$g5s0i"/>
+    <!-- Unpack required due to NPAPI plugin inclusion -->
     <em:unpack>true</em:unpack>
   </RDF:Description>
 </RDF:RDF>

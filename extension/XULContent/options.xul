@@ -15,8 +15,8 @@
     <prefpane id="about" label="&paneTitle.labelAbout;" flex="1" image="chrome://webpg-firefox/skin/images/about-48.png">
         <iframe style="height:100%;width:100%;overflow: auto;" flex="1" id="aboutFrame" type="content"/>
     </prefpane>
-    <script>
-        function onLoad() {
+    <script type="text/javascript">
+        function onLoad(e) {
 
             var tab = (window.location.search.search("options_tab")) ? 
                 webpg.utils.getParameterByName("options_tab") : -1;
@@ -35,7 +35,7 @@
 		    optionsFrame.addEventListener("load", function() {
 			    var cont = new XPCNativeWrapper(optionsFrame.contentWindow).wrappedJSObject;
 			    cont.webpg.options.init(browserWindow);
-		    },true);
+		    }, true);
 
 		    var keylistFrame = document.getElementById('keylistFrame');
 		    keylistFrame.setAttribute('src',
@@ -43,7 +43,7 @@
 		    keylistFrame.addEventListener("load", function() {
 			    var cont = new XPCNativeWrapper(keylistFrame.contentWindow).wrappedJSObject;
 			    cont.webpg.keymanager.init(browserWindow);
-		    },true);
+		    }, true);
 
 		    var aboutFrame = document.getElementById('aboutFrame');
 		    aboutFrame.setAttribute('src','chrome://webpg-firefox/content/about.html');
