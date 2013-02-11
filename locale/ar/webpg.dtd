@@ -1,4 +1,5 @@
 <!ENTITY About_WebPG "حول WebPG">
+<!ENTITY Version "">
 <!ENTITY Finished "منتهي">
 <!ENTITY WebPG_Plugin_failed_to_load "WebPG فشل تحميل البرنامج المساعد">
 <!ENTITY Key_Generation_Complete "أكملت إنشاء المفتاح">
@@ -6,9 +7,16 @@
 <!ENTITY Open_Key_Manager "فتح إدارة المفاتيح">
 <!ENTITY WebPG_Key_Generation_Failed "WebPG الجيل مفتاح فشل">
 <!ENTITY The_generation_of_your_new_key_is_now_complete "توليد المفتاح الخاص بك هو الآن كاملة">
-<!ENTITY Import "استورد">
 <!ENTITY Select_Recipient_s_ "حدد المستلمين">
+<!ENTITY Import "استورد">
+<!ENTITY Editor "">
 <!ENTITY Search_Filter "بحث / فلتر">
+<!ENTITY Encrypt "تشفير">
+<!ENTITY Export "">
+<!ENTITY Insert "">
+<!ENTITY no_action_has_been_selected "">
+<!ENTITY no_action_has_been_successful "">
+<!ENTITY Cancel "إلغاء">
 <!ENTITY UIDs "مستخدم المعرفات">
 <!ENTITY Key_does_not_support_this_operation "">
 <!ENTITY Error_loading_WebPG "خطأ في تحميل WebPG">
@@ -33,24 +41,30 @@
 <!ENTITY Sub_product "المنتج الفرعي">
 <!ENTITY Vendor "المُنتِج">
 <!ENTITY Language "للغة">
-<!ENTITY This_message_already_contains_PGPG_data "">
-<!ENTITY Would_you_like_to_Encrypt_anyway_ "">
 <!ENTITY This_message_already_contains_PGP_data "">
-<!ENTITY Would_you_like_to_Sign_anyway_ "">
-<!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway_ "">
+<!ENTITY Would_you_like_to_Encrypt_anyway "">
+<!ENTITY Would_you_like_to_Sign_anyway "">
+<!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway "">
 <!ENTITY You_do_not_have_any_keys_for "لم يكن لديك أي مفاتيح">
 <!ENTITY or "أو">
 <!ENTITY You_have_more_than_1_public_key_matching_that_address "لديك أكثر من 1 المفتاح العمومي مطابقة هذا العنوان">
 <!ENTITY The_Key_for "مفتاح لل">
 <!ENTITY is_invalid "غير صالح">
 <!ENTITY Open_the_Key_Manager "فتح إدارة المفاتيح">
-<!ENTITY Encrypt "تشفير">
 <!ENTITY Sign_only "توقيع فقط">
 <!ENTITY Sign_and_Encrypt "توقيع وتشفير">
 <!ENTITY Symmetric_Encryption "متماثل التشفير">
 <!ENTITY Do_not_use_WebPG_for_this_message "لا تستخدم WebPG لهذه الرسالة">
 <!ENTITY Decrypt "">
 <!ENTITY Verify "">
+<!ENTITY Secure_Editor "">
+<!ENTITY Key_Manager "مفتاح مدير">
+<!ENTITY Options "خيارات">
+<!ENTITY PGP_Signed_Message "">
+<!ENTITY PGP_ENCRYPTED_OR_SIGNED_MESSAGE "رسالة مشفرة PGP أو وقعت">
+<!ENTITY PGP_Public_Key "">
+<!ENTITY Unsecured_Editor "">
+<!ENTITY WebPG_Secure_Editor "">
 <!ENTITY WebPG_Key_Manager "مفتاح مدير WebPG">
 <!ENTITY Private_Keys "مفاتيح خاصة">
 <!ENTITY Public_Keys "مفاتيح العامة">
@@ -115,7 +129,6 @@
 <!ENTITY Please_be_patient_while_the_key_is_created "يرجى أن يكون المريض في حين يتم إنشاء مفتاح">
 <!ENTITY It_is_safe_to_close_this_window "أنها آمنة لإغلاق هذه النافذة">
 <!ENTITY key_generation_will_continue_in_the_background "وسوف يستمر إنشاء المفتاح في الخلفية">
-<!ENTITY Cancel "إلغاء">
 <!ENTITY Enabled "تمكين">
 <!ENTITY Disabled "مشلول">
 <!ENTITY Valid "صالح">
@@ -208,6 +221,7 @@
 <!ENTITY This_is_your_default_key "هذا هو المفتاح الخاص بك الافتراضي">
 <!ENTITY Make_this_the_default_key_for_encryption_operations "جعل هذا المفتاح الافتراضي لعمليات التشفير">
 <!ENTITY Searching_for "العثور على مفتاح">
+<!ENTITY Please_wait_while_we_build_the_key_list "">
 <!ENTITY WebPG_Options "خيارات WebPG">
 <!ENTITY The_WebPG_NPAPI_Plugin_is_valid "البرنامج المساعد NPAPI WebPG صالحة">
 <!ENTITY libgpgme_loaded_successfully "libgpgme تحميل بنجاح">
@@ -240,11 +254,7 @@
 <!ENTITY Encrypt_this_text "تشفير هذه الرسالة">
 <!ENTITY Decrypt_this_text "فك تشفير هذا النص">
 <!ENTITY Verify_this_text "التحقق من هذه الرسالة">
-<!ENTITY Options "خيارات">
-<!ENTITY Key_Manager "مفتاح مدير">
-<!ENTITY PGP_ENCRYPTED_OR_SIGNED_MESSAGE "رسالة مشفرة PGP أو وقعت">
 <!ENTITY UNABLE_TO_DECRYPT_OR_VERIFY_THIS_MESSAGE "غير قادر على فك تشفير هذه الرسالة أو التحقق">
-<!ENTITY PGP_ENCRYPTED_MESSAGE "رسالة مشفرة PGP">
 <!ENTITY PGP_ENCRYPTED_AND_SIGNED_MESSAGE "PGP رسالة المشفرة والموقعة">
 <!ENTITY DECRYPTION_FAILED "فشل فك التشفير">
 <!ENTITY NO_SECRET_KEY "لا المفتاح السري">

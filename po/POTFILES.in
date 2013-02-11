@@ -13,3 +13,4 @@ extension/webpg_results.js
 extension/XULContent/firefoxOverlay.xul
 extension/XULContent/options.xul
 extension/XULContent/thunderbird/composeOverlay.xul
+extension/XULContent/thunderbird/thunderbirdOverlay.xul

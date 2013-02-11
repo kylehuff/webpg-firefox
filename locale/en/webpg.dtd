@@ -1,4 +1,5 @@
 <!ENTITY About_WebPG "About WebPG">
+<!ENTITY Version "Version">
 <!ENTITY Finished "Finished">
 <!ENTITY WebPG_Plugin_failed_to_load "WebPG Plugin failed to load">
 <!ENTITY Key_Generation_Complete "Key Generation Complete">
@@ -6,11 +7,18 @@
 <!ENTITY Open_Key_Manager "Open Key Manager">
 <!ENTITY WebPG_Key_Generation_Failed "WebPG Key Generation Failed">
 <!ENTITY The_generation_of_your_new_key_is_now_complete "The generation of your new key is now complete">
-<!ENTITY Import "Import">
 <!ENTITY Select_Recipient_s_ "Select Recipients(s)">
+<!ENTITY Import "Import">
+<!ENTITY Editor "Editor">
 <!ENTITY Search_Filter "Search/Filter">
+<!ENTITY Encrypt "Encrypt">
+<!ENTITY Export "Export">
+<!ENTITY Insert "Insert">
+<!ENTITY no_action_has_been_selected "no action has been selected">
+<!ENTITY no_action_has_been_successful "no action has been successful">
+<!ENTITY Cancel "Cancel">
 <!ENTITY UIDs "UIDs">
-<!ENTITY Key_does_not_support_this_operation "">
+<!ENTITY Key_does_not_support_this_operation "Key does not support this operation">
 <!ENTITY Error_loading_WebPG "Error loading WebPG">
 <!ENTITY We_encountered_a_problem_while_attempting_to_load_WebPG "We encountered a problem while attempting to load WebPG">
 <!ENTITY Error "Error">
@@ -33,24 +41,30 @@
 <!ENTITY Sub_product "Sub-product">
 <!ENTITY Vendor "Vendor">
 <!ENTITY Language "Language">
-<!ENTITY This_message_already_contains_PGPG_data "">
-<!ENTITY Would_you_like_to_Encrypt_anyway_ "">
-<!ENTITY This_message_already_contains_PGP_data "">
-<!ENTITY Would_you_like_to_Sign_anyway_ "">
-<!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway_ "">
+<!ENTITY This_message_already_contains_PGP_data "This message already contains PGP data">
+<!ENTITY Would_you_like_to_Encrypt_anyway "Would you like to Encrypt anyway?">
+<!ENTITY Would_you_like_to_Sign_anyway "Would you like to Sign anyway?">
+<!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway "Would you like to Encrypt and Sign anyway?">
 <!ENTITY You_do_not_have_any_keys_for "You do not have any keys for">
 <!ENTITY or "or">
 <!ENTITY You_have_more_than_1_public_key_matching_that_address "You have more than 1 public key matching that address">
 <!ENTITY The_Key_for "The Key for">
 <!ENTITY is_invalid "is invalid">
 <!ENTITY Open_the_Key_Manager "Open the Key Manager">
-<!ENTITY Encrypt "Encrypt">
 <!ENTITY Sign_only "Sign only">
 <!ENTITY Sign_and_Encrypt "Sign and Encrypt">
 <!ENTITY Symmetric_Encryption "Symmetric Encryption">
 <!ENTITY Do_not_use_WebPG_for_this_message "Do not use WebPG for this message">
 <!ENTITY Decrypt "Decrypt">
 <!ENTITY Verify "Verify">
+<!ENTITY Secure_Editor "Secure Editor">
+<!ENTITY Key_Manager "Key Manager">
+<!ENTITY Options "Options">
+<!ENTITY PGP_Signed_Message "PGP Signed Message">
+<!ENTITY PGP_ENCRYPTED_OR_SIGNED_MESSAGE "PGP ENCRYPTED OR SIGNED MESSAGE">
+<!ENTITY PGP_Public_Key "PGP Public Key">
+<!ENTITY Unsecured_Editor "Unsecured Editor">
+<!ENTITY WebPG_Secure_Editor "WebPG Secure Editor">
 <!ENTITY WebPG_Key_Manager "WebPG Key Manager">
 <!ENTITY Private_Keys "Private Keys">
 <!ENTITY Public_Keys "Public Keys">
@@ -115,7 +129,6 @@
 <!ENTITY Please_be_patient_while_the_key_is_created "Please be patient while the key is created">
 <!ENTITY It_is_safe_to_close_this_window "It is safe to close this window">
 <!ENTITY key_generation_will_continue_in_the_background "key generation will continue in the background">
-<!ENTITY Cancel "Cancel">
 <!ENTITY Enabled "Enabled">
 <!ENTITY Disabled "Disabled">
 <!ENTITY Valid "Valid">
@@ -184,7 +197,7 @@
 <!ENTITY Key_Published_to_Keyserver "Key Published to Keyserver">
 <!ENTITY Publish_Again "Publish Again">
 <!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "Are you sure you want to Publish this key to the Keyserver">
-<!ENTITY Key_not_found_on_keyserver "">
+<!ENTITY Key_not_found_on_keyserver "Key not found on keyserver">
 <!ENTITY User_ID_is_no_longer_valid "User ID is no longer valid">
 <!ENTITY Please_select_which_of_your_keys_to_create_the_signature_with "Please select which of your keys to create the signature with">
 <!ENTITY You_have_not_enabled_any_keys_for_use_with_webpg "You have not enabled any keys for use with webpg">
@@ -208,6 +221,7 @@
 <!ENTITY This_is_your_default_key "This is your default key">
 <!ENTITY Make_this_the_default_key_for_encryption_operations "Make this the default key for encryption operations">
 <!ENTITY Searching_for "Searching for">
+<!ENTITY Please_wait_while_we_build_the_key_list "Please wait while we build the key list">
 <!ENTITY WebPG_Options "WebPG Options">
 <!ENTITY The_WebPG_NPAPI_Plugin_is_valid "The WebPG NPAPI Plugin is valid">
 <!ENTITY libgpgme_loaded_successfully "libgpgme loaded successfully">
@@ -240,11 +254,7 @@
 <!ENTITY Encrypt_this_text "Encrypt this text">
 <!ENTITY Decrypt_this_text "Decrypt this text">
 <!ENTITY Verify_this_text "Verify this text">
-<!ENTITY Options "Options">
-<!ENTITY Key_Manager "Key Manager">
-<!ENTITY PGP_ENCRYPTED_OR_SIGNED_MESSAGE "PGP ENCRYPTED OR SIGNED MESSAGE">
 <!ENTITY UNABLE_TO_DECRYPT_OR_VERIFY_THIS_MESSAGE "UNABLE TO DECRYPT OR VERIFY THIS MESSAGE">
-<!ENTITY PGP_ENCRYPTED_MESSAGE "PGP ENCRYPTED MESSAGE">
 <!ENTITY PGP_ENCRYPTED_AND_SIGNED_MESSAGE "PGP ENCRYPTED AND SIGNED MESSAGE">
 <!ENTITY DECRYPTION_FAILED "DECRYPTION FAILED">
 <!ENTITY NO_SECRET_KEY "NO SECRET KEY">
@@ -259,7 +269,7 @@
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_KEY "THIS MESSAGE WAS SIGNED WITH KEY">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_AN_EXPIRED_PUBLIC_KEY "THIS MESSAGE WAS SIGNED WITH AN EXPIRED PUBLIC KEY">
 <!ENTITY THIS_MESSAGE_WAS_SIGNED_WITH_A_PUBLIC_KEY_NOT_IN_YOUR_KEYRING "THIS MESSAGE WAS SIGNED WITH A PUBLIC KEY NOT IN YOUR KEYRING">
-<!ENTITY SEARCH_FOR_KEYS_ON_KEYSERVER "">
+<!ENTITY SEARCH_FOR_KEYS_ON_KEYSERVER "SEARCH FOR KEYS ON KEYSERVER">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_FAILED "THE SIGNATURE ON THIS MESSAGE FAILED">
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "THE MESSAGE MAY BE TAMPERED WITH">
 <!ENTITY PGP_PUBLIC_KEY "PGP PUBLIC KEY">
