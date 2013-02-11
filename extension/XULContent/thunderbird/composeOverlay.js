@@ -131,6 +131,77 @@ webpg.thunderbird.compose = {
 
     },
 
+    getRecipients: function() {
+        msgCompFields = gMsgCompose.compFields;
+        var splitRecipients = msgCompFields.splitRecipients;
+        var toList = [];
+        var ccList = [];
+        var bccList = [];
+        var allList = [];
+        var processed = new Object();
+        
+        if (msgCompFields.to.length > 0) {
+            toList = msgCompFields.splitRecipients(msgCompFields.to, true, processed);
+        }
+
+        if (msgCompFields.cc.length > 0) {
+            ccList = msgCompFields.splitRecipients(msgCompFields.cc, true, processed);
+        }
+
+        if (msgCompFields.bcc.length > 0) {
+            bccList = msgCompFields.splitRecipients(msgCompFields.bcc, true, processed);
+        }
+
+        return { 'to': toList, 'cc': ccList, 'bcc': bccList, 'all': allList.concat(toList, ccList, bccList) };
+    },
+
+    /*
+        Function: checkRecipients
+            Checks the keyring for the required keys when performing GnuPG methods that require them
+
+        Parameters:
+            callback - <func> The function to execute when completed
+    */
+    checkRecipients: function(callback) {
+        var _ = webpg.utils.i18n.gettext;
+        var users = this.getRecipients().all;
+        var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+               .getService(Components.interfaces.nsIWindowMediator);
+        var winType = (webpg.utils.detectedBrowser['product'] == "thunderbird") ?
+            "mail:3pane" : "navigator:browser";
+        var browserWindow = wm.getMostRecentWindow(winType);
+
+        browserWindow.webpg.background._onRequest({'msg': 'getNamedKeys',
+            'users': users
+        }, {}, function(response) {
+            var recipKeys = {};
+            var keys = response.result.keys;
+            for (var u in keys) {
+                for (var k in keys[u]) {
+                    recipKeys[u] = keys[u][k];
+                }
+            }
+            var notAllKeys = false;
+            var missingKeys = [];
+            for (var u in users) {
+                if (!(users[u] in recipKeys)) {
+                    notAllKeys = true;
+                    missingKeys.push(users[u]);
+                }
+            }
+            if (notAllKeys) {
+                var status = _("You do not have any keys for") + " " +
+                    missingKeys.toString().
+                    replace(/((,))/g, _("or") + " ").replace(",", " ");
+                console.log(status);
+//                webpg.gmail.displayStatusLine(status);
+            } else {
+                if (callback)
+                    callback(recipKeys);
+            }
+        });
+    },
+
     getEditorContents: function() {
         const dce = Components.interfaces.nsIDocumentEncoder;
         var encFlags = dce.OutputFormatted | dce.OutputLFLineBreak;

@@ -5,7 +5,8 @@
     <script src="../jquery/js/jquery-1.7.2.min.js"/>
     <script type="text/javascript">
         // Enforce jQuery.noConflict if not already performed
-        if (typeof(jQuery)!='undefined') { var jq = jQuery.noConflict(true); }
+        if (typeof(webpg)=='undefined') { webpg = {}; }
+        if (typeof(jQuery)!='undefined') { webpg.jq = jQuery.noConflict(true); }
     </script>
     <script src="../constants.js"/>
     <script src="../utils.js"/>

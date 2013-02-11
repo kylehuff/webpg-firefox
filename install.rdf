@@ -26,19 +26,21 @@
   <!-- WebPG Extension master/default description -->
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="webpg-firefox@curetheitch.com"
-                   em:version="0.9.2"
+                   em:version="0.9.3"
                    em:type="2"
-                   em:name="WebPG for Firefox"
+                   em:name="WebPG for Mozilla"
+                   em:optionsType="3"
                    em:description="An extension which provides GnuPG/GPG/PGP related functions to Mozilla Firefox, SeaMonkey and Thunderbird"
                    em:creator="Kyle L. Huff"
                    em:homepageURL="http://webpg.org"
                    em:optionsURL="chrome://webpg-firefox/content/XULContent/options.xul?options_tab=0"
                    em:aboutURL="chrome://webpg-firefox/content/XULContent/options.xul?options_tab=2"
                    em:iconURL="chrome://webpg-firefox/skin/images/webpg-48.png"
+                   em:icon64URL="chrome://webpg-fireofx/skin/images/webpg-64.png"
                   >
 
     <!-- Localizations -->
-    <!-- TODO: stubs created for support translations; need translations for description field -->
+    <!-- TODO: stubs created for supported translations; need translations for description field -->
     <em:localized>
         <RDF:Description
             em:locale="ar"
