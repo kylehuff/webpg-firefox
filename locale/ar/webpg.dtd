@@ -116,6 +116,7 @@
 <!ENTITY Waiting_for_entropy "في انتظار بايت أكثر عشوائية">
 <!ENTITY Building_key "توليد المفتاح">
 <!ENTITY please_wait "يرجى الانتظار">
+<!ENTITY Close "غلق">
 <!ENTITY trust "الثقة">
 <!ENTITY Generate_New_Key "إنشاء مفتاح جديد">
 <!ENTITY Create "خلق">
@@ -177,9 +178,10 @@
 <!ENTITY Revoke "سحب">
 <!ENTITY Delete "حذف">
 <!ENTITY Signatures_made_with_keys_not_in_your_keyring_are_omitted "لا يتم عرض التواقيع التي تم إنشاؤها باستخدام مفاتيح ليس في كيرينغ الخاص">
+<!ENTITY Calculating_Trust "">
+<!ENTITY Please_wait_while_recalculate_the_trust_for_this_item "">
 <!ENTITY Save "حفظ">
 <!ENTITY Delete_this_key "حذف هذا المفتاح">
-<!ENTITY Close "غلق">
 <!ENTITY Copy "نسخ">
 <!ENTITY Please_specify_the_revocation_details "يرجى تحديد تفاصيل من إبطال">
 <!ENTITY Reason "سبب">

@@ -116,6 +116,7 @@
 <!ENTITY Waiting_for_entropy "Waiting for entropy...">
 <!ENTITY Building_key "Building key">
 <!ENTITY please_wait "please wait...">
+<!ENTITY Close "Close">
 <!ENTITY trust "trust">
 <!ENTITY Generate_New_Key "Generate New Key">
 <!ENTITY Create "Create">
@@ -177,9 +178,10 @@
 <!ENTITY Revoke "Revoke">
 <!ENTITY Delete "Delete">
 <!ENTITY Signatures_made_with_keys_not_in_your_keyring_are_omitted "Signatures made with keys not in your keyring are omitted">
+<!ENTITY Calculating_Trust "">
+<!ENTITY Please_wait_while_recalculate_the_trust_for_this_item "">
 <!ENTITY Save "Save">
 <!ENTITY Delete_this_key "Delete this key">
-<!ENTITY Close "Close">
 <!ENTITY Copy "Copy">
 <!ENTITY Please_specify_the_revocation_details "Please specify the revocation details">
 <!ENTITY Reason "Reason">

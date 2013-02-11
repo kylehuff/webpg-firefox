@@ -116,6 +116,7 @@
 <!ENTITY Waiting_for_entropy "">
 <!ENTITY Building_key "">
 <!ENTITY please_wait "">
+<!ENTITY Close "">
 <!ENTITY trust "">
 <!ENTITY Generate_New_Key "">
 <!ENTITY Create "">
@@ -177,9 +178,10 @@
 <!ENTITY Revoke "">
 <!ENTITY Delete "">
 <!ENTITY Signatures_made_with_keys_not_in_your_keyring_are_omitted "">
+<!ENTITY Calculating_Trust "">
+<!ENTITY Please_wait_while_recalculate_the_trust_for_this_item "">
 <!ENTITY Save "">
 <!ENTITY Delete_this_key "">
-<!ENTITY Close "">
 <!ENTITY Copy "">
 <!ENTITY Please_specify_the_revocation_details "">
 <!ENTITY Reason "">

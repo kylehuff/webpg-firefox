@@ -116,6 +116,7 @@
 <!ENTITY Waiting_for_entropy "Warten auf Zufallsdaten">
 <!ENTITY Building_key "Schlüssel bauen">
 <!ENTITY please_wait "bitte warten">
+<!ENTITY Close "Schließen">
 <!ENTITY trust "Vertrauen">
 <!ENTITY Generate_New_Key "Neuen Schlüssel generieren">
 <!ENTITY Create "Erstellen">
@@ -177,9 +178,10 @@
 <!ENTITY Revoke "Widerrufen">
 <!ENTITY Delete "Löschen">
 <!ENTITY Signatures_made_with_keys_not_in_your_keyring_are_omitted "befinden, werden nicht angezeigt">
+<!ENTITY Calculating_Trust "">
+<!ENTITY Please_wait_while_recalculate_the_trust_for_this_item "">
 <!ENTITY Save "Speichern">
 <!ENTITY Delete_this_key "Diesen Schlüssel löschen">
-<!ENTITY Close "Schließen">
 <!ENTITY Copy "Kopieren">
 <!ENTITY Please_specify_the_revocation_details "Bitte geben Sie Einzelheiten an, weshalb derSchlüssel widerrufen werden soll">
 <!ENTITY Reason "Grund">
