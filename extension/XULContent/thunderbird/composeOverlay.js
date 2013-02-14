@@ -18,6 +18,7 @@ var sendActions = {
 webpg.thunderbird.compose = {
 
     init: function(aEvent) {
+        var _ = webpg.utils.i18n.gettext;
         webpg.plugin = document.getElementById("webpgPlugin");
 
         if (!webpg.plugin.valid)
@@ -25,6 +26,16 @@ webpg.thunderbird.compose = {
 
         this.sendAction = false;
         this.actionPerformed = false;
+
+        // Apply the labels to the compose window actions
+        document.getElementById("webpg-msg-noaction").label = _("Do not use WebPG for this message");
+        document.getElementById("webpg-msg-sign").label = _("Sign Inline");
+        document.getElementById("webpg-msg-asign").label = _("Sign as Attachment");
+        document.getElementById("webpg-msg-sign-enc").label = _("Sign and Encrypt");
+        document.getElementById("webpg-msg-enc").label = _("Encrypt");
+        document.getElementById("webpg-msg-symenc").label = _("Symmetric Encryption");
+        
+        
 
         _this = webpg.thunderbird.compose;
 
@@ -105,26 +116,38 @@ webpg.thunderbird.compose = {
         }
     },
 
-    setSendAction: function(action) {
+    setSendAction: function(action, element) {
+        var baseClass = "webpg-msg-btn toolbarbutton-1";
+        document.getElementById('webpg-msg-btn').label = element.label;
 
         switch (action) {
             case sendActions.PSIGN:
                 this.sendAction = "PLAINSIGN";
+                document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-sign";
                 break;
 
             case sendActions.ASIGN:
                 this.sendAction = "ATTACHSIGN";
+                document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-attachsign";
                 break;
 
             case sendActions.CRYPTSIGN:
                 this.sendAction = "CRYPTSIGN";
+                document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-cryptsign";
                 break;
 
             case sendActions.CRYPT:
                 this.sendAction = "CRYPT";
+                document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-crypt";
+                break;
+
+            case sendActions.SYMCRYPT:
+                this.sendAction = "SYMCRYPT";
+                document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-crypt";
                 break;
 
             default:
+                document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-donotuse";
                 this.sendAction = false;
 
         }
@@ -235,19 +258,45 @@ webpg.thunderbird.compose = {
                 break;
 
             case webpg.constants.overlayActions.ASIGN:
-                actionStatus = _this.clearSignMsg(msgContents);
+                actionStatus = _this.clearSignMsg(msgContents, true);
+                break;
+
+            case sendActions.CRYPTSIGN:
+                actionStatus = _this.cryptMsg(msgContents, true);
+                break;
+
+            case sendActions.CRYPT:
+                actionStatus = _this.cryptMsg(msgContents, false);
+                break;
+
+            case sendActions.SYMCRYPT:
+                actionStatus = _this.symCryptMsg(msgContents);
                 break;
         }
 
         return actionStatus;
     },
 
-    clearSignMsg: function(msg) {
+    clearSignMsg: function(msg, asAttachment) {
         var signKey = webpg.preferences.default_key.get();
         var signStatus = webpg.plugin.gpgSignText([signKey], msg, 2);
         if (!signStatus.error)
             _this.setEditorContents(signStatus.data);
         return signStatus;
+    },
+
+    cryptMsg: function(msg, sign) {
+        var encryptKeys = [];
+        var sign = (sign) ? 1 : 0;
+        var encryptStatus = response = webpg.plugin.gpgEncrypt(msg,
+                        request.keyid, sign);
+    },
+    
+    symCryptMsg: function(msg) {
+        var encryptStatus = webpg.plugin.gpgSymmetricEncrypt(msg, 0);
+        if (!encryptStatus.error)
+            _this.setEditorContents(encryptStatus.data);
+        return encryptStatus;
     },
 }
 

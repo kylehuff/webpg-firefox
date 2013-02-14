@@ -29,8 +29,8 @@
 
     <toolbarpalette id="MsgComposeToolbarPalette">
         <toolbarbutton id="webpg-msg-btn"
-            class="webpg-msg-btn toolbarbutton-1"
-            type="menu-button"
+            class="webpg-msg-btn toolbarbutton-1 webpg-menu-notselected"
+            type="menu"
             buttontype="thunderbird"
             label="WebPG"
         >
@@ -38,38 +38,39 @@
                 <menuitem id="webpg-msg-noaction"
                     class="webpg-msg-noaction"
                     type="radio"
-                    label="&webpgCompose.labelDoNotUseForThisMessage;"
-                    oncommand="webpg.thunderbird.compose.setSendAction('NOACTION');"
+                    oncommand="webpg.thunderbird.compose.setSendAction('NOACTION', this);"
                     name="webpg-send-action"
                 />
                 <menuitem id="webpg-msg-sign"
                     class="webpg-msg-sign"
                     type="radio"
-                    label="&webpgCompose.labelSignInline;"
-                    oncommand="webpg.thunderbird.compose.setSendAction('PLAINSIGN');"
+                    oncommand="webpg.thunderbird.compose.setSendAction('PLAINSIGN', this);"
                     name="webpg-send-action"
                 />
-<!--                <menuitem id="webpg-msg-sign-enc"-->
-<!--                    class="webpg-msg-sign-enc"-->
-<!--                    type="radio"-->
-<!--                    label="Encrypt &amp; Sign"-->
-<!--                    oncommand="webpg.thunderbird.compose.setSendAction('CRYPTSIGN');"-->
-<!--                    name="webpg-send-action"-->
-<!--                />-->
-<!--                <menuitem id="webpg-msg-enc"-->
-<!--                    class="webpg-msg-enc"-->
-<!--                    type="radio"-->
-<!--                    label="Encrypt Only (do not sign)"-->
-<!--                    oncommand="webpg.thunderbird.compose.setSendAction('CRYPT');"-->
-<!--                    name="webpg-send-action"-->
-<!--                />-->
-<!--                <menuitem id="webpg-msg-symenc"-->
-<!--                    class="webpg-msg-symenc"-->
-<!--                    type="radio"-->
-<!--                    label="Symmetric Encryption"-->
-<!--                    oncommand="webpg.thunderbird.compose.setSendAction('SYMCRYPT');"-->
-<!--                    name="webpg-send-action"-->
-<!--                />-->
+                <menuitem id="webpg-msg-asign"
+                    class="webpg-msg-sign"
+                    type="radio"
+                    oncommand="webpg.thunderbird.compose.setSendAction('ATTACHSIGN', this);"
+                    name="webpg-send-action"
+                />
+                <menuitem id="webpg-msg-enc"
+                    class="webpg-msg-enc"
+                    type="radio"
+                    oncommand="webpg.thunderbird.compose.setSendAction('CRYPT', this);"
+                    name="webpg-send-action"
+                />
+                <menuitem id="webpg-msg-sign-enc"
+                    class="webpg-msg-sign-enc"
+                    type="radio"
+                    oncommand="webpg.thunderbird.compose.setSendAction('CRYPTSIGN', this);"
+                    name="webpg-send-action"
+                />
+                <menuitem id="webpg-msg-symenc"
+                    class="webpg-msg-symenc"
+                    type="radio"
+                    oncommand="webpg.thunderbird.compose.setSendAction('SYMCRYPT', this);"
+                    name="webpg-send-action"
+                />
             </menupopup>
         </toolbarbutton>
     </toolbarpalette>

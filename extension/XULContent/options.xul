@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<?xml-stylesheet href="chrome://webpg-firefox/skin/webpgOverlay.css" type="text/css"?>
+<?xml-stylesheet href="chrome://webpg-firefox/skin/overlay.css" type="text/css"?>
 <!DOCTYPE prefwindow SYSTEM "chrome://webpg-firefox/locale/webpg.dtd">
 <prefwindow id="optionsforwebpg" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="Preferences" onload="onLoad(this);">
     <stringbundleset id="stringbundleset">
@@ -9,7 +9,7 @@
     <prefpane id="options" label="&paneTitle.labelOptions;" flex="1" image="chrome://webpg-firefox/skin/images/webpg-48.png">
         <iframe style="height:100%;width:100%;overflow: auto;" flex="1" id="optionsFrame" type="content"/>
     </prefpane>
-    <prefpane id="keylist" label="&paneTitle.labelKeyManager;" flex="1" image="chrome://webpg-firefox/skin/images/badges/stock_keypair.png">
+    <prefpane id="keylist" label="&paneTitle.labelKeyManager;" flex="1" image="chrome://webpg-firefox/skin/images/badges/48x48/stock_keypair.png">
         <iframe style="height:100%;width:100%;overflow: auto;" flex="1" id="keylistFrame" type="content"/>
     </prefpane>
     <prefpane id="about" label="&paneTitle.labelAbout;" flex="1" image="chrome://webpg-firefox/skin/images/about-48.png">
