@@ -2,73 +2,115 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://webpg-firefox/skin/overlay.css" type="text/css"?>
 <!DOCTYPE prefwindow SYSTEM "chrome://webpg-firefox/locale/webpg.dtd">
-<prefwindow id="optionsforwebpg" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="Preferences" onload="onLoad(this);">
-    <stringbundleset id="stringbundleset">
-        <stringbundle id="webpg-strings" src="chrome://webpg-firefox/locale/webpg.properties"/>
-    </stringbundleset>
-    <prefpane id="options" label="&paneTitle.labelOptions;" flex="1" image="chrome://webpg-firefox/skin/images/webpg-48.png">
-        <iframe style="height:100%;width:100%;overflow: auto;" flex="1" id="optionsFrame" type="content"/>
-    </prefpane>
-    <prefpane id="keylist" label="&paneTitle.labelKeyManager;" flex="1" image="chrome://webpg-firefox/skin/images/badges/48x48/stock_keypair.png">
-        <iframe style="height:100%;width:100%;overflow: auto;" flex="1" id="keylistFrame" type="content"/>
-    </prefpane>
-    <prefpane id="about" label="&paneTitle.labelAbout;" flex="1" image="chrome://webpg-firefox/skin/images/about-48.png">
-        <iframe style="height:100%;width:100%;overflow: auto;" flex="1" id="aboutFrame" type="content"/>
-    </prefpane>
+<prefwindow id="optionsforwebpg" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" style="height:100px;">
+    <script src="../jquery/js/jquery-1.7.2.min.js"/>
     <script type="text/javascript">
-        function onLoad(e) {
+        if (typeof(webpg)=='undefined') { webpg = {}; }
+        // Enforce jQuery.noConflict if not already performed
+        if (typeof(jQuery)!='undefined') { webpg.jq = jQuery.noConflict(true); }
+        webpg.firefoxOptions = {
+            init: function() {
+                var _ = webpg.utils.i18n.gettext;
+                var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+                document.getElementById("optionsforwebpg").title = _("Options");
 
-            var tab = (window.location.search.search("options_tab")) ? 
-                webpg.utils.getParameterByName("options_tab") : -1;
-
-            var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-                   .getService(Components.interfaces.nsIWindowMediator);
-            var winType = (webpg.utils.detectedBrowser['product'] == "thunderbird") ?
-                "mail:3pane" : "navigator:browser";
-            var browserWindow = wm.getMostRecentWindow(winType);
-
-            window.resizeTo((browserWindow.screen.availWidth), (browserWindow.screen.availHeight));
-			window.moveTo(0, 0);
-
-		    var optionsFrame = document.getElementById('optionsFrame');
-		    optionsFrame.setAttribute('src','chrome://webpg-firefox/content/options.html');
-		    optionsFrame.addEventListener("load", function() {
-			    var cont = new XPCNativeWrapper(optionsFrame.contentWindow).wrappedJSObject;
-			    cont.webpg.options.init(browserWindow);
-		    }, true);
-
-		    var keylistFrame = document.getElementById('keylistFrame');
-		    keylistFrame.setAttribute('src',
-		        'chrome://webpg-firefox/content/key_manager.html');
-		    keylistFrame.addEventListener("load", function() {
-			    var cont = new XPCNativeWrapper(keylistFrame.contentWindow).wrappedJSObject;
-			    cont.webpg.keymanager.init(browserWindow);
-		    }, true);
-
-		    var aboutFrame = document.getElementById('aboutFrame');
-		    aboutFrame.setAttribute('src','chrome://webpg-firefox/content/about.html');
-
-		    if (tab > -1) {
-                switch(tab) {
-                    case "0":
-                        console.log("Setting options as selected tab");
-                        var pane = document.getElementById("options");
-                        break;
-
-                    case "1":
-                        console.log("Setting keylist as selected tab");
-                        var pane = document.getElementById("keylist");
-                        break;
-
-                    case "2":
-                        console.log("Setting about as selected tab");
-                        var pane = document.getElementById("about");
-                        break;
-
+                var prefPanes = {
+                    "options" : {
+                        "image": "chrome://webpg-firefox/skin/images/webpg-48.png",
+                        "label": _("Options"),
+                    },
+                    "keylist" : {
+                        "image": "chrome://webpg-firefox/skin/images/badges/48x48/stock_keypair.png",
+                        "label": _("Key Manager"),
+                    },
+                    "about" : {
+                        "image": "chrome://webpg-firefox/skin/images/about-48.png",
+                        "label": _("About"),
+                    }
                 }
-                pane.parentNode.showPane(pane)
-            }
+
+                // Dynamically create the prefPanes
+                for (let pane in prefPanes) {
+                    var prefPane = document.createElementNS(XUL_NS, "prefpane");
+                    prefPane.setAttribute("id", pane);
+                    prefPane.setAttribute("flex", "1");
+                    prefPane.setAttribute("image", prefPanes[pane].image);
+                    prefPane.setAttribute("label", prefPanes[pane].label);
+                    var paneFrame = document.createElement("iframe");
+                    paneFrame.style.height = "100%";
+                    paneFrame.style.width = "100%";
+                    paneFrame.style.overflow = "auto";
+                    paneFrame.setAttribute("id", pane + "Frame");
+                    paneFrame.setAttribute("type", "content");
+                    paneFrame.setAttribute("flex", "1");
+                    prefPane.appendChild(paneFrame);
+                    document.getElementById("optionsforwebpg").addPane(prefPane);
+                }
+
+                var tab = (window.location.search.search("options_tab")) ? 
+                    webpg.utils.getParameterByName("options_tab") : -1;
+
+                if (tab > -1) {
+                    switch(tab) {
+                        case "0":
+                            console.log("Setting options as selected tab");
+                            var pane = document.getElementById("options");
+                            break;
+
+                        case "1":
+                            console.log("Setting keylist as selected tab");
+                            var pane = document.getElementById("keylist");
+                            break;
+
+                        case "2":
+                            console.log("Setting about as selected tab");
+                            var pane = document.getElementById("about");
+                            break;
+
+                    }
+                    document.getElementById("optionsforwebpg").showPane(pane);
+                }
+
+                var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                       .getService(Components.interfaces.nsIWindowMediator);
+                var winType = (webpg.utils.detectedBrowser['product'] == "thunderbird") ?
+                    "mail:3pane" : "navigator:browser";
+                var browserWindow = wm.getMostRecentWindow(winType);
+
+                window.resizeTo((browserWindow.screen.availWidth), (browserWindow.screen.availHeight));
+                window.moveTo(0, 0);
+
+                var optionsFrame = document.getElementById('optionsFrame');
+                optionsFrame.setAttribute('src','chrome://webpg-firefox/content/options.html');
+                optionsFrame.addEventListener("load", function() {
+                    var cont = new XPCNativeWrapper(optionsFrame.contentWindow).wrappedJSObject;
+                    cont.webpg.options.init(browserWindow);
+                }, true);
+
+                var keylistFrame = document.getElementById('keylistFrame');
+                keylistFrame.setAttribute('src',
+                    'chrome://webpg-firefox/content/key_manager.html');
+                keylistFrame.addEventListener("load", function() {
+                    var cont = new XPCNativeWrapper(keylistFrame.contentWindow).wrappedJSObject;
+                    cont.webpg.keymanager.init(browserWindow);
+                }, true);
+
+
+                var aboutFrame = document.getElementById('aboutFrame');
+                aboutFrame.setAttribute('src','chrome://webpg-firefox/content/about.html');
+
+                console.log(window.type);
+                //window.resizeTo(
+                //    (browserWindow.screen.availWidth),
+                //    (browserWindow.screen.availHeight)
+                //);
+                //window.moveTo(0, 0);
+
+            },
         }
+        window.addEventListener("load", function(aEvent) {
+            webpg.firefoxOptions.init();
+        });
     </script>
     <script src="../constants.js"/>
     <script src="../utils.js"/>
