@@ -1,5 +1,21 @@
 <!ENTITY About_WebPG "">
 <!ENTITY Version "">
+<!ENTITY Extension_Information "">
+<!ENTITY Extension_version "">
+<!ENTITY Platform "">
+<!ENTITY Product "">
+<!ENTITY User_Agent "">
+<!ENTITY Language "">
+<!ENTITY Plugin_Information "">
+<!ENTITY Plugin_version "">
+<!ENTITY GnuPG_Information "">
+<!ENTITY GnuPG_version "">
+<!ENTITY GnuPG_binary "">
+<!ENTITY GnuPG_home_directory "">
+<!ENTITY default "">
+<!ENTITY GPGCONF_version "">
+<!ENTITY not_detected "">
+<!ENTITY Assuan_version "">
 <!ENTITY Finished "">
 <!ENTITY WebPG_Plugin_failed_to_load "">
 <!ENTITY Key_Generation_Complete "">
@@ -9,10 +25,10 @@
 <!ENTITY The_generation_of_your_new_key_is_now_complete "">
 <!ENTITY Select_Recipient_s_ "">
 <!ENTITY Import "">
+<!ENTITY Export "">
 <!ENTITY Editor "">
 <!ENTITY Search_Filter "">
 <!ENTITY Encrypt "">
-<!ENTITY Export "">
 <!ENTITY Insert "">
 <!ENTITY no_action_has_been_selected "">
 <!ENTITY no_action_has_been_successful "">
@@ -34,13 +50,9 @@
 <!ENTITY Line "">
 <!ENTITY Unknown_Error "">
 <!ENTITY System_Information "">
-<!ENTITY Platform "">
 <!ENTITY App_Version "">
-<!ENTITY User_Agent "">
-<!ENTITY Product "">
 <!ENTITY Sub_product "">
 <!ENTITY Vendor "">
-<!ENTITY Language "">
 <!ENTITY This_message_already_contains_PGP_data "">
 <!ENTITY Would_you_like_to_Encrypt_anyway "">
 <!ENTITY Would_you_like_to_Sign_anyway "">
@@ -63,8 +75,8 @@
 <!ENTITY PGP_Signed_Message "">
 <!ENTITY PGP_ENCRYPTED_OR_SIGNED_MESSAGE "">
 <!ENTITY PGP_Public_Key "">
-<!ENTITY Unsecured_Editor "">
 <!ENTITY WebPG_Secure_Editor "">
+<!ENTITY Unsecured_Editor "">
 <!ENTITY WebPG_Key_Manager "">
 <!ENTITY Private_Keys "">
 <!ENTITY Public_Keys "">
@@ -190,6 +202,7 @@
 <!ENTITY Key_is_superseded "">
 <!ENTITY Key_is_no_longer_used "">
 <!ENTITY Description "">
+<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "">
 <!ENTITY Publish "">
 <!ENTITY Sending_key_to_Keyserver "">
 <!ENTITY There_was_a_problem_sending_this_key_to_the_Keyserver "">
@@ -198,7 +211,6 @@
 <!ENTITY Try_Again "">
 <!ENTITY Key_Published_to_Keyserver "">
 <!ENTITY Publish_Again "">
-<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "">
 <!ENTITY Key_not_found_on_keyserver "">
 <!ENTITY User_ID_is_no_longer_valid "">
 <!ENTITY Please_select_which_of_your_keys_to_create_the_signature_with "">
@@ -242,8 +254,6 @@
 <!ENTITY Enable_WebPG_GMAIL_integration "">
 <!ENTITY EXPERIMENTAL "">
 <!ENTITY Sign_outgoing_messages_in_GMAIL "">
-<!ENTITY GnuPG_home_directory "">
-<!ENTITY GnuPG_binary "">
 <!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "">
 <!ENTITY There_is_a_problem_with_your_configuration "">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "">
@@ -284,24 +294,5 @@
 <!ENTITY HIDE_ORIGINAL "">
 <!ENTITY UNUSABLE_KEY "">
 <!ENTITY NO_USER_ID "">
-<!ENTITY webpgMenu.label "WebPG">
-<!ENTITY webpgMenu.labelKeyManager "Key manager">
-<!ENTITY webpgMenu.labelOptions "Options">
-<!ENTITY webpgMenu.labelAbout "About">
-<!ENTITY webpgContext.label "WebPG">
-<!ENTITY webpgContext.labelClearSign "Clearsign">
-<!ENTITY webpgContext.labelVerif "Verify">
-<!ENTITY webpgContext.labelCrypt "Encrypt">
-<!ENTITY webpgContext.labelCryptSign "Sign and Encrypt">
-<!ENTITY webpgContext.labelDecry "Decrypt">
-<!ENTITY webpgContext.labelImport "Import">
-<!ENTITY webpgContext.labelExportPublicKey "Export">
-<!ENTITY webpgContext.labelKeyManager "Key Manager">
-<!ENTITY webpgContext.labelOptions "Options">
-<!ENTITY webpgContext.labelErase "Erase">
-<!ENTITY paneTitle.labelOptions "Options">
-<!ENTITY paneTitle.labelKeyManager "Key Manager">
-<!ENTITY paneTitle.labelAbout "About">
-<!ENTITY webpgCompose.labelDoNotUseForThisMessage "Do not use WebPG for this message">
-<!ENTITY webpgCompose.labelSignInline "Clearsign">
-<!ENTITY webpgContext.labelExport "Export">
+<!ENTITY Sign_Inline "">
+<!ENTITY Sign_as_Attachment "">

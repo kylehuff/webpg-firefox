@@ -1,5 +1,21 @@
 <!ENTITY About_WebPG "Über WebPG">
 <!ENTITY Version "">
+<!ENTITY Extension_Information "">
+<!ENTITY Extension_version "">
+<!ENTITY Platform "Plattform">
+<!ENTITY Product "Produkt">
+<!ENTITY User_Agent "User Agent">
+<!ENTITY Language "Sprache">
+<!ENTITY Plugin_Information "">
+<!ENTITY Plugin_version "">
+<!ENTITY GnuPG_Information "">
+<!ENTITY GnuPG_version "">
+<!ENTITY GnuPG_binary "GnuPG-Programm">
+<!ENTITY GnuPG_home_directory "GnuPG Home-Directory">
+<!ENTITY default "">
+<!ENTITY GPGCONF_version "">
+<!ENTITY not_detected "">
+<!ENTITY Assuan_version "">
 <!ENTITY Finished "Fertig">
 <!ENTITY WebPG_Plugin_failed_to_load "WebPG Plugin konnte nicht geladen werden">
 <!ENTITY Key_Generation_Complete "Schlüsselerzeugung beendet">
@@ -9,10 +25,10 @@
 <!ENTITY The_generation_of_your_new_key_is_now_complete "Die Erzeugung Ihres neuen Schlüssels ist nun abgeschlossen">
 <!ENTITY Select_Recipient_s_ "einen oder mehrere Empfänger auswählen">
 <!ENTITY Import "Importieren">
+<!ENTITY Export "">
 <!ENTITY Editor "">
 <!ENTITY Search_Filter "Suchfilter">
 <!ENTITY Encrypt "Verschlüsseln">
-<!ENTITY Export "">
 <!ENTITY Insert "">
 <!ENTITY no_action_has_been_selected "">
 <!ENTITY no_action_has_been_successful "">
@@ -34,13 +50,9 @@
 <!ENTITY Line "Zeile">
 <!ENTITY Unknown_Error "Unbekannter Fehler">
 <!ENTITY System_Information "Systeminformationen">
-<!ENTITY Platform "Plattform">
 <!ENTITY App_Version "App-Version">
-<!ENTITY User_Agent "User Agent">
-<!ENTITY Product "Produkt">
 <!ENTITY Sub_product "Produkt-Teil">
 <!ENTITY Vendor "Anbieter">
-<!ENTITY Language "Sprache">
 <!ENTITY This_message_already_contains_PGP_data "">
 <!ENTITY Would_you_like_to_Encrypt_anyway "">
 <!ENTITY Would_you_like_to_Sign_anyway "">
@@ -63,8 +75,8 @@
 <!ENTITY PGP_Signed_Message "">
 <!ENTITY PGP_ENCRYPTED_OR_SIGNED_MESSAGE "PGP VERSCHLÜSSELTE ODER SIGNIERTE NACHRICHT">
 <!ENTITY PGP_Public_Key "">
-<!ENTITY Unsecured_Editor "">
 <!ENTITY WebPG_Secure_Editor "">
+<!ENTITY Unsecured_Editor "">
 <!ENTITY WebPG_Key_Manager "WebPG Schlüsselverwaltung">
 <!ENTITY Private_Keys "Private Schlüssel">
 <!ENTITY Public_Keys "Öffentliche Schlüssel">
@@ -190,6 +202,7 @@
 <!ENTITY Key_is_superseded "Schlüssel ist überholt">
 <!ENTITY Key_is_no_longer_used "Schlüssel wird nicht mehr verwendet">
 <!ENTITY Description "Beschreibung">
+<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "">
 <!ENTITY Publish "">
 <!ENTITY Sending_key_to_Keyserver "">
 <!ENTITY There_was_a_problem_sending_this_key_to_the_Keyserver "">
@@ -198,7 +211,6 @@
 <!ENTITY Try_Again "">
 <!ENTITY Key_Published_to_Keyserver "">
 <!ENTITY Publish_Again "">
-<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "">
 <!ENTITY Key_not_found_on_keyserver "">
 <!ENTITY User_ID_is_no_longer_valid "User-ID ist nicht mehr gültig">
 <!ENTITY Please_select_which_of_your_keys_to_create_the_signature_with "werden soll">
@@ -242,8 +254,6 @@
 <!ENTITY Enable_WebPG_GMAIL_integration "WebPG-GMAIL-Integration aktivieren">
 <!ENTITY EXPERIMENTAL "EXPERIMENTELL">
 <!ENTITY Sign_outgoing_messages_in_GMAIL "Ausgehende Nachrichten in GMAIL unterschreiben">
-<!ENTITY GnuPG_home_directory "GnuPG Home-Directory">
-<!ENTITY GnuPG_binary "GnuPG-Programm">
 <!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "Ihr System scheint korrekt für WebPG konfiguriert zu sein">
 <!ENTITY There_is_a_problem_with_your_configuration "Es gibt ein Problem mit Ihrer Konfiguration">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "WebPG-GMAIL-Integration ist EXPERIMENTELL">
@@ -284,24 +294,5 @@
 <!ENTITY HIDE_ORIGINAL "ORIGINAL VERBERGEN">
 <!ENTITY UNUSABLE_KEY "UNBENUTZBARER SCHLÜSSEL">
 <!ENTITY NO_USER_ID "KEINE BENUTZER-ID">
-<!ENTITY webpgMenu.label "WebPG">
-<!ENTITY webpgMenu.labelKeyManager "Key Manager">
-<!ENTITY webpgMenu.labelOptions "Options">
-<!ENTITY webpgMenu.labelAbout "About">
-<!ENTITY webpgContext.label "WebPG">
-<!ENTITY webpgContext.labelClearSign "Clearsign">
-<!ENTITY webpgContext.labelVerif "Verify">
-<!ENTITY webpgContext.labelCrypt "Encrypt">
-<!ENTITY webpgContext.labelCryptSign "Sign and Encrypt">
-<!ENTITY webpgContext.labelDecry "Decrypt">
-<!ENTITY webpgContext.labelImport "Import">
-<!ENTITY webpgContext.labelExportPublicKey "Öffentlichen Schlüssel exportieren">
-<!ENTITY webpgContext.labelKeyManager "Key Manager">
-<!ENTITY webpgContext.labelOptions "Options">
-<!ENTITY webpgContext.labelErase "Erase">
-<!ENTITY paneTitle.labelOptions "Optionen">
-<!ENTITY paneTitle.labelKeyManager "Key Manager">
-<!ENTITY paneTitle.labelAbout "über">
-<!ENTITY webpgCompose.labelDoNotUseForThisMessage "Do not use WebPG for this message">
-<!ENTITY webpgCompose.labelSignInline "Sign Inline (uses default key; EXPERIMENTAL)">
-<!ENTITY webpgContext.labelExport "Öffentlichen Schlüssel exportieren">
+<!ENTITY Sign_Inline "">
+<!ENTITY Sign_as_Attachment "">

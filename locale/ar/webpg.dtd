@@ -1,5 +1,21 @@
 <!ENTITY About_WebPG "حول WebPG">
 <!ENTITY Version "">
+<!ENTITY Extension_Information "">
+<!ENTITY Extension_version "">
+<!ENTITY Platform "منصة">
+<!ENTITY Product "المنتج">
+<!ENTITY User_Agent "عميل المستخدم">
+<!ENTITY Language "للغة">
+<!ENTITY Plugin_Information "">
+<!ENTITY Plugin_version "">
+<!ENTITY GnuPG_Information "">
+<!ENTITY GnuPG_version "">
+<!ENTITY GnuPG_binary "GnuPG قابل للتنفيذ">
+<!ENTITY GnuPG_home_directory "GnuPG الدليل الرئيسي">
+<!ENTITY default "">
+<!ENTITY GPGCONF_version "">
+<!ENTITY not_detected "">
+<!ENTITY Assuan_version "">
 <!ENTITY Finished "منتهي">
 <!ENTITY WebPG_Plugin_failed_to_load "WebPG فشل تحميل البرنامج المساعد">
 <!ENTITY Key_Generation_Complete "أكملت إنشاء المفتاح">
@@ -9,10 +25,10 @@
 <!ENTITY The_generation_of_your_new_key_is_now_complete "توليد المفتاح الخاص بك هو الآن كاملة">
 <!ENTITY Select_Recipient_s_ "حدد المستلمين">
 <!ENTITY Import "استورد">
+<!ENTITY Export "">
 <!ENTITY Editor "">
 <!ENTITY Search_Filter "بحث / فلتر">
 <!ENTITY Encrypt "تشفير">
-<!ENTITY Export "">
 <!ENTITY Insert "">
 <!ENTITY no_action_has_been_selected "">
 <!ENTITY no_action_has_been_successful "">
@@ -34,13 +50,9 @@
 <!ENTITY Line "السطر">
 <!ENTITY Unknown_Error "خطأ مجهول">
 <!ENTITY System_Information "معلومات النظام">
-<!ENTITY Platform "منصة">
 <!ENTITY App_Version "التطبيق الإصدار">
-<!ENTITY User_Agent "عميل المستخدم">
-<!ENTITY Product "المنتج">
 <!ENTITY Sub_product "المنتج الفرعي">
 <!ENTITY Vendor "المُنتِج">
-<!ENTITY Language "للغة">
 <!ENTITY This_message_already_contains_PGP_data "">
 <!ENTITY Would_you_like_to_Encrypt_anyway "">
 <!ENTITY Would_you_like_to_Sign_anyway "">
@@ -63,8 +75,8 @@
 <!ENTITY PGP_Signed_Message "">
 <!ENTITY PGP_ENCRYPTED_OR_SIGNED_MESSAGE "رسالة مشفرة PGP أو وقعت">
 <!ENTITY PGP_Public_Key "">
-<!ENTITY Unsecured_Editor "">
 <!ENTITY WebPG_Secure_Editor "">
+<!ENTITY Unsecured_Editor "">
 <!ENTITY WebPG_Key_Manager "مفتاح مدير WebPG">
 <!ENTITY Private_Keys "مفاتيح خاصة">
 <!ENTITY Public_Keys "مفاتيح العامة">
@@ -190,6 +202,7 @@
 <!ENTITY Key_is_superseded "وقد تم استبدال مفتاح">
 <!ENTITY Key_is_no_longer_used "لم يعد يستخدم مفتاح">
 <!ENTITY Description "وصف">
+<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "">
 <!ENTITY Publish "">
 <!ENTITY Sending_key_to_Keyserver "">
 <!ENTITY There_was_a_problem_sending_this_key_to_the_Keyserver "">
@@ -198,7 +211,6 @@
 <!ENTITY Try_Again "">
 <!ENTITY Key_Published_to_Keyserver "">
 <!ENTITY Publish_Again "">
-<!ENTITY Are_you_sure_you_want_to_Publish_this_key_to_the_Keyserver "">
 <!ENTITY Key_not_found_on_keyserver "">
 <!ENTITY User_ID_is_no_longer_valid "هوية المستخدم لم يعد صالحا">
 <!ENTITY Please_select_which_of_your_keys_to_create_the_signature_with "الرجاء اختيار أي من المفاتيح الخاصة بك لإنشاء التوقيع مع">
@@ -242,8 +254,6 @@
 <!ENTITY Enable_WebPG_GMAIL_integration "تمكين GMAIL التكامل">
 <!ENTITY EXPERIMENTAL "تجريبي">
 <!ENTITY Sign_outgoing_messages_in_GMAIL "توقيع الرسائل الصادرة في GMAIL">
-<!ENTITY GnuPG_home_directory "GnuPG الدليل الرئيسي">
-<!ENTITY GnuPG_binary "GnuPG قابل للتنفيذ">
 <!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "النظام الخاص بك ويبدو أن تكوين بشكل صحيح ل WebPG">
 <!ENTITY There_is_a_problem_with_your_configuration "هناك مشكلة مع التكوين الخاص بك">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "جوجل التكامل تجريبية WebPG">
@@ -284,24 +294,5 @@
 <!ENTITY HIDE_ORIGINAL "إخفاء الأصلي">
 <!ENTITY UNUSABLE_KEY "غير صالحة للاستعمال مفتاح">
 <!ENTITY NO_USER_ID "مفقود هوية المستخدم">
-<!ENTITY webpgMenu.label "WebPG">
-<!ENTITY webpgMenu.labelKeyManager "مفتاح مدير">
-<!ENTITY webpgMenu.labelOptions "خيارات">
-<!ENTITY webpgMenu.labelAbout "حول">
-<!ENTITY webpgContext.label "WebPG">
-<!ENTITY webpgContext.labelClearSign "علامة واضحة">
-<!ENTITY webpgContext.labelVerif "تحقق من">
-<!ENTITY webpgContext.labelCrypt "تشفير">
-<!ENTITY webpgContext.labelCryptSign "تشفير والتوقيع">
-<!ENTITY webpgContext.labelDecry "فك تشفير">
-<!ENTITY webpgContext.labelImport "استيراد">
-<!ENTITY webpgContext.labelExportPublicKey "تصدير للمفتاح العام">
-<!ENTITY webpgContext.labelKeyManager "مفتاح مدير">
-<!ENTITY webpgContext.labelOptions "خيارات">
-<!ENTITY webpgContext.labelErase "محو">
-<!ENTITY paneTitle.labelOptions "خيارات">
-<!ENTITY paneTitle.labelKeyManager "مفتاح مدير">
-<!ENTITY paneTitle.labelAbout "حول">
-<!ENTITY webpgCompose.labelDoNotUseForThisMessage "لا تستخدم WebPG لهذه الرسالة">
-<!ENTITY webpgCompose.labelSignInline "علامة واضحة">
-<!ENTITY webpgContext.labelExport "تصدير للمفتاح العام">
+<!ENTITY Sign_Inline "">
+<!ENTITY Sign_as_Attachment "">

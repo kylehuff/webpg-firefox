@@ -9,8 +9,6 @@ extension/inline.js
 extension/key_manager.js
 extension/options.js
 extension/utils.js
+extension/webpg_overlay.js
 extension/webpg_results.js
-extension/XULContent/firefoxOverlay.xul
-extension/XULContent/options.xul
-extension/XULContent/thunderbird/composeOverlay.xul
-extension/XULContent/thunderbird/thunderbirdOverlay.xul
+extension/XULContent/thunderbird/composeOverlay.js
