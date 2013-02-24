@@ -104,9 +104,9 @@
         <menuseparator/>
         <menu id="menu-webpg" class="menu-iconic webpg-menuitem webpg-menu webpg-menu-webpg">
             <menupopup id="webpg-menu-popup">
-                <menuitem class="webpg-menuitem webpg-menu-manager menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
-                <menuitem class="webpg-menuitem webpg-menu-options menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>
-                <menuitem class="webpg-menuitem webpg-menu-about menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ABOUT)"/>
+                <menuitem class="webpg-menuitem webpg-menu-manager menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event, webpg.constants.overlayActions.MANAGER)"/>
+                <menuitem class="webpg-menuitem webpg-menu-options menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event, webpg.constants.overlayActions.OPTS)"/>
+                <menuitem class="webpg-menuitem webpg-menu-about menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event, webpg.constants.overlayActions.ABOUT)"/>
             </menupopup>
         </menu>
     </menupopup>
@@ -115,11 +115,11 @@
     <!-- SeaMonkey Tools Menu -->
     <menupopup id="taskPopup">
         <menuseparator/>
-        <menu id="menu-webpg" class="menu-iconic webpg-menu webpg-menu-webpg">
+        <menu id="menu-webpg" class="menu-iconic webpg-menuitem webpg-menu webpg-menu-webpg">
             <menupopup id="webpg-menu-popup">
-                <menuitem class="webpg-menuitem webpg-menu-manager menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
-                <menuitem class="webpg-menuitem webpg-menu-options menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>
-                <menuitem class="webpg-menuitem webpg-menu-about menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ABOUT)"/>
+                <menuitem class="webpg-menuitem webpg-menu-manager menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event, webpg.constants.overlayActions.MANAGER)"/>
+                <menuitem class="webpg-menuitem webpg-menu-options menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event, webpg.constants.overlayActions.OPTS)"/>
+                <menuitem class="webpg-menuitem webpg-menu-about menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event, webpg.constants.overlayActions.ABOUT)"/>
             </menupopup>
         </menu>
     </menupopup>
@@ -129,18 +129,18 @@
     <!-- SeaMonkey Context Menu -->
     <popup id="contentAreaContextMenu">
         <menuseparator/>
-        <menu id="context-webpg" class="webpg-menuitem menu-iconic webpg-menu webpg-menu-webpg" src="chrome://webpg-firefox/skin/images/webpg-32.png">
+        <menu id="context-webpg" class="webpg-menuitem menu-iconic webpg-menu webpg-menu-webpg" src="chrome://webpg-firefox/skin/images/badges/32x32/webpg.png">
             <menupopup  id="webpg-contex-popup">
-                <menuitem class="webpg-menu-sign webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event, webpg.constants.overlayActions.PSIGN)"/>
-                <menuitem class="webpg-menu-verif webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.VERIF)"/>
-                <menuitem class="webpg-menu-crypt webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.CRYPT)"/>
-                <menuitem class="webpg-menu-cryptsign webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.CRYPTSIGN)"/>
-                <menuitem class="webpg-menu-decrypt webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.DECRYPT)"/>
-                <menuitem class="webpg-menu-import webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.IMPORT)"/>
-                <menuitem class="webpg-menu-export webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.EXPORT)"/>
+                <menuitem class="webpg-menu-sign webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.PSIGN)"/>
+                <menuitem class="webpg-menu-verif webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.VERIF)"/>
+                <menuitem class="webpg-menu-crypt webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.CRYPT)"/>
+                <menuitem class="webpg-menu-cryptsign webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.CRYPTSIGN)"/>
+                <menuitem class="webpg-menu-decrypt webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.DECRYPT)"/>
+                <menuitem class="webpg-menu-import webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.IMPORT)"/>
+                <menuitem class="webpg-menu-export webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.EXPORT)"/>
                 <menuseparator/>
-                <menuitem class="webpg-menu-manager webpg-menuitem context-menu-item menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
-                <menuitem class="webpg-menu-options webpg-menuitem context-menu-item menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>
+                <menuitem class="webpg-menu-manager webpg-menuitem context-menu-item menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.MANAGER)"/>
+                <menuitem class="webpg-menu-options webpg-menuitem context-menu-item menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.OPTS)"/>
             </menupopup>
         </menu>
     </popup>

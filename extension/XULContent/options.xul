@@ -16,7 +16,7 @@
 
                 var prefPanes = {
                     "options" : {
-                        "image": "chrome://webpg-firefox/skin/images/webpg-48.png",
+                        "image": "chrome://webpg-firefox/skin/images/badges/48x48/webpg.png",
                         "label": _("Options"),
                     },
                     "keylist" : {
@@ -24,7 +24,7 @@
                         "label": _("Key Manager"),
                     },
                     "about" : {
-                        "image": "chrome://webpg-firefox/skin/images/about-48.png",
+                        "image": "chrome://webpg-firefox/skin/images/badges/48x48/about.png",
                         "label": _("About"),
                     }
                 }

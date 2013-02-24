@@ -19,9 +19,17 @@ webpg.thunderbird.compose = {
 
     init: function(aEvent) {
         var _ = webpg.utils.i18n.gettext;
-        webpg.plugin = document.getElementById("webpgPlugin");
+        var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+               .getService(Components.interfaces.nsIWindowMediator);
+        var winType = (webpg.utils.detectedBrowser['product'] == "thunderbird") ?
+            "mail:3pane" : "navigator:browser";
+        var browserWindow = wm.getMostRecentWindow(winType);
 
-        if (!webpg.plugin.valid)
+        if (!webpg.plugin) {
+            webpg.plugin = browserWindow.webpg.plugin;
+        }
+
+        if (!webpg.plugin.valid == true)
             return
 
         this.sendAction = false;
@@ -34,16 +42,12 @@ webpg.thunderbird.compose = {
         document.getElementById("webpg-msg-sign-enc").label = _("Sign and Encrypt");
         document.getElementById("webpg-msg-enc").label = _("Encrypt");
         document.getElementById("webpg-msg-symenc").label = _("Symmetric Encryption");
-        
-        
-
-        _this = webpg.thunderbird.compose;
 
         this.stateListener = {
-            NotifyComposeFieldsReady: _this.composeFieldsReady,  
-            NotifyComposeBodyReady: _this.composeBodyReady,
-            ComposeProcessDone: _this.composeProcessDone,
-            SaveInFolderDone: _this.saveInFolderDone,
+            NotifyComposeFieldsReady: this.composeFieldsReady,  
+            NotifyComposeBodyReady: this.composeBodyReady,
+            ComposeProcessDone: this.composeProcessDone,
+            SaveInFolderDone: this.saveInFolderDone,
         }
 
         gMsgCompose.RegisterStateListener(this.stateListener);
@@ -68,7 +72,17 @@ webpg.thunderbird.compose = {
 
     // The body of the message is available/ready
     composeBodyReady: function() {
-        _this.editor = GetCurrentEditor();
+//        // Check if this is seamonkey, and add our toolbar item
+//        if (webpg.utils.detectedBrowser['product'] == "seamonkey") {
+//            var style = document.getElementById("xml-stylesheet-webpg-compose-overlay");
+//            style.setAttribute("href", "chrome://webpg-firefox/skin/seamonkey.css");
+//            var toolbar = document.getElementById("composeToolbar");
+//            if (toolbar) {
+//                var webpg_msg_btn = document.getElementById("webpg-msg-btn");
+//                toolbar.appendChild(webpg_msg_btn.parent.removeChild(webpg_msg_btn));
+//            }
+//        }
+        webpg.thunderbird.compose.editor = GetCurrentEditor();
     },
 
     // Called after message was sent/saved (fires twice)
@@ -84,7 +98,7 @@ webpg.thunderbird.compose = {
 
     // The message window was closed
     closeWindowListener: function(aEvent) {
-        _this.actionPerformed = false;
+        webpg.thunderbird.compose.actionPerformed = false;
     },
 
     sendMessageListener: function(aEvent) {
@@ -96,29 +110,33 @@ webpg.thunderbird.compose = {
             return;
 
         // Determine if we have a defined sendAction
-        if (!_this.sendAction)
+        if (!webpg.thunderbird.compose.sendAction)
             return;
 
         // Determine if we have already performed the required action
-        if (_this.actionPerformed)
+        if (webpg.thunderbird.compose.actionPerformed)
             return;
 
         // execute the current sendAction
-        var actionResult = _this.performSendAction();
+        var actionResult = webpg.thunderbird.compose.performSendAction();
 
         // Handle any errors
         if (actionResult.error) {
-            alert("WebPG - error: " + actionResult.error_string + "; Error code: " + actionResult.gpg_error_code);
+            var statusMsg = "WebPG - error: " + webpg.utils.escape(actionResult.error_string) + ";";
+            if (typeof(actionResult.gpg_error_code) != 'undefined')
+                statusMsg += " Error code: " + webpg.utils.escape(actionResult.gpg_error_code);
+            alert(statusMsg);
             aEvent.preventDefault();
             aEvent.stopPropagation();
         } else {
-            _this.actionPerformed = true;
+            webpg.thunderbird.compose.actionPerformed = true;
         }
     },
 
     setSendAction: function(action, element) {
         var baseClass = "webpg-msg-btn toolbarbutton-1";
-        document.getElementById('webpg-msg-btn').label = element.label;
+        document.getElementById('webpg-msg-btn').label = element.label + " ";
+        this.actionPerformed = false;
 
         switch (action) {
             case sendActions.PSIGN:
@@ -162,7 +180,7 @@ webpg.thunderbird.compose = {
         var bccList = [];
         var allList = [];
         var processed = new Object();
-        
+
         if (msgCompFields.to.length > 0) {
             toList = msgCompFields.splitRecipients(msgCompFields.to, true, processed);
         }
@@ -194,41 +212,49 @@ webpg.thunderbird.compose = {
             "mail:3pane" : "navigator:browser";
         var browserWindow = wm.getMostRecentWindow(winType);
 
-        browserWindow.webpg.background._onRequest({'msg': 'getNamedKeys',
-            'users': users
-        }, {}, function(response) {
-            var recipKeys = {};
-            var keys = response.result.keys;
-            for (var u in keys) {
-                for (var k in keys[u]) {
-                    recipKeys[u] = keys[u][k];
+        var keyResults = {};
+        for (var u in users) {
+            keyResults[users[u]] = webpg.plugin.getNamedKey(users[u]);
+            var i = -1;
+            for (i in keyResults[users[u]]) {
+                // nothing
+            }
+            if (i < 0) {
+                var group_result = webpg.preferences.group.get(users[u]);
+                for (var group in group_result) {
+                    keyResults[users[u]] = webpg.plugin.getNamedKey(group_result[group]);
                 }
             }
-            var notAllKeys = false;
-            var missingKeys = [];
-            for (var u in users) {
-                if (!(users[u] in recipKeys)) {
-                    notAllKeys = true;
-                    missingKeys.push(users[u]);
-                }
+        }
+        var recipKeys = {};
+        for (var u in keyResults) {
+            for (var k in keyResults[u]) {
+                recipKeys[u] = keyResults[u][k];
             }
-            if (notAllKeys) {
-                var status = _("You do not have any keys for") + " " +
-                    missingKeys.toString().
-                    replace(/((,))/g, _("or") + " ").replace(",", " ");
-                console.log(status);
-//                webpg.gmail.displayStatusLine(status);
-            } else {
-                if (callback)
-                    callback(recipKeys);
+        }
+        var notAllKeys = false;
+        var missingKeys = [];
+        for (var u in users) {
+            if (!(users[u] in recipKeys)) {
+                notAllKeys = true;
+                missingKeys.push(users[u]);
             }
-        });
+        }
+        if (notAllKeys) {
+            var status = _("You do not have any keys for") + " " +
+                missingKeys.toString().
+                replace(/((,))/g, " " + _("or") + " ").replace(",", " ");
+            return {'error': true, 'error_string': status};
+        } else {
+            if (callback)
+                return callback(recipKeys);
+        }
     },
 
     getEditorContents: function() {
         const dce = Components.interfaces.nsIDocumentEncoder;
         var encFlags = dce.OutputFormatted | dce.OutputLFLineBreak;
-        return _this.editor.outputToString("text/plain", encFlags);
+        return this.editor.outputToString("text/plain", encFlags);
     },
 
     setEditorContents: function(contents) {
@@ -246,6 +272,10 @@ webpg.thunderbird.compose = {
         this.editor.endTransaction();
     },
 
+    setAttachment: function(msg, contents) {
+        return {'error': true, 'error_string': "Signatures as attachments not yet implemented"};
+    },
+
     performSendAction: function() {
         // Retrieve the contents of the editor
         var msgContents = this.getEditorContents();
@@ -253,24 +283,24 @@ webpg.thunderbird.compose = {
         var actionStatus = {'error': true};
 
         switch (this.sendAction) {
-            case webpg.constants.overlayActions.PSIGN:
-                actionStatus = _this.clearSignMsg(msgContents);
+            case sendActions.PSIGN:
+                actionStatus = this.clearSignMsg(msgContents);
                 break;
 
-            case webpg.constants.overlayActions.ASIGN:
-                actionStatus = _this.clearSignMsg(msgContents, true);
-                break;
-
-            case sendActions.CRYPTSIGN:
-                actionStatus = _this.cryptMsg(msgContents, true);
+            case sendActions.ASIGN:
+                actionStatus = this.clearSignMsg(msgContents, true);
                 break;
 
             case sendActions.CRYPT:
-                actionStatus = _this.cryptMsg(msgContents, false);
+                actionStatus = this.cryptMsg(msgContents);
+                break;
+
+            case sendActions.CRYPTSIGN:
+                actionStatus = this.cryptMsg(msgContents, true);
                 break;
 
             case sendActions.SYMCRYPT:
-                actionStatus = _this.symCryptMsg(msgContents);
+                actionStatus = this.symCryptMsg(msgContents);
                 break;
         }
 
@@ -278,24 +308,58 @@ webpg.thunderbird.compose = {
     },
 
     clearSignMsg: function(msg, asAttachment) {
-        var signKey = webpg.preferences.default_key.get();
-        var signStatus = webpg.plugin.gpgSignText([signKey], msg, 2);
-        if (!signStatus.error)
-            _this.setEditorContents(signStatus.data);
+        try {
+            var signKey = webpg.preferences.default_key.get();
+            var signMode = (asAttachment == true) ? 1 : 2;
+            var signStatus = webpg.plugin.gpgSignText([signKey], msg, signMode);
+            if (!signStatus.error)
+                if (asAttachment)
+                    webpg.thunderbird.compose.setAttachment(msg, signStatus.data);
+                else
+                    webpg.thunderbird.compose.setEditorContents(signStatus.data);
+        } catch (err) {
+            signStatus = {'error': true, 'error_string': err.message};
+        }
+        console.log(signStatus.error);
         return signStatus;
     },
 
     cryptMsg: function(msg, sign) {
-        var encryptKeys = [];
-        var sign = (sign) ? 1 : 0;
-        var encryptStatus = response = webpg.plugin.gpgEncrypt(msg,
-                        request.keyid, sign);
+        var encryptStatus = this.checkRecipients(function(recipKeys) {
+            // TODO: Check that the keys are good for this operation
+            var allRecipients = webpg.thunderbird.compose.getRecipients();
+            var recipients = allRecipients.to.concat(allRecipients.cc);
+            try {
+                // Check for BCC/hidden recipients
+                if (allRecipients.bcc.length > 0) {
+                    allRecipients.bcc.every(function(recip) {
+                        // set the temp option prior to encryption;
+                        webpg.plugin.setTempGPGOption('hidden-encrypt-to', recipKeys[recip].fingerprint.substr(-16))
+                        return true;
+                    });
+                }
+                var status = webpg.plugin.gpgEncrypt(msg, recipients, (sign == true) ? 1 : 0);
+                webpg.plugin.restoreGPGConfig();
+                if (!status.error)
+                    webpg.thunderbird.compose.setEditorContents(status.data);
+            } catch (err) {
+                webpg.plugin.restoreGPGConfig();
+                status = {'error': true, 'error_string': err.message};
+            }
+            return status;
+        });
+
+        return encryptStatus;
     },
-    
+
     symCryptMsg: function(msg) {
-        var encryptStatus = webpg.plugin.gpgSymmetricEncrypt(msg, 0);
-        if (!encryptStatus.error)
-            _this.setEditorContents(encryptStatus.data);
+        try {
+            var encryptStatus = webpg.plugin.gpgSymmetricEncrypt(msg, 0);
+            if (!encryptStatus.error)
+                webpg.thunderbird.compose.setEditorContents(encryptStatus.data);
+        } catch (err) {
+            encryptStatus = {'error': true, 'error_string': err.message};
+        }
         return encryptStatus;
     },
 }

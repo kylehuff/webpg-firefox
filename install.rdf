@@ -35,7 +35,7 @@
                    em:homepageURL="http://webpg.org"
                    em:optionsURL="chrome://webpg-firefox/content/XULContent/options.xul?options_tab=0"
                    em:aboutURL="chrome://webpg-firefox/content/XULContent/options.xul?options_tab=2"
-                   em:iconURL="chrome://webpg-firefox/skin/images/webpg-48.png"
+                   em:iconURL="chrome://webpg-firefox/skin/images/badges/48x48/webpg.png"
                    em:icon64URL="chrome://webpg-fireofx/skin/images/webpg-64.png"
                   >
 
