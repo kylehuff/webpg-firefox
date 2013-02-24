@@ -294,5 +294,10 @@
 <!ENTITY HIDE_ORIGINAL "ORIGINAL VERBERGEN">
 <!ENTITY UNUSABLE_KEY "UNBENUTZBARER SCHLÜSSEL">
 <!ENTITY NO_USER_ID "KEINE BENUTZER-ID">
+<!ENTITY WebPG "">
+<!ENTITY About "">
+<!ENTITY Clear_Sign "">
+<!ENTITY Sign_and_Encrypt_this_text "">
+<!ENTITY Import_this_Public_key "">
 <!ENTITY Sign_Inline "">
 <!ENTITY Sign_as_Attachment "">
