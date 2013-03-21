@@ -6,17 +6,17 @@
   <RDF:Description RDF:about="rdf:#$g5s0x"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="13.*"
-                   em:maxVersion="18.0a1" />
+                   em:maxVersion="23.0" />
   <!-- Thunderbird -->
   <RDF:Description RDF:about="rdf:#$g5s0r"
                    em:id="{3550f703-e582-4d05-9a08-453d09bdfdc6}"
                    em:minVersion="13.*"
-                   em:maxVersion="18.0a1" />
+                   em:maxVersion="23.0" />
   <!-- SeaMonkey -->
   <RDF:Description RDF:about="rdf:#$g5s0l"
                    em:id="{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"
                    em:minVersion="2.1"
-                   em:maxVersion="2.16a1" />
+                   em:maxVersion="2.20" />
   <!-- Conkeror -->
   <RDF:Description RDF:about="rdf:#$g5s0i"
                    em:id="{a79fe89b-6662-4ff4-8e88-09950ad4dfde}"
