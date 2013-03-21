@@ -3,7 +3,6 @@
 
 <!DOCTYPE overlay SYSTEM "chrome://webpg-firefox/locale/webpg.dtd">
 <overlay id="webpg-overlay" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-    <script src="../../jquery/js/jquery-1.7.2.min.js"/>
     <script src="../../constants.js"/>
     <script src="../../utils.js"/>
     <script src="../../preferences.js"/>
@@ -11,23 +10,23 @@
     <script src="thunderbirdUtils.js"/>
     <script src="composeOverlay.js"/>
 
-    <stringbundleset id="stringbundleset">
-        <stringbundle id="webpg-strings" src="chrome://webpg-firefox/locale/webpg.properties"/>
-    </stringbundleset>
+    <menubar id="mail-menubar">
+        <menu id="menu-webpg-compose" class="webpg-menu" insertbefore="tasksMenu" />
+    </menubar>
 
-    <!-- NOTE: this is the WebPG toolbar item; disabled for now because there is no need a   -->
-    <!-- per-message instance of this menu. Also, labels removed to not trigger translations -->
-<!--    <menubar id="mail-menubar">-->
-<!--        <menu id="menu-webpg" class="webpg-menu" insertbefore="tasksMenu" />-->
-<!--    </menubar>-->
-<!--    <menu id="menu-webpg">-->
-<!--        <menupopup id="webpg-menu-popup">-->
-<!--            <menuitem class="webpg-menu-manager menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>-->
-<!--            <menuitem class="webpg-menu-options menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>-->
-<!--            <menuitem class="webpg-menu-about menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ABOUT)"/>-->
-<!--        </menupopup>-->
-<!--    </menu>-->
-    <!-- end disabled menu -->
+    <menu id="menu-webpg-compose" class="webpg-menuitem webpg-menu-webpg" label="aa">
+        <menupopup id="webpg-menu-popup">
+            <menuitem class="webpg-menuitem webpg-menu-manager menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>
+            <menuitem class="webpg-menuitem webpg-menu-options menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>
+            <menuitem class="webpg-menuitem webpg-menu-about menuitem-iconic" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ABOUT)"/>
+        </menupopup>
+    </menu>
+
+
+    <!-- Thunderbird Compose Toolbar -->
+    <toolbar id="composeToolbar2">
+        <toolbarbutton id="webpg-msg-btn" insertafter="button-save" />
+    </toolbar>
 
     <!-- Seamonkey Mail Compose Toolbar -->
     <toolbar id="composeToolbar">
@@ -35,9 +34,30 @@
     </toolbar>
 
     <!-- Thunderbird Compose Toolbar -->
-    <toolbar id="composeToolbar2">
+    <toolbar id="customToolbars">
         <toolbarbutton id="webpg-msg-btn" insertafter="button-save" />
     </toolbar>
+
+    <!-- Thunderbird compose Context menu -->
+<!--    <popup id="msgComposeContext">-->
+<!--        <menu id="context-webpg" />-->
+<!--    </popup>-->
+
+    <!-- Generic Context Menu -->
+    <menu id="context-webpg" class="webpg-menuitem menu-iconic webpg-menu webpg-menu-webpg" src="chrome://webpg-firefox/skin/images/webpg-32.png">
+        <menupopup  id="webpg-contex-popup">
+            <menuitem class="webpg-menu-sign webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.PSIGN)"/>
+            <menuitem class="webpg-menu-verif webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.VERIF)"/>
+            <menuitem class="webpg-menu-crypt webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.CRYPT)"/>
+            <menuitem class="webpg-menu-cryptsign webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.CRYPTSIGN)"/>
+            <menuitem class="webpg-menu-decrypt webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.DECRYPT)"/>
+            <menuitem class="webpg-menu-import webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.IMPORT)"/>
+            <menuitem class="webpg-menu-export webpg-menuitem context-menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.EXPORT)"/>
+            <menuseparator/>
+            <menuitem class="webpg-menu-manager webpg-menuitem context-menu-item menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.MANAGER)"/>
+            <menuitem class="webpg-menu-options webpg-menuitem context-menu-item menu-item menuitem-iconic" oncommand="webpg.overlay.onContextCommand('context-menu', webpg.constants.overlayActions.OPTS)"/>
+        </menupopup>
+    </menu>
 
     <toolbarbutton id="webpg-msg-btn"
         class="toolbarbutton-1 webpg-msg-btn webpg-menu-notselected"

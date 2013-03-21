@@ -147,7 +147,17 @@
     <!-- SeaMonkey Context Menu -->
     <!-- Firefox Context Menu -->
 
+    <!-- Status Bar -->
+    <statusbar id="status-bar">
+        <statusbarpanel id="webpg-statusbar">
+            <label value="" id="webpg-results-trusted-hover"/>
+        </statusbarpanel>
+    </statusbar>
+    <!-- Status bar -->
+
     <window id="main-window">
-        <html:object id="webpgPlugin" type="application/x-webpg" height="1" width="1" style="visibility:hidden;"></html:object> 
+        <vbox collapsed="true">
+            <html:object id="webpgPlugin" type="application/x-webpg" height="1" width="1" style="visibility:hidden;"></html:object>
+        </vbox>
     </window>
 </overlay>

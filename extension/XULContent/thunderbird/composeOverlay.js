@@ -2,23 +2,23 @@
 if (typeof(webpg)=='undefined') { webpg = {}; }
 if (typeof(webpg.thunderbird)=='undefined') { webpg.thunderbird = {}; }
 
-// Global reference to webpg.thunderbird.compose
-var _this;
-
-// Global list of valid PGP actions
-var sendActions = {
-    PSIGN: "PLAINSIGN", // Sign the message inline
-    ASIGN: "ATTACHSIGN", // Create a detached signature and attach to the msg
-    SIGN: "SIGN", // Create a signed data packet inline
-    CRYPT: "CRYPT", // Encrypt the data inline
-    CRYPTSIGN: "CRYPTSIGN", // Encrypt and Sign the data inline
-    SYMCRYPT: "SYMCRYPT", // Perform Symmetric Encryption inline
-}
-
 webpg.thunderbird.compose = {
+
+    // list of valid send actions
+    sendActions: {
+        PSIGN: "PLAINSIGN", // Sign the message inline
+        ASIGN: "ATTACHSIGN", // Create a detached signature and attach to the msg
+        SIGN: "SIGN", // Create a signed data packet inline
+        CRYPT: "CRYPT", // Encrypt the data inline
+        CRYPTSIGN: "CRYPTSIGN", // Encrypt and Sign the data inline
+        SYMCRYPT: "SYMCRYPT", // Perform Symmetric Encryption inline
+    },
 
     init: function(aEvent) {
         var _ = webpg.utils.i18n.gettext;
+        var webpg_menuitems = document.querySelectorAll('.webpg-menuitem');
+        webpg.thunderbird.utils.setMenuItemLabels(webpg_menuitems);
+        webpg.thunderbird.utils.setMenuItemLabels([document.querySelector('#webpg-menu-popup').parentElement]);
         var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                .getService(Components.interfaces.nsIWindowMediator);
         var winType = (webpg.utils.detectedBrowser['product'] == "thunderbird") ?
@@ -34,14 +34,6 @@ webpg.thunderbird.compose = {
 
         this.sendAction = false;
         this.actionPerformed = false;
-
-        // Apply the labels to the compose window actions
-        document.getElementById("webpg-msg-noaction").label = _("Do not use WebPG for this message");
-        document.getElementById("webpg-msg-sign").label = _("Sign Inline");
-        document.getElementById("webpg-msg-asign").label = _("Sign as Attachment");
-        document.getElementById("webpg-msg-sign-enc").label = _("Sign and Encrypt");
-        document.getElementById("webpg-msg-enc").label = _("Encrypt");
-        document.getElementById("webpg-msg-symenc").label = _("Symmetric Encryption");
 
         this.stateListener = {
             NotifyComposeFieldsReady: this.composeFieldsReady,  
@@ -72,17 +64,39 @@ webpg.thunderbird.compose = {
 
     // The body of the message is available/ready
     composeBodyReady: function() {
-//        // Check if this is seamonkey, and add our toolbar item
-//        if (webpg.utils.detectedBrowser['product'] == "seamonkey") {
+        var _ = webpg.utils.i18n.gettext;
+        webpg.thunderbird.compose.editor = GetCurrentEditor();
+        // Check if this is seamonkey, and add our toolbar item
+        if (webpg.utils.detectedBrowser['product'] == "seamonkey") {
 //            var style = document.getElementById("xml-stylesheet-webpg-compose-overlay");
 //            style.setAttribute("href", "chrome://webpg-firefox/skin/seamonkey.css");
-//            var toolbar = document.getElementById("composeToolbar");
-//            if (toolbar) {
-//                var webpg_msg_btn = document.getElementById("webpg-msg-btn");
-//                toolbar.appendChild(webpg_msg_btn.parent.removeChild(webpg_msg_btn));
-//            }
-//        }
-        webpg.thunderbird.compose.editor = GetCurrentEditor();
+            var toolbar = document.getElementById("composeToolbar");
+        } else {
+            // composeToolbar2 MsgComposeToolbarPalette customToolbars
+            var toolbar = document.getElementById("composeToolbar2");
+        }
+
+        if (toolbar) {
+            var defaultset = toolbar.getAttribute("defaultset");
+            if (defaultset.indexOf("webpg-msg-btn") == -1)
+                toolbar.setAttribute("defaultset", defaultset + ",webpg-msg-btn");
+            var currentset = toolbar.currentSet;
+            if (currentset.indexOf("webpg-msg-btn") == -1)
+                toolbar.currentSet = currentset + ",webpg-msg-btn";
+        }
+
+        // Apply the labels to the compose window actions
+        try {
+            document.getElementById("webpg-msg-noaction").label = _("Do not use WebPG for this message");
+            document.getElementById("webpg-msg-sign").label = _("Sign Inline");
+            document.getElementById("webpg-msg-asign").label = _("Sign as Attachment");
+            document.getElementById("webpg-msg-sign-enc").label = _("Sign and Encrypt");
+            document.getElementById("webpg-msg-enc").label = _("Encrypt");
+            document.getElementById("webpg-msg-symenc").label = _("Symmetric Encryption");
+        } catch (err) {
+            // there are cases where these items might not be present;
+            console.log(err.message);
+        }
     },
 
     // Called after message was sent/saved (fires twice)
@@ -118,7 +132,13 @@ webpg.thunderbird.compose = {
             return;
 
         // execute the current sendAction
-        var actionResult = webpg.thunderbird.compose.performSendAction();
+        try {
+            var actionResult = webpg.thunderbird.compose.performSendAction();
+        } catch (err) {
+            alert("WebPG Error: error in webpg.thunderbird.compose.performSendAction(); " + err.message);
+            aEvent.preventDefault();
+            aEvent.stopPropagation();
+        }
 
         // Handle any errors
         if (actionResult.error) {
@@ -139,27 +159,27 @@ webpg.thunderbird.compose = {
         this.actionPerformed = false;
 
         switch (action) {
-            case sendActions.PSIGN:
+            case webpg.thunderbird.compose.sendActions.PSIGN:
                 this.sendAction = "PLAINSIGN";
                 document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-sign";
                 break;
 
-            case sendActions.ASIGN:
+            case webpg.thunderbird.compose.sendActions.ASIGN:
                 this.sendAction = "ATTACHSIGN";
                 document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-attachsign";
                 break;
 
-            case sendActions.CRYPTSIGN:
+            case webpg.thunderbird.compose.sendActions.CRYPTSIGN:
                 this.sendAction = "CRYPTSIGN";
                 document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-cryptsign";
                 break;
 
-            case sendActions.CRYPT:
+            case webpg.thunderbird.compose.sendActions.CRYPT:
                 this.sendAction = "CRYPT";
                 document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-crypt";
                 break;
 
-            case sendActions.SYMCRYPT:
+            case webpg.thunderbird.compose.sendActions.SYMCRYPT:
                 this.sendAction = "SYMCRYPT";
                 document.getElementById("webpg-msg-btn").className = baseClass + " webpg-menu-crypt";
                 break;
@@ -283,23 +303,23 @@ webpg.thunderbird.compose = {
         var actionStatus = {'error': true};
 
         switch (this.sendAction) {
-            case sendActions.PSIGN:
+            case webpg.thunderbird.compose.sendActions.PSIGN:
                 actionStatus = this.clearSignMsg(msgContents);
                 break;
 
-            case sendActions.ASIGN:
+            case webpg.thunderbird.compose.sendActions.ASIGN:
                 actionStatus = this.clearSignMsg(msgContents, true);
                 break;
 
-            case sendActions.CRYPT:
+            case webpg.thunderbird.compose.sendActions.CRYPT:
                 actionStatus = this.cryptMsg(msgContents);
                 break;
 
-            case sendActions.CRYPTSIGN:
+            case webpg.thunderbird.compose.sendActions.CRYPTSIGN:
                 actionStatus = this.cryptMsg(msgContents, true);
                 break;
 
-            case sendActions.SYMCRYPT:
+            case webpg.thunderbird.compose.sendActions.SYMCRYPT:
                 actionStatus = this.symCryptMsg(msgContents);
                 break;
         }

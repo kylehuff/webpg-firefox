@@ -9,19 +9,15 @@
     <script src="../../inline.js"/>
     <script src="../../webpg_overlay.js"/>
 
-    <stringbundleset id="stringbundleset">
-        <stringbundle id="webpg-strings" src="chrome://webpg-firefox/locale/webpg.properties"/>
-    </stringbundleset>
-
     <menubar id="mail-menubar">
-        <menu id="menu-webpg" class="webpg-menu" label="&webpgMenu.label;" insertbefore="tasksMenu" />
+        <menu id="menu-webpg" class="webpg-menu" insertbefore="tasksMenu"/>
     </menubar>
 
-<!--    <menu id="menu-webpg" label="&webpgMenu.label;">-->
+<!--    <menu id="menu-webpg" label="WebAA">-->
 <!--        <menupopup id="webpg-menu-popup">-->
-<!--            <menuitem class="webpg-menu-manager menuitem-iconic" label="&webpgMenu.labelKeyManager;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>-->
-<!--            <menuitem class="webpg-menu-options menuitem-iconic" label="&webpgMenu.labelOptions;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>-->
-<!--            <menuitem class="webpg-menu-about menuitem-iconic" label="&webpgMenu.labelAbout;" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ABOUT)"/>-->
+<!--            <menuitem class="webpg-menu-manager menuitem-iconic" label="1" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.MANAGER)"/>-->
+<!--            <menuitem class="webpg-menu-options menuitem-iconic" label="2" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.OPTS)"/>-->
+<!--            <menuitem class="webpg-menu-about menuitem-iconic" label="3" oncommand="webpg.overlay.onContextCommand(event,webpg.constants.overlayActions.ABOUT)"/>-->
 <!--        </menupopup>-->
 <!--    </menu>-->
 
