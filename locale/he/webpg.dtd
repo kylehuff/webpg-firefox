@@ -183,6 +183,7 @@
 <!ENTITY Make_primary "">
 <!ENTITY Revoke_UID "">
 <!ENTITY REVOKED "">
+<!ENTITY Created "">
 <!ENTITY self_signature "">
 <!ENTITY local "">
 <!ENTITY non_exportable "">
@@ -238,10 +239,11 @@
 <!ENTITY Please_wait_while_we_build_the_key_list "">
 <!ENTITY WebPG_Options "">
 <!ENTITY The_WebPG_NPAPI_Plugin_is_valid "">
-<!ENTITY libgpgme_loaded_successfully "">
+<!ENTITY OpenPGP_was_detected "">
 <!ENTITY It_appears_you_have_a_key_agent_configured "">
 <!ENTITY gpgconf_was_detected "">
 <!ENTITY you_can_use_the_signature_methods "">
+<!ENTITY OpenPGP_does_not_appear_to_be_installed "">
 <!ENTITY You_do_not_appear_to_have_a_key_agent_configured "">
 <!ENTITY A_working_key_agent_is_required "">
 <!ENTITY gpgconf_does_not_appear_to_be_installed "">
@@ -254,12 +256,16 @@
 <!ENTITY Enable_WebPG_GMAIL_integration "">
 <!ENTITY EXPERIMENTAL "">
 <!ENTITY Sign_outgoing_messages_in_GMAIL "">
+<!ENTITY GPGCONF_binary "">
 <!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "">
 <!ENTITY There_is_a_problem_with_your_configuration "">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "">
 <!ENTITY use_at_your_own_risk "">
 <!ENTITY Text_copied_to_clipboard "">
 <!ENTITY There_may_have_been_a_problem_placing_the_data_into_the_clipboard "">
+<!ENTITY TEXT_COPIED "">
+<!ENTITY UNABLE_TO_COPY_TEXT "">
+<!ENTITY COPY_TO_CLIPBOARD "">
 <!ENTITY Paste_Public_Key "">
 <!ENTITY Clear_sign_this_text "">
 <!ENTITY Import_this_Key "">
@@ -273,7 +279,6 @@
 <!ENTITY BAD_PASSPHRASE "">
 <!ENTITY DECRYPT_THIS_MESSAGE "">
 <!ENTITY DISPLAY_ORIGINAL "">
-<!ENTITY COPY_TO_CLIPBOARD "">
 <!ENTITY DETACHED_PGP_SIGNATURE "">
 <!ENTITY PGP_SIGNED_MESSAGE "">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_IS_INVALID "">
@@ -286,7 +291,6 @@
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "">
 <!ENTITY PGP_PUBLIC_KEY "">
 <!ENTITY Names_UIDs_on_Key "">
-<!ENTITY Created "">
 <!ENTITY THIS_KEY_IS_NOT_IN_YOUR_KEYRING "">
 <!ENTITY THIS_KEY_IS_IN_YOUR_KEYRING "">
 <!ENTITY IMPORT_THIS_KEY "">

@@ -183,6 +183,7 @@
 <!ENTITY Make_primary "جعل الابتدائية">
 <!ENTITY Revoke_UID "سحب">
 <!ENTITY REVOKED "فاسخ">
+<!ENTITY Created "تم إنشاؤها على">
 <!ENTITY self_signature "حذف هذا التوقيع">
 <!ENTITY local "محلي">
 <!ENTITY non_exportable "غير القابلة للتصدير">
@@ -238,10 +239,11 @@
 <!ENTITY Please_wait_while_we_build_the_key_list "">
 <!ENTITY WebPG_Options "خيارات WebPG">
 <!ENTITY The_WebPG_NPAPI_Plugin_is_valid "البرنامج المساعد NPAPI WebPG صالحة">
-<!ENTITY libgpgme_loaded_successfully "libgpgme تحميل بنجاح">
+<!ENTITY OpenPGP_was_detected "">
 <!ENTITY It_appears_you_have_a_key_agent_configured "يبدو لديك مفتاح وكيل تكوينه">
 <!ENTITY gpgconf_was_detected "تم الكشف عن gpgconf">
 <!ENTITY you_can_use_the_signature_methods "يمكنك استخدام أساليب التوقيع">
+<!ENTITY OpenPGP_does_not_appear_to_be_installed "">
 <!ENTITY You_do_not_appear_to_have_a_key_agent_configured "لا يبدو أن لديك مفتاح وكيل تكوينه">
 <!ENTITY A_working_key_agent_is_required "يجب على مفتاح صالح وكيل تكون موجودة">
 <!ENTITY gpgconf_does_not_appear_to_be_installed "gpgconf لا يظهر ليتم تثبيتها">
@@ -254,12 +256,16 @@
 <!ENTITY Enable_WebPG_GMAIL_integration "تمكين GMAIL التكامل">
 <!ENTITY EXPERIMENTAL "تجريبي">
 <!ENTITY Sign_outgoing_messages_in_GMAIL "توقيع الرسائل الصادرة في GMAIL">
+<!ENTITY GPGCONF_binary "">
 <!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "النظام الخاص بك ويبدو أن تكوين بشكل صحيح ل WebPG">
 <!ENTITY There_is_a_problem_with_your_configuration "هناك مشكلة مع التكوين الخاص بك">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "جوجل التكامل تجريبية WebPG">
 <!ENTITY use_at_your_own_risk "استخدام على مسؤوليتك الخاصة">
 <!ENTITY Text_copied_to_clipboard "تم نسخ النص إلى الحافظة">
 <!ENTITY There_may_have_been_a_problem_placing_the_data_into_the_clipboard "قد كانت هناك مشكلة وضع البيانات في الحافظة">
+<!ENTITY TEXT_COPIED "">
+<!ENTITY UNABLE_TO_COPY_TEXT "">
+<!ENTITY COPY_TO_CLIPBOARD "نسخ إلى الحافظة">
 <!ENTITY Paste_Public_Key "لصق المفتاح العمومي">
 <!ENTITY Clear_sign_this_text "واضحة توقيع هذه الرسالة">
 <!ENTITY Import_this_Key "استيراد هذا المفتاح">
@@ -273,7 +279,6 @@
 <!ENTITY BAD_PASSPHRASE "عبارة المرور خاطئة">
 <!ENTITY DECRYPT_THIS_MESSAGE "فك تشفير هذه الرسالة">
 <!ENTITY DISPLAY_ORIGINAL "عرض الأصلية">
-<!ENTITY COPY_TO_CLIPBOARD "نسخ إلى الحافظة">
 <!ENTITY DETACHED_PGP_SIGNATURE "التوقيع منفصلة">
 <!ENTITY PGP_SIGNED_MESSAGE "وقعت رسالة PGP">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_IS_INVALID "التوقيع غير صالح">
@@ -286,7 +291,6 @@
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "قد يكون العبث بالرسالة">
 <!ENTITY PGP_PUBLIC_KEY "PGP مفاتيح العامة">
 <!ENTITY Names_UIDs_on_Key "أسماء على مفتاح">
-<!ENTITY Created "تم إنشاؤها على">
 <!ENTITY THIS_KEY_IS_NOT_IN_YOUR_KEYRING "هذا المفتاح ليس في كيرينغ الخاص">
 <!ENTITY THIS_KEY_IS_IN_YOUR_KEYRING "هذا المفتاح هو في كيرينغ الخاص">
 <!ENTITY IMPORT_THIS_KEY "استيراد هذا المفتاح">

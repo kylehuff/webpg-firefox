@@ -183,6 +183,7 @@
 <!ENTITY Make_primary "Ustaw jako główną">
 <!ENTITY Revoke_UID "Wycofaj tożsamość">
 <!ENTITY REVOKED "WYCOFANA">
+<!ENTITY Created "Utworzony">
 <!ENTITY self_signature "podpisana przez siebie">
 <!ENTITY local "lokalna">
 <!ENTITY non_exportable "nieeksportowalna">
@@ -238,10 +239,11 @@
 <!ENTITY Please_wait_while_we_build_the_key_list "">
 <!ENTITY WebPG_Options "Ustawienia WebPG">
 <!ENTITY The_WebPG_NPAPI_Plugin_is_valid "Wtyczka WebPG NPAPI jest zainstalowana prawidłowo">
-<!ENTITY libgpgme_loaded_successfully "libgpgme załadowana">
+<!ENTITY OpenPGP_was_detected "">
 <!ENTITY It_appears_you_have_a_key_agent_configured "Wygląda na to że skonfigurowałeś już agenta kluczy">
 <!ENTITY gpgconf_was_detected "gpgconf został wykryty">
 <!ENTITY you_can_use_the_signature_methods "możesz używać podpisów elektronicznych">
+<!ENTITY OpenPGP_does_not_appear_to_be_installed "">
 <!ENTITY You_do_not_appear_to_have_a_key_agent_configured "Wygląda na to że nie posiadasz skonfigurowanego agenta kluczy">
 <!ENTITY A_working_key_agent_is_required "Agent kluczy jest wymagany do poprawnego działania">
 <!ENTITY gpgconf_does_not_appear_to_be_installed "Wygląda na to że gpgconf nie jest zainstalowany">
@@ -254,12 +256,16 @@
 <!ENTITY Enable_WebPG_GMAIL_integration "Włącz integrację WebPG z Gmail">
 <!ENTITY EXPERIMENTAL "EKSPERYMENTALNE">
 <!ENTITY Sign_outgoing_messages_in_GMAIL "Podpisuj wiadomości wysyłane w Gmail">
+<!ENTITY GPGCONF_binary "">
 <!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "Twój system wyglądna na skonfigurowany poprawnie do używania WebPG">
 <!ENTITY There_is_a_problem_with_your_configuration "Wystąpił problem z twoją konfiguracją">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "Integracja WebPG z Gmailem jest EKSPERYMENTALNA">
 <!ENTITY use_at_your_own_risk "Używaj na własne ryzyko">
 <!ENTITY Text_copied_to_clipboard "Tekst skopiowany do schowka">
 <!ENTITY There_may_have_been_a_problem_placing_the_data_into_the_clipboard "Mógł wystąpić problem podczas kopiowania danych do schowka">
+<!ENTITY TEXT_COPIED "">
+<!ENTITY UNABLE_TO_COPY_TEXT "">
+<!ENTITY COPY_TO_CLIPBOARD "KOPIUJ DO SCHOWKA">
 <!ENTITY Paste_Public_Key "Wklej klucz publiczny">
 <!ENTITY Clear_sign_this_text "Podpisz ten tekst">
 <!ENTITY Import_this_Key "Podpisz ten klucz">
@@ -273,7 +279,6 @@
 <!ENTITY BAD_PASSPHRASE "ZŁE HASŁO">
 <!ENTITY DECRYPT_THIS_MESSAGE "ODSZYFRUJ TĘ WIADOMOŚĆ">
 <!ENTITY DISPLAY_ORIGINAL "WYŚWIETL ORYGINAŁ">
-<!ENTITY COPY_TO_CLIPBOARD "KOPIUJ DO SCHOWKA">
 <!ENTITY DETACHED_PGP_SIGNATURE "ODŁĄCZONA SYGNATURA PGP">
 <!ENTITY PGP_SIGNED_MESSAGE "WIADOMOŚĆ PODPISANA PGP">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_IS_INVALID "PODPIS POD TĄ WIADOMOŚCIĄ JEST NIEPRAWIDŁOWY">
@@ -286,7 +291,6 @@
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "MOŻLIWE ŻE KTOŚ PRÓBOWAŁ PODROBIĆ WIADOMOŚĆ">
 <!ENTITY PGP_PUBLIC_KEY "KLUCZ PUBLICZNY PGP">
 <!ENTITY Names_UIDs_on_Key "Nazwy/tożsamości w kluczu">
-<!ENTITY Created "Utworzony">
 <!ENTITY THIS_KEY_IS_NOT_IN_YOUR_KEYRING "TEGO KLUCZA NIE MA W TWOIM KEYRINGU">
 <!ENTITY THIS_KEY_IS_IN_YOUR_KEYRING "TEN KLUCZ JEST W TWOIM KEYRINGU">
 <!ENTITY IMPORT_THIS_KEY "ZAIMPORTUJ TEN KLUCZ">

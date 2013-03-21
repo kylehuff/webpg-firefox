@@ -183,6 +183,7 @@
 <!ENTITY Make_primary "Als primär kennzeichnen">
 <!ENTITY Revoke_UID "UID zurückziehen">
 <!ENTITY REVOKED "WIDERRUFEN">
+<!ENTITY Created "Erzeugt">
 <!ENTITY self_signature "eigene Unterschrift">
 <!ENTITY local "lokal">
 <!ENTITY non_exportable "Nicht exportierbar">
@@ -238,10 +239,11 @@
 <!ENTITY Please_wait_while_we_build_the_key_list "">
 <!ENTITY WebPG_Options "WebPG Optionen">
 <!ENTITY The_WebPG_NPAPI_Plugin_is_valid "Das WebPG-NPAPI-Plugin ist gültig">
-<!ENTITY libgpgme_loaded_successfully "libgpgme erfolgreich geladen">
+<!ENTITY OpenPGP_was_detected "">
 <!ENTITY It_appears_you_have_a_key_agent_configured "Es scheint, als hätten Sie einen Schlüsselagenten konfiguriert">
 <!ENTITY gpgconf_was_detected "gpgconf wurde gefunden">
 <!ENTITY you_can_use_the_signature_methods "Sie können die Signaturmethoden anwenden">
+<!ENTITY OpenPGP_does_not_appear_to_be_installed "">
 <!ENTITY You_do_not_appear_to_have_a_key_agent_configured "Sie scheinen keinen Schlüsselagenten konfiguriert zu haben">
 <!ENTITY A_working_key_agent_is_required "Ein funktionierender Schlüsselagent ist notwendig">
 <!ENTITY gpgconf_does_not_appear_to_be_installed "gpgconf scheint nicht installiert zu sein">
@@ -254,12 +256,16 @@
 <!ENTITY Enable_WebPG_GMAIL_integration "WebPG-GMAIL-Integration aktivieren">
 <!ENTITY EXPERIMENTAL "EXPERIMENTELL">
 <!ENTITY Sign_outgoing_messages_in_GMAIL "Ausgehende Nachrichten in GMAIL unterschreiben">
+<!ENTITY GPGCONF_binary "">
 <!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "Ihr System scheint korrekt für WebPG konfiguriert zu sein">
 <!ENTITY There_is_a_problem_with_your_configuration "Es gibt ein Problem mit Ihrer Konfiguration">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "WebPG-GMAIL-Integration ist EXPERIMENTELL">
 <!ENTITY use_at_your_own_risk "Verwendung auf eigenes Risiko">
 <!ENTITY Text_copied_to_clipboard "Text in Zwischenablage kopiert">
 <!ENTITY There_may_have_been_a_problem_placing_the_data_into_the_clipboard "Zwischenablage">
+<!ENTITY TEXT_COPIED "">
+<!ENTITY UNABLE_TO_COPY_TEXT "">
+<!ENTITY COPY_TO_CLIPBOARD "IN ZWISCHENABLAGE KOPIEREN">
 <!ENTITY Paste_Public_Key "Öffentlichen Schlüssel einfügen">
 <!ENTITY Clear_sign_this_text "Diesen Text im Klartext unterzeichnen">
 <!ENTITY Import_this_Key "Diesen Schlüssel importieren">
@@ -273,7 +279,6 @@
 <!ENTITY BAD_PASSPHRASE "FALSCHE PASSPHRASE">
 <!ENTITY DECRYPT_THIS_MESSAGE "DIESE NACHRICHT ENTSCHLÜSSELN">
 <!ENTITY DISPLAY_ORIGINAL "ORIGINAL ANZEIGEN">
-<!ENTITY COPY_TO_CLIPBOARD "IN ZWISCHENABLAGE KOPIEREN">
 <!ENTITY DETACHED_PGP_SIGNATURE "ABGETRENNTE PGP SIGNATUR">
 <!ENTITY PGP_SIGNED_MESSAGE "PGP SIGNIERTE NACHRICHT">
 <!ENTITY THE_SIGNATURE_ON_THIS_MESSAGE_IS_INVALID "DIE SIGNATUR DIESER NACHRICHT IST UNGÜLTIG">
@@ -286,7 +291,6 @@
 <!ENTITY THE_MESSAGE_MAY_BE_TAMPERED_WITH "AN DIESER NACHRICHT WURDEN WOMÖGLICH UNBEFUGTE ÄNDERUNGEN VORGENOMMEN">
 <!ENTITY PGP_PUBLIC_KEY "ÖFFENTLICHER PGP SCHLÜSSEL">
 <!ENTITY Names_UIDs_on_Key "NAMEN/UIDs am Schlüssel">
-<!ENTITY Created "Erzeugt">
 <!ENTITY THIS_KEY_IS_NOT_IN_YOUR_KEYRING "DIESER SCHLÜSSEL BEFINDET SICH NICHT AN IHREM SCHLÜSSELBUND">
 <!ENTITY THIS_KEY_IS_IN_YOUR_KEYRING "DIESER SCHLÜSSEL BEFINDET SICH AN IHREM SCHLÜSSELBUND">
 <!ENTITY IMPORT_THIS_KEY "DIESEN SCHLÜSSEL IMPORTIEREN">
