@@ -26,7 +26,7 @@
   <!-- WebPG Extension master/default description -->
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="webpg-firefox@curetheitch.com"
-                   em:version="0.9.3"
+                   em:version="0.9.4"
                    em:type="2"
                    em:name="WebPG for Mozilla"
                    em:optionsType="3"
