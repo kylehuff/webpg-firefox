@@ -53,7 +53,8 @@ webpg.preferences = {
                 Provides methods to get the preference item
         */
         get: function() {
-            return webpg.localStorage.getItem('decorate_inline')
+            var value = webpg.localStorage.getItem('decorate_inline');
+            return (value == null) ? "true" : value;
         },
 
         /*
@@ -83,7 +84,8 @@ webpg.preferences = {
                 Provides methods to get the preference item
         */
         get: function() {
-            return webpg.localStorage.getItem('render_toolbar');
+            var value = webpg.localStorage.getItem('render_toolbar');
+            return (value == null) ? true : value;
         },
 
         /*
