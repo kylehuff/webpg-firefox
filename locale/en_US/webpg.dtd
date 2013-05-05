@@ -17,6 +17,7 @@
 <!ENTITY not_detected "">
 <!ENTITY Assuan_version "">
 <!ENTITY Finished "Finished">
+<!ENTITY Translation_Status "">
 <!ENTITY WebPG_Plugin_failed_to_load "WebPG Plugin failed to load">
 <!ENTITY Key_Generation_Complete "Key Generation Complete">
 <!ENTITY Key_Generation "Key Generation">
@@ -40,6 +41,8 @@
 <!ENTITY Error "Error">
 <!ENTITY Suggestions "Suggestions">
 <!ENTITY The_plugin_was_unable_to_load "The plugin was unable to load">
+<!ENTITY The_Firefox_Click_to_Play_feature_is_enabled "">
+<!ENTITY WebPG_cannot_load_the_required_plugin_with_this_feature_enabled "">
 <!ENTITY There_might_be_a_problem_with_the_gpg_installation "There might be a problem with the gpg installation">
 <!ENTITY consider_reinstalling_gpg4win "consider reinstalling gpg4win">
 <!ENTITY Error_Details "Error Details">
@@ -59,6 +62,8 @@
 <!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway "Would you like to Encrypt and Sign anyway?">
 <!ENTITY You_do_not_have_any_keys_for "You do not have any keys for">
 <!ENTITY or "or">
+<!ENTITY Expired_keys_found_for "">
+<!ENTITY and "">
 <!ENTITY You_have_more_than_1_public_key_matching_that_address "You have more than 1 public key matching that address">
 <!ENTITY The_Key_for "The Key for">
 <!ENTITY is_invalid "is invalid">
@@ -67,6 +72,9 @@
 <!ENTITY Sign_and_Encrypt "Sign and Encrypt">
 <!ENTITY Symmetric_Encryption "Symmetric Encryption">
 <!ENTITY Do_not_use_WebPG_for_this_message "Do not use WebPG for this message">
+<!ENTITY Sign_Only "">
+<!ENTITY no_email_address_provided "no email address provided">
+<!ENTITY Use "">
 <!ENTITY Decrypt "Decrypt">
 <!ENTITY Verify "Verify">
 <!ENTITY Secure_Editor "Secure Editor">
@@ -118,9 +126,12 @@
 <!ENTITY Are_you_sure_you_wish_to_revoke_this_Signature "Are you sure you wish to revoke this Signature?">
 <!ENTITY Are_you_sure_you_wish_to_delete_this_Signature "Are you sure you wish to delete this Signature?">
 <!ENTITY Are_you_sure_you_want_to_permanently_delete_this_UID "Are you sure you want to permanently delete this UID">
+<!ENTITY Are_you_sure_you_want_to_permanently_delete_this_Photo "">
 <!ENTITY New_Expiration_Date "New Expiration Date">
 <!ENTITY Never_Expire "Never Expire">
 <!ENTITY Expiration_Date "Expiration Date">
+<!ENTITY Building_Key_list "">
+<!ENTITY Please_wait_while_we_build_the_key_list "Please wait while we build the key list">
 <!ENTITY Click_to_generate_a_new_key "Click to generate a new key">
 <!ENTITY Click_to_enable_key "Click to enable key">
 <!ENTITY Click_to_set_default_key "Click to set default key">
@@ -142,14 +153,6 @@
 <!ENTITY Please_be_patient_while_the_key_is_created "Please be patient while the key is created">
 <!ENTITY It_is_safe_to_close_this_window "It is safe to close this window">
 <!ENTITY key_generation_will_continue_in_the_background "key generation will continue in the background">
-<!ENTITY Enabled "Enabled">
-<!ENTITY Disabled "Disabled">
-<!ENTITY Valid "Valid">
-<!ENTITY Expired "Expired">
-<!ENTITY Invalid "Invalid">
-<!ENTITY Revoked "Revoked">
-<!ENTITY no_email_address_provided "no email address provided">
-<!ENTITY Cannot_unset_your_default_key "Cannot unset your default key">
 <!ENTITY Trust_Assignment "Trust Assignment">
 <!ENTITY Unknown "Unknown">
 <!ENTITY Marginal "Marginal">
@@ -160,11 +163,19 @@
 <!ENTITY Group_Assignment "Group Assignment">
 <!ENTITY Change_Passphrase "Change Passphrase">
 <!ENTITY Add_Subkey "Add Subkey">
+<!ENTITY Add_Photo "">
+<!ENTITY Enabled "Enabled">
+<!ENTITY Disabled "Disabled">
+<!ENTITY Valid "Valid">
+<!ENTITY Expired "Expired">
+<!ENTITY Invalid "Invalid">
+<!ENTITY Revoked "Revoked">
 <!ENTITY Enable_this_Key "Enable this Key">
 <!ENTITY Disable_this_Key "Disable this key">
 <!ENTITY KeyID "KeyID">
 <!ENTITY Key_Created "Key Created">
 <!ENTITY Expires "Expires">
+<!ENTITY User_IDs "User IDs">
 <!ENTITY Fingerprint "Fingerprint">
 <!ENTITY Status "Status">
 <!ENTITY Key_Algorithm "Key Algorithm">
@@ -179,7 +190,6 @@
 <!ENTITY Flags "Flags">
 <!ENTITY Delete_this_Subkey "Delete this Subkey">
 <!ENTITY Revoke_this_Subkey "Revoke this key">
-<!ENTITY User_IDs "User IDs">
 <!ENTITY Make_primary "Make primary">
 <!ENTITY Revoke_UID "Revoke UID">
 <!ENTITY REVOKED "REVOKED">
@@ -191,10 +201,21 @@
 <!ENTITY Revoke "Revoke">
 <!ENTITY Delete "Delete">
 <!ENTITY Signatures_made_with_keys_not_in_your_keyring_are_omitted "Signatures made with keys not in your keyring are omitted">
+<!ENTITY Cannot_unset_your_default_key "Cannot unset your default key">
 <!ENTITY Calculating_Trust "Calculating Trust">
-<!ENTITY Please_wait_while_recalculate_the_trust_for_this_item "Please wait while recalculate the trust for this item">
+<!ENTITY Please_wait_while_we_calculate_the_trust_for_this_item "">
 <!ENTITY Save "Save">
 <!ENTITY Delete_this_key "Delete this key">
+<!ENTITY Add "">
+<!ENTITY There_was_an_error_parsing_this_image_file "">
+<!ENTITY There_was_an_error_adding_this_image_file "">
+<!ENTITY It_is_possible_the_image_contains_EXIF_data "">
+<!ENTITY Please_use_the_button_above_to_select_a_JPEG___jpg__jpeg__photo "">
+<!ENTITY Only_JPEG_image_files_are_supported "">
+<!ENTITY WARNING "">
+<!ENTITY is_quite_large "">
+<!ENTITY Consider_using_a_smaller_image "">
+<!ENTITY Only_one_image_can_be_added "">
 <!ENTITY Copy "Copy">
 <!ENTITY Please_specify_the_revocation_details "Please specify the revocation details">
 <!ENTITY Reason "Reason">
@@ -222,6 +243,7 @@
 <!ENTITY and_generate_a_key_to_use_with_webpg "and generate a key to use with webpg">
 <!ENTITY Already_signed_with_this_key "Already signed with this key">
 <!ENTITY Signature_added_using_this_key "Signature added using this key">
+<!ENTITY Delete_this_Photo "">
 <!ENTITY Cannot_Publish_Keys_without_gpgconf_utility_installed "Cannot Publish Keys without gpgconf utility installed">
 <!ENTITY Cannot_create_signatures_without_gpgconf_utility_installed "Cannot create signatures without gpgconf utility installed">
 <!ENTITY Cannot_Publish_Keys_without_Keyserver_configured "Cannot Publish Keys without Keyserver configured">
@@ -232,11 +254,11 @@
 <!ENTITY from_this_User_ID "from this User ID">
 <!ENTITY This_signature_was_made_with_a_key_that_does_not_belong_to_you "This signature was made with a key that does not belong to you">
 <!ENTITY This_action_cannot_be_undone "This action cannot be undone">
-<!ENTITY Enable_this_key_for_signing "Enable this key for signing">
+<!ENTITY User_Photos "">
+<!ENTITY Enable_this_key_for_GnuPG_operations "">
 <!ENTITY This_is_your_default_key "This is your default key">
-<!ENTITY Make_this_the_default_key_for_encryption_operations "Make this the default key for encryption operations">
+<!ENTITY Make_this_the_default_key_for_GnuPG_operations "">
 <!ENTITY Searching_for "Searching for">
-<!ENTITY Please_wait_while_we_build_the_key_list "Please wait while we build the key list">
 <!ENTITY WebPG_Options "WebPG Options">
 <!ENTITY The_WebPG_NPAPI_Plugin_is_valid "The WebPG NPAPI Plugin is valid">
 <!ENTITY OpenPGP_was_detected "">
@@ -252,13 +274,19 @@
 <!ENTITY the_plugin_might_be_incompatibly_compiled_for_this_architechture "the plugin might be incompatibly compiled for this architechture">
 <!ENTITY click_here_for_help_resolving_this_issue "click here for help resolving this issue">
 <!ENTITY Enable_Inline_formatting_of_PGP_Messages_and_Keys "Enable Inline formatting of PGP Messages and Keys">
+<!ENTITY Inline_Options "">
 <!ENTITY Always_encrypt_to_your_default_key_in_addition_to_the_recipient "Always encrypt to your default key in addition to the recipient">
 <!ENTITY Enable_WebPG_GMAIL_integration "Enable WebPG GMAIL integration">
 <!ENTITY EXPERIMENTAL "EXPERIMENTAL">
-<!ENTITY Sign_outgoing_messages_in_GMAIL "Sign outgoing messages in GMAIL">
+<!ENTITY Automatically_Sign_outgoing_messages_in_GMAIL "">
 <!ENTITY GPGCONF_binary "">
 <!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "Your system appears to be configured correctly for WebPG">
 <!ENTITY There_is_a_problem_with_your_configuration "There is a problem with your configuration">
+<!ENTITY Inline_formatting_mode "">
+<!ENTITY Window "">
+<!ENTITY Icon "">
+<!ENTITY Sample "">
+<!ENTITY WebPG_Toolbar "">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "WebPG GMAIL integration is EXPERIMENTAL">
 <!ENTITY use_at_your_own_risk "use at your own risk">
 <!ENTITY Text_copied_to_clipboard "Text copied to clipboard">
@@ -266,12 +294,12 @@
 <!ENTITY TEXT_COPIED "">
 <!ENTITY UNABLE_TO_COPY_TEXT "">
 <!ENTITY COPY_TO_CLIPBOARD "COPY TO CLIPBOARD">
-<!ENTITY Paste_Public_Key "Paste Public Key">
-<!ENTITY Clear_sign_this_text "Clear-sign this text">
-<!ENTITY Import_this_Key "Import this Key">
-<!ENTITY Encrypt_this_text "Encrypt this text">
-<!ENTITY Decrypt_this_text "Decrypt this text">
 <!ENTITY Verify_this_text "Verify this text">
+<!ENTITY Decrypt_this_text "Decrypt this text">
+<!ENTITY Import_this_Key "Import this Key">
+<!ENTITY Clear_sign_this_text "Clear-sign this text">
+<!ENTITY Encrypt_this_text "Encrypt this text">
+<!ENTITY Paste_Public_Key "Paste Public Key">
 <!ENTITY UNABLE_TO_DECRYPT_OR_VERIFY_THIS_MESSAGE "UNABLE TO DECRYPT OR VERIFY THIS MESSAGE">
 <!ENTITY PGP_ENCRYPTED_AND_SIGNED_MESSAGE "PGP ENCRYPTED AND SIGNED MESSAGE">
 <!ENTITY DECRYPTION_FAILED "DECRYPTION FAILED">

@@ -17,6 +17,7 @@
 <!ENTITY not_detected "لم يتم الكشف عن">
 <!ENTITY Assuan_version "Assuan الإصدار">
 <!ENTITY Finished "منتهي">
+<!ENTITY Translation_Status "">
 <!ENTITY WebPG_Plugin_failed_to_load "WebPG فشل تحميل البرنامج المساعد">
 <!ENTITY Key_Generation_Complete "اكتمل توليد المفتاح">
 <!ENTITY Key_Generation "توليد مفتاح">
@@ -40,6 +41,8 @@
 <!ENTITY Error "خطأ">
 <!ENTITY Suggestions "اقتراحات">
 <!ENTITY The_plugin_was_unable_to_load "لم يتمكن من تحميل الاضافات">
+<!ENTITY The_Firefox_Click_to_Play_feature_is_enabled "">
+<!ENTITY WebPG_cannot_load_the_required_plugin_with_this_feature_enabled "">
 <!ENTITY There_might_be_a_problem_with_the_gpg_installation "قد يكون هناك مشكلة في تثبيت GPG">
 <!ENTITY consider_reinstalling_gpg4win "خذ بالاعتبار إعادة تثبيت gpg4win">
 <!ENTITY Error_Details "تفاصيل الخطأ">
@@ -59,13 +62,19 @@
 <!ENTITY Would_you_like_to_Encrypt_and_Sign_anyway "هل تريد على أي حال التشفير والتسجيل">
 <!ENTITY You_do_not_have_any_keys_for "لا تمتلك مفاتيح ل">
 <!ENTITY or "أو">
+<!ENTITY Expired_keys_found_for "">
+<!ENTITY and "">
 <!ENTITY You_have_more_than_1_public_key_matching_that_address "لديك أكثر من مفتاح عمومي مطابق لهذا العنوان">
 <!ENTITY The_Key_for "المفتاح ل">
 <!ENTITY is_invalid "غير صالح">
 <!ENTITY Open_the_Key_Manager "افتح مدير المفاتيح">
 <!ENTITY Sign_only "توقيع فقط">
 <!ENTITY Sign_and_Encrypt "توقيع وتشفير">
+<!ENTITY Symmetric_Encryption "تشفير متناسب">
 <!ENTITY Do_not_use_WebPG_for_this_message "لا تستخدم WebPG لهذه الرسالة">
+<!ENTITY Sign_Only "">
+<!ENTITY no_email_address_provided "لم يُقدَّم أي عنوان بريد إلكتروني">
+<!ENTITY Use "">
 <!ENTITY Decrypt "فكّ التشفير">
 <!ENTITY Verify "تحقّق">
 <!ENTITY Secure_Editor "محرر آمن">
@@ -117,9 +126,12 @@
 <!ENTITY Are_you_sure_you_wish_to_revoke_this_Signature "هل أنت متأكد أنك ترغب في إلغاء هذا التوقيع">
 <!ENTITY Are_you_sure_you_wish_to_delete_this_Signature "هل أنت متأكد أنك تريد حذف هذا التوقيع">
 <!ENTITY Are_you_sure_you_want_to_permanently_delete_this_UID "هل أنت متأكد أنك تريد حذف معرف المستخدم هذا بشكل دائم">
+<!ENTITY Are_you_sure_you_want_to_permanently_delete_this_Photo "">
 <!ENTITY New_Expiration_Date "تاريخ انتهاء الصلاحية الجديد">
 <!ENTITY Never_Expire "بدون تاريخ انتهاء الصلاحية">
 <!ENTITY Expiration_Date "تاريخ انتهاء الصلاحية">
+<!ENTITY Building_Key_list "">
+<!ENTITY Please_wait_while_we_build_the_key_list "الرجاء الانتظار بينما نقوم ببناء قائمة المفاتيح">
 <!ENTITY Click_to_generate_a_new_key "انقر لإنشاء مفتاح جديد">
 <!ENTITY Click_to_enable_key "انقر لتمكين المفتاح">
 <!ENTITY Click_to_set_default_key "انقر لتحديد المفتاح الافتراضي">
@@ -141,14 +153,6 @@
 <!ENTITY Please_be_patient_while_the_key_is_created "الرجاء التحلّي بالصبر بينما يتم إنشاء المفتاح">
 <!ENTITY It_is_safe_to_close_this_window "بإمكانك إغلاق هذه النافذة">
 <!ENTITY key_generation_will_continue_in_the_background "وسوف يستمر توليد المفتاح في الخلفية">
-<!ENTITY Enabled "مفعّل">
-<!ENTITY Disabled "معطّل">
-<!ENTITY Valid "صالح">
-<!ENTITY Expired "منتهي الصلاحية">
-<!ENTITY Invalid "غير صالح">
-<!ENTITY Revoked "ملغيّ">
-<!ENTITY no_email_address_provided "لم يُقدَّم أي عنوان بريد إلكتروني">
-<!ENTITY Cannot_unset_your_default_key "لا يمكنك إلغاء تحديد مفتاحك الافتراضي">
 <!ENTITY Trust_Assignment "تعيين الثقة">
 <!ENTITY Unknown "مجهول">
 <!ENTITY Marginal "هامشي">
@@ -159,11 +163,19 @@
 <!ENTITY Group_Assignment "مهمة المجموعة">
 <!ENTITY Change_Passphrase "تغيير عبارة المرور">
 <!ENTITY Add_Subkey "إضافة مفتاح فرعي">
+<!ENTITY Add_Photo "">
+<!ENTITY Enabled "مفعّل">
+<!ENTITY Disabled "معطّل">
+<!ENTITY Valid "صالح">
+<!ENTITY Expired "منتهي الصلاحية">
+<!ENTITY Invalid "غير صالح">
+<!ENTITY Revoked "ملغيّ">
 <!ENTITY Enable_this_Key "تمكين هذا المفتاح">
 <!ENTITY Disable_this_Key "تعطيل هذا المفتاح">
 <!ENTITY KeyID "معرِّف المفتاح">
 <!ENTITY Key_Created "تم إنشاء المفتاح">
 <!ENTITY Expires "تاريخ انتهاء الصلاحية">
+<!ENTITY User_IDs "معرِّفات المستخدمين">
 <!ENTITY Fingerprint "البصمة">
 <!ENTITY Status "الحالة">
 <!ENTITY Key_Algorithm "خوارزمية المفتاح">
@@ -178,7 +190,6 @@
 <!ENTITY Flags "الأعلام">
 <!ENTITY Delete_this_Subkey "حذف هذا المفتاح الفرعي">
 <!ENTITY Revoke_this_Subkey "إلغاء هذا المفتاح الفرعي">
-<!ENTITY User_IDs "معرِّفات المستخدمين">
 <!ENTITY Make_primary "اجعله الرئيسي">
 <!ENTITY Revoke_UID "إلغاء معرِّفات المستخدمين">
 <!ENTITY REVOKED "فاسخ">
@@ -190,10 +201,21 @@
 <!ENTITY Revoke "إلغاء">
 <!ENTITY Delete "حذف">
 <!ENTITY Signatures_made_with_keys_not_in_your_keyring_are_omitted "الخاصة">
+<!ENTITY Cannot_unset_your_default_key "لا يمكنك إلغاء تحديد مفتاحك الافتراضي">
 <!ENTITY Calculating_Trust "حساب مقدار الثقة">
-<!ENTITY Please_wait_while_recalculate_the_trust_for_this_item "الرجاء الانتظار بينما نقوم بإعادة حساب مقدار الثقة لهذا العنصر">
+<!ENTITY Please_wait_while_we_calculate_the_trust_for_this_item "">
 <!ENTITY Save "حفظ">
 <!ENTITY Delete_this_key "احذف هذا المفتاح">
+<!ENTITY Add "">
+<!ENTITY There_was_an_error_parsing_this_image_file "">
+<!ENTITY There_was_an_error_adding_this_image_file "">
+<!ENTITY It_is_possible_the_image_contains_EXIF_data "">
+<!ENTITY Please_use_the_button_above_to_select_a_JPEG___jpg__jpeg__photo "">
+<!ENTITY Only_JPEG_image_files_are_supported "">
+<!ENTITY WARNING "">
+<!ENTITY is_quite_large "">
+<!ENTITY Consider_using_a_smaller_image "">
+<!ENTITY Only_one_image_can_be_added "">
 <!ENTITY Copy "نسخ">
 <!ENTITY Please_specify_the_revocation_details "يرجى تحديد تفاصيل الإبطال">
 <!ENTITY Reason "السبب">
@@ -221,6 +243,7 @@
 <!ENTITY and_generate_a_key_to_use_with_webpg "وأنشئ مفتاحاً للاستخدام مع webpg">
 <!ENTITY Already_signed_with_this_key "وقعت بالفعل مع هذا المفتاح">
 <!ENTITY Signature_added_using_this_key "تمت إضافة التوقيع بهذا المفتاح">
+<!ENTITY Delete_this_Photo "">
 <!ENTITY Cannot_Publish_Keys_without_gpgconf_utility_installed "لا يمكن نشر المفاتيح دون تثبيت أداة pgpconf">
 <!ENTITY Cannot_create_signatures_without_gpgconf_utility_installed "لا يمكن إنشاء التواقيع دون تثبيت أداة gpgconf">
 <!ENTITY Cannot_Publish_Keys_without_Keyserver_configured "لا يمكن نشر المفاتيح بدون إعداد الخادم الرئيسي">
@@ -231,11 +254,11 @@
 <!ENTITY from_this_User_ID "مِن معرِّف المستخدِم هذا">
 <!ENTITY This_signature_was_made_with_a_key_that_does_not_belong_to_you "تم عمل هذا التوقيع بمفتاح غير خاص بك">
 <!ENTITY This_action_cannot_be_undone "لا يمكن التراجع عن هذا الإجراء">
-<!ENTITY Enable_this_key_for_signing "تمكين هذا المفتاح للتوقيع">
+<!ENTITY User_Photos "">
+<!ENTITY Enable_this_key_for_GnuPG_operations "">
 <!ENTITY This_is_your_default_key "هذا هو مفتاحك الافتراضي">
-<!ENTITY Make_this_the_default_key_for_encryption_operations "جعل هذا المفتاح الافتراضي لعمليات التشفير">
+<!ENTITY Make_this_the_default_key_for_GnuPG_operations "">
 <!ENTITY Searching_for "البحق عن">
-<!ENTITY Please_wait_while_we_build_the_key_list "الرجاء الانتظار بينما نقوم ببناء قائمة المفاتيح">
 <!ENTITY WebPG_Options "خيارات WebPG">
 <!ENTITY The_WebPG_NPAPI_Plugin_is_valid "إضافة NPAPI لـ WebPG غير صالحة">
 <!ENTITY OpenPGP_was_detected "تم الكشف عن الحل OpenPGP">
@@ -251,13 +274,19 @@
 <!ENTITY the_plugin_might_be_incompatibly_compiled_for_this_architechture "يبدو أن الإضافة لم تعد لتكون متوافقة مع تكوين البرنامج">
 <!ENTITY click_here_for_help_resolving_this_issue "انقر هنا للحصول على المساعدة لحل هذه المشكلة">
 <!ENTITY Enable_Inline_formatting_of_PGP_Messages_and_Keys "تمكين التنسيق التلقائي لرسائل ومفاتيح PGP">
+<!ENTITY Inline_Options "">
 <!ENTITY Always_encrypt_to_your_default_key_in_addition_to_the_recipient "دائما قم بالتشفير لمفتاحك بالإضافة إلى المستلم">
 <!ENTITY Enable_WebPG_GMAIL_integration "تمكين تكامل WebPG و GMAIL">
 <!ENTITY EXPERIMENTAL "تجريبي">
-<!ENTITY Sign_outgoing_messages_in_GMAIL "توقيع الرسائل الصادرة في GMAIL">
+<!ENTITY Automatically_Sign_outgoing_messages_in_GMAIL "">
 <!ENTITY GPGCONF_binary "GPGCONF  ثنائي">
 <!ENTITY Your_system_appears_to_be_configured_correctly_for_WebPG "يبدو أن نظامك قد أعد بشكل صحيح لـ WebPG">
 <!ENTITY There_is_a_problem_with_your_configuration "هناك مشكلة مع التكوين الخاص بك">
+<!ENTITY Inline_formatting_mode "">
+<!ENTITY Window "">
+<!ENTITY Icon "">
+<!ENTITY Sample "">
+<!ENTITY WebPG_Toolbar "">
 <!ENTITY WebPG_GMAIL_integration_is_EXPERIMENTAL "تكامل WebPG و GMAIL تكامل تجريبي">
 <!ENTITY use_at_your_own_risk "استخدم على مسؤوليتك الخاصة">
 <!ENTITY Text_copied_to_clipboard "تم نسخ النص">
@@ -265,12 +294,12 @@
 <!ENTITY TEXT_COPIED "تم نسخ النص">
 <!ENTITY UNABLE_TO_COPY_TEXT "غير قادر على نسخ النص">
 <!ENTITY COPY_TO_CLIPBOARD "نسخ إلى الحافظة">
-<!ENTITY Paste_Public_Key "لصق المفتاح العمومي">
-<!ENTITY Clear_sign_this_text "واضحة توقيع هذه الرسالة">
-<!ENTITY Import_this_Key "استيراد هذا المفتاح">
-<!ENTITY Encrypt_this_text "تشفير هذا النص">
-<!ENTITY Decrypt_this_text "فك تشفير هذا النص">
 <!ENTITY Verify_this_text "التحقق من هذا النص">
+<!ENTITY Decrypt_this_text "فك تشفير هذا النص">
+<!ENTITY Import_this_Key "استيراد هذا المفتاح">
+<!ENTITY Clear_sign_this_text "واضحة توقيع هذه الرسالة">
+<!ENTITY Encrypt_this_text "تشفير هذا النص">
+<!ENTITY Paste_Public_Key "لصق المفتاح العمومي">
 <!ENTITY UNABLE_TO_DECRYPT_OR_VERIFY_THIS_MESSAGE "غير قادر على فك تشفير أو التحقق من هذه الرسالة">
 <!ENTITY PGP_ENCRYPTED_AND_SIGNED_MESSAGE "رسالة PGP مشفرة وموقعة">
 <!ENTITY DECRYPTION_FAILED "فشل فك التشفير">
