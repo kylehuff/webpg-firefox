@@ -19,3 +19,7 @@ To build the extension [Linux or OSX], clone or download this repository, and fr
 ```
 
 This should create the XPI file and load the extension in Firefox for installation.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kylehuff/webpg-firefox/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
