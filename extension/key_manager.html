@@ -1,10 +1,11 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <title>WebPG Key Manager</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link type="text/css" href="jquery/css/dot-luv/jquery-ui-1.8.22.custom.css" rel="stylesheet" />
-<script type="text/javascript" src="jquery/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="jquery/js/jquery-ui-1.8.22.custom.min.js"></script>
+<link type="text/css" href="jquery/css/dot-luv/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+<script type="text/javascript" src="jquery/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="jquery/js/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript" src="constants.js"></script>
 <script type="text/javascript" src="utils.js"></script>
 <script type="text/javascript" src="preferences.js"></script>
@@ -28,7 +29,7 @@ body{
  z-index:9999 !important;
 }
 #tabs {
-    margin:none;
+    margin: 0;
 }
 #header-image {
     height:48px;
@@ -81,6 +82,7 @@ body{
 }
 .uidlist, .subkeylist {
     padding-right:10px;
+    height: auto !important;
 }
 .ui-accordion .ui-accordion-content {
     overflow:visible;
@@ -124,8 +126,8 @@ span.uid-options label {
 .keyphoto {
     float: right;
     position: absolute;
-    right: 30px;
-    top: 51px;
+    right: 60px;
+    margin-top: 31px;
     height: 80px;
     max-width:120px;
     border: 2px solid gainsboro;
@@ -148,9 +150,14 @@ h3 {
 }
 h3 .trust {
     z-index:1000;
-    left: 4px;
-    top:-30px;
+    left: 10px;
+    top:-8px;
     height:22px;
+}
+@-moz-document url-prefix() {
+  h3 .trust {
+    top:-24px;
+  }
 }
 .keydetails {
     font-size:14px;
@@ -210,6 +217,11 @@ span.trust .ui-button-text {
     font-size:12px;
     z-index:800;
 }
+@-moz-document url-prefix() {
+  span.trust .ui-button-text {
+    padding-top: 6px;
+  }
+}
 .enable-check-text span {
     min-width: 50px;
     position: relative;
@@ -220,7 +232,7 @@ span.trust .ui-button-text {
         top:0;
     }
 }
-.default-check .ui-button-icon-primary{
+.ui-button-icon-primary {
     margin-left:0;
 }
 .signature-box {
@@ -282,13 +294,12 @@ span.trust .ui-button-text {
 .error-text {
     color:#f20;
 }
-#list {
-    display:inline-table;
+#list, #import-list {
     padding-top:20px;
 }
-#list ul {
+#list ul, #import-list ul {
     list-style:none;
-    width: 100%;
+    width: 95%;
 }
 ul.expand { padding:0; margin:0; list-style:none; }
 ul.expand li { padding:0; margin:0; }
@@ -342,6 +353,10 @@ ul.expand ul
     display:inline;
     text-shadow:1px 1px 1px #000000;
 }
+#import-key-btn {
+    left: 22px;
+    height: 25px;
+}
 .pubkey-search {
     width: 100%;
 }
@@ -380,6 +395,15 @@ ul.expand ul
     background-color: #ff6600;
     min-width: 200px;
 }
+.subkey-info {
+  height: auto !important;
+}
+.uid-info {
+  height: auto !important;
+}
+.photo-info {
+  height: auto !important;
+}
 </style>
 </head>
 <body>
@@ -387,6 +411,7 @@ ul.expand ul
     <ul>
         <li><a id="tab-2-btn" href="#tabs-2"></a></li>
         <li><a id="tab-3-btn" href="#tabs-3"></a></li>
+        <li><a id="tab-4-btn" href="#tabs-4"></a></li>
         <span class="webpg-info-version"><span id="webpg-info-version-string"></span>
     </ul>
     <div id="tabs-2">
@@ -400,6 +425,15 @@ ul.expand ul
             <input class="ui-corner-all ui-widget ui-state-default" id="pubkey-search"/><br/><br/>
         </div>
         <div id="public_keylist">
+            <div class="ui-accordion-left"></div>
+        </div>
+    </div>
+    <div id="tabs-4">
+        <div class='pubkey-search'>
+            <label id="keyserver-search-lbl" for="keyserver-search"></label>
+            <input class="ui-corner-all ui-widget ui-state-default" id="keyserver-search"/><br/><br/>
+        </div>
+        <div id="import-body">
             <div class="ui-accordion-left"></div>
         </div>
     </div>
@@ -573,6 +607,15 @@ ul.expand ul
             <input type='text' id='au-uid_0_email' name='uid_0_email'/><span class='help-text'>i.e.: john.smith@example.com</span><br/>
             <label for='au-uid_0_comment' style='display:inline-block;width:128px;'></label>
             <input type='text' id='au-uid_0_comment' name='uid_0_comment'/><span class='help-text'>i.e.: uid for XYZ only</span><br/>
+        </form>
+    </p>
+</div>
+<div id="importkey-dialog" style="display:none;" title="Import from file" style="font-size:14px;">
+    <p>
+        <span id='importkey-text'></span>
+        <form id="importkey-form" style="width:100%;">
+            <input type='file' id='importkey_name' name='importkey_name' style="float:left;left:30%;position:relative;"/><br/>
+            <div id="import-list"></div>
         </form>
     </p>
 </div>
