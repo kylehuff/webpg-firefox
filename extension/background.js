@@ -571,9 +571,9 @@ webpg.background = {
                 break;
 
         }
-        delete request;
         // Return the response and let the connection be cleaned up.
         sendResponse({'result': response});
+        delete request, response;
     },
 
     keylistProgress: function(data) {
@@ -587,8 +587,9 @@ webpg.background = {
               var win = enumerator.getNext().QueryInterface(
                   Components.interfaces.nsIDOMChromeWindow
               );
+
               if (win.content && win.content.document.location.href.search(
-              "chrome://webpg-firefox/content/angtest/keytest.html") > -1) {
+              "chrome://webpg-firefox/content/key_manager.html") > -1) {
                   var contentWindow = win.content;
                   var doc = win.content.document;
 
@@ -608,6 +609,7 @@ webpg.background = {
                   doc.body.dispatchEvent(evtObj);
               }
           }
+          delete data, evtObj;
       } else if (webpg.utils.detectedBrowser.product === "chrome") {
         try {
           webpg.background.keylistProgressPort.postMessage({"type": msgType, "data": data});
@@ -616,8 +618,8 @@ webpg.background = {
             webpg.background.keylistProgressPort.disconnect();
           webpg.background.keylistProgressPort = chrome.runtime.connect({name: "gpgKeyListProgress"});
           webpg.background.keylistProgressPort.postMessage({"type": msgType, "data": data});
-          delete data;
         }
+        delete data;
       }
     },
 
@@ -676,7 +678,6 @@ webpg.background = {
             data - <str> The ASCII representation of the current operation status
     */
     gpgGenKeyComplete: function(data) {
-        console.log(data);
         var _ = webpg.utils.i18n.gettext;
         // Send the data to the GenKeyProgress method
         webpg.background.gpgGenKeyProgress(data);

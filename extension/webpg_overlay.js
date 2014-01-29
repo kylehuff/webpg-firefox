@@ -81,11 +81,24 @@ webpg.overlay = {
         webpg.jq(document).click(hideContextmenu);
 
         if (webpg.utils.detectedBrowser.product !== 'thunderbird' &&
-        webpg.utils.detectedBrowser.product !== 'conkeror')
-            document.addEventListener("contextmenu", webpg.overlay.contextHandler, true);
+        webpg.utils.detectedBrowser.product !== 'conkeror') {
+            try {
+              document.removeEventListener("contextmenu", webpg.overlay.contextHandler, true);
+            } catch (err) {
+              // don't care
+            } finally {
+              document.addEventListener("contextmenu", webpg.overlay.contextHandler, true);
+            }
+        }
 
-        // Setup a listener for making changes to the page
-        webpg.utils._onRequest.addListener(webpg.overlay._onRequest);
+        try {
+          webpg.utils._onRequest.removeEventListener();
+        } catch (err) {
+          // don't care
+        } finally {
+          // Setup a listener for making changes to the page
+          webpg.utils._onRequest.addListener(webpg.overlay._onRequest);
+        }
 
         // Retrieve the users secret keys
         webpg.utils.sendRequest({
@@ -110,9 +123,10 @@ webpg.overlay = {
                 webpg.utils.sendRequest({
                     'msg': "decorate_inline" },
                     function(response) {
-                        if (response.result.decorate_inline === 'true') {
-                            var mode = response.result.mode;
-                            var render_toolbar = response.result.render_toolbar;
+                        webpg.overlay.decorate_inline = response.result.decorate_inline;
+                        if (webpg.overlay.decorate_inline === 'true') {
+                            webpg.inline.mode = response.result.mode;
+                            webpg.inline.render_toolbar = response.result.render_toolbar;
                             if (webpg.utils.detectedBrowser.vendor === 'mozilla') {
                                 if (typeof(browserWindow)==='undefined')
                                     browserWindow = webpg.utils.mozilla.getChromeWindow();
@@ -120,12 +134,26 @@ webpg.overlay = {
                                     webpg.plugin = browserWindow.webpg.plugin;
                             }
                             // Begin parsing the document for PGP Data
-                            webpg.inline.init(webpg.doc, mode, render_toolbar);
+                            webpg.inline.init(webpg.doc);
                         }
                     }
                 );
             }
         );
+    },
+
+
+    executeInline: function(aEvent) {
+      webpg.doc = (aEvent && aEvent.originalTarget) ?
+          aEvent.originalTarget : document;
+
+      // Check if inline formatting is enabled and parse
+      if (webpg.doc.location && webpg.doc.location.href.search(
+        "chrome://webpg-firefox/content/key_manager.html") === -1 &&
+        webpg.overlay.decorate_inline === 'true') {
+        // Parse the document for PGP Data
+        webpg.inline.PGPDataSearch(webpg.doc);
+      }
     },
 
 
@@ -540,7 +568,7 @@ webpg.overlay = {
             case webpg.constants.overlayActions.MANAGER:
                 if (webpg.utils.detectedBrowser.vendor === 'mozilla') {
                     webpg.utils.openNewTab(webpg.utils.resourcePath +
-                        "XULContent/options.xul?options_tab=1");
+                        "key_manager.html?auto_init=true");
                 } else if (webpg.utils.detectedBrowser.product === 'chrome') {
                     url = "key_manager.html?auto_init=true";
                     if (typeof(sender.tab)=='undefined') {
@@ -555,7 +583,7 @@ webpg.overlay = {
             case webpg.constants.overlayActions.OPTS:
                 if (webpg.utils.detectedBrowser.vendor === 'mozilla') {
                     webpg.utils.openNewTab(webpg.utils.resourcePath +
-                        "XULContent/options.xul?options_tab=0");
+                        "options.html?auto_init=true");
                 } else if (webpg.utils.detectedBrowser.product === 'chrome') {
                     url = "options.html?auto_init=true";
                     if (typeof(sender.tab)=='undefined') {
@@ -581,7 +609,7 @@ webpg.overlay = {
             case webpg.constants.overlayActions.ABOUT:
                 if (webpg.utils.detectedBrowser.vendor === 'mozilla') {
                     webpg.utils.openNewTab(webpg.utils.resourcePath +
-                        "XULContent/options.xul?options_tab=2");
+                        "about.html?auto_init=true");
                 } else if (webpg.utils.detectedBrowser.product === 'chrome') {
                     url = "about.html?auto_init=true";
                     webpg.utils.openNewTab(webpg.utils.resourcePath + url, sender.tab.index + 1);
@@ -613,10 +641,10 @@ if (webpg.utils.detectedBrowser.vendor === 'mozilla') {
     } else {
         webpg.appcontent = document.getElementById("appcontent") || document;
         webpg.appcontent.addEventListener("DOMContentLoaded", webpg.overlay.init, false);
-        webpg.appcontent.addEventListener("scroll", webpg.overlay.init, true);
+        webpg.appcontent.addEventListener("scroll", webpg.overlay.executeInline, true);
     }
 } else {
     webpg.overlay.init();
-    window.addEventListener("scroll", webpg.overlay.init, true);
+    window.addEventListener("scroll",webpg.overlay.executeInline, true);
 }
 /* ]]> */

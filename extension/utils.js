@@ -441,12 +441,12 @@ webpg.utils = {
             case "conkeror":
             case "seamonkey":
                 var gBrowser;
-                if (url.search("options.html") > -1)
-                    url = url.replace("options.html", "XULContent/options.xul")
-                        .replace("?", "?options_tab=0&");
-                if (url.search("key_manager.html") > -1)
-                    url = url.replace("key_manager.html", "XULContent/options.xul")
-                        .replace("?", "?options_tab=1&");
+//                if (url.search("options.html") > -1)
+//                    url = url.replace("options.html", "XULContent/options.xul")
+//                        .replace("?", "?options_tab=0&");
+//                if (url.search("key_manager.html") > -1)
+//                    url = url.replace("key_manager.html", "XULContent/options.xul")
+//                        .replace("?", "?options_tab=1&");
                 wTitle = (url.search("options_tab=0") > -1) ? _("WebPG Options") :
                     (url.search("options_tab=1") > -1) ? _("WebPG Key Manager") :
                     (url.search("options_tab=2") > -1) ? _("About WebPG") : "";

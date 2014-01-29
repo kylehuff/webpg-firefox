@@ -33,8 +33,8 @@
                    em:description="An extension which provides GnuPG/GPG/PGP related functions to Mozilla Firefox, SeaMonkey and Thunderbird"
                    em:creator="Kyle L. Huff"
                    em:homepageURL="http://webpg.org"
-                   em:optionsURL="chrome://webpg-firefox/content/XULContent/options.xul?options_tab=0"
-                   em:aboutURL="chrome://webpg-firefox/content/XULContent/options.xul?options_tab=2"
+                   em:optionsURL="chrome://webpg-firefox/content/options.html"
+                   em:aboutURL="chrome://webpg-firefox/content/about.html"
                    em:iconURL="chrome://webpg-firefox/skin/images/badges/48x48/webpg.png"
                    em:icon64URL="chrome://webpg-fireofx/skin/images/webpg-64.png"
                   >
