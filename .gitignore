@@ -1,5 +1,6 @@
 build/
 extension/plugins
+extension/META-INF
 webpg-firefox-*.xpi
 changelog-*.txt
 *.swp
