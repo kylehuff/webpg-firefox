@@ -1,16 +1,112 @@
 /* <![CDATA[ */
+/**
+  @property {Object} port A Chrome/Chromium communications port
+  @abstract
+*/
+/**
+* @docauthor Kyle L. Huff
+* @class webpg
+* webpg is main logic controller for WebPG. It runs within the context
+* of the browser instance and listens for requests from the WebPG content
+* scripts, popups and dialogs.
+*
+* The background script is the only provider for the WebPG NPAPI plugin object.
+*/
 if (typeof(webpg)==='undefined') { var webpg = {}; }
+/**
+  @property {Object} plugin The backend binary component that provides interaction with GnuPG
+  @property {Object} plugin.webpg_status The reported status of the NPAPI Plugin object, GnuPG and associated libraries
+  @property {Object} plugin.webpg_status.Assuan Information about the detected Assuan installation.
+  @property {String} plugin.webpg_status.Assuan.file_name
+  @property {String} plugin.webpg_status.Assuan.home_dir
+  @property {String} plugin.webpg_status.Assuan.req_version
+  @property {String} plugin.webpg_status.Assuan.version
+  @property {String} plugin.webpg_status.GNUPGBIN The currently defined GnuPG binary.
+  @property {String} plugin.webpg_status.GNUPGHOME The currently dfeined GnuPG home directory.
+  @property {Object} plugin.webpg_status.GPGCONF Information about the detected GPGCONF installation
+  @property {String} plugin.webpg_status.GPGCONF.file_name The currently defined GPGCONF binary
+  @property {String} plugin.webpg_status.GPGCONF.req_version
+  @property {String} plugin.webpg_status.GPGCONF.version
+  @property {String} plugin.webpg_status.GPGCONFBIN The currently defined GPGCONF binary
+  @property {String} plugin.webpg_status.GPGCONFHOME The currently defined GPGCONF home directory
+  @property {Object} plugin.webpg_status.OpenPGP Information about the detected OpenPGP installation
+  @property {Object} [plugin.webpg_status.UISERVER] Information about the detected UISERVER installation
+  @property {Boolean} plugin.webpg_status.error True if an error was detected in loading the plugin or GnuPG
+  @property {String} [plugin.webpg_status.extension] The currently detected extension host browser
+  @property {Boolean} plugin.webpg_status.extensionize
+  @property {String} plugin.webpg_status.gpg_agent_info
+  @property {Boolean} plugin.webpg_status.gpgconf_detected
+  @property {String} plugin.webpg_status.gpgme_version
+  @property {Boolean} plugin.webpg_status.openpgp_detected
+  @property {Object} plugin.webpg_status.plugin WebPG NPAPI Plugin Library Information
+  @property {Object} plugin.webpg_status.plugin.params Parameters used to initialize the Plugin Object
+  @property {String} plugin.webpg_status.plugin.params.id The DOM Element ID of the Plugin Object
+  @property {String} plugin.webpg_status.plugin.params.type The MimeType used to load the Plugin Object
+  @property {String} plugin.webpg_status.plugin.path The absolute path to the Plugin Object Library
+  @property {String} plugin.webpg_status.plugin.source_url The absolute URL to the page that loaded the Plugin Object
+  @property {Object} plugin.webpg_status.plugin.version The current version of the Plugin Object
 
-/*
-    Class: webpg.background
+  @property plugin.webpg_status.Example An Example of webpg_status contents
+
+      {
+       "Assuan": {
+        "file_name": "/run/user/1000/keyring-HpYEFj/gpg",
+        "home_dir": "!GPG_AGENT",
+        "req_version": "1.0",
+        "version": "1.0"
+       },
+       "GNUPGBIN": "",
+       "GNUPGHOME": "",
+       "GPGCONF": {
+        "file_name": "/usr/bin/gpgconf",
+        "req_version": "2.0.4",
+        "version": "2.0.20"
+       },
+       "GPGCONFBIN": "",
+       "GPGCONFHOME": "",
+       "OpenPGP": {
+        "file_name": "/usr/bin/gpg",
+        "req_version": "1.4.0",
+        "version": "1.4.14"
+       },
+       "UISERVER": {
+        "file_name": "/home/kylehuff/.gnupg/S.uiserver",
+        "req_version": "1.0",
+        "version": "1.0"
+       },
+       "error": false,
+       "extension": "chrome",
+       "extensionize": true,
+       "gpg_agent_info": "/run/user/1000/keyring-HpYEFj/gpg:0:1",
+       "gpgconf_detected": true,
+       "gpgme_version": "1.4.2",
+       "openpgp_detected": true,
+       "plugin": {
+        "params": {
+         "id": "webpgPlugin",
+         "type": "application/x-webpg"
+        },
+        "path": "/devel/webpg-chrome/extension/plugins/Linux_x86_64-gcc/npwebpg-ext-v0.7.0-Linux_x86_64-gcc.so",
+        "source_url": "chrome-extension://hhaopbphlojhnmbomffjcbnllcenbnih/_generated_background_page.html",
+        "version": "0.7.0"
+       }
+      }
+
+  @member webpg
+
+*/
+
+/**
+    @property {webpg.background} background
         The background page runs within the context of the browser and handles
         communication between privileged pages/content and unprivileged pages.
 */
 webpg.background = {
 
-    /*
-        Function: init
+    /**
+        @method
             Sets up the NPAPI plugin and initializes WebPG
+        @member webpg.background
     */
     init: function() {
         var _ = webpg.utils.i18n.gettext;
@@ -62,13 +158,13 @@ webpg.background = {
             if (webpg.plugin.webpg_status.openpgp_detected)
                 console.log("Protocol OpenPGP is valid; v" + webpg.plugin.webpg_status.OpenPGP.version);
             if (webpg.plugin.webpg_status.gpgconf_detected)
-                console.log("Protocol GPGCONF is valid; v" + webpg.plugin.webpg_status.GPGCONF.version); 
+                console.log("Protocol GPGCONF is valid; v" + webpg.plugin.webpg_status.GPGCONF.version);
             webpg.plugin.gpgSetHomeDir(gnupghome);
             webpg.plugin.addEventListener("keygenprogress", webpg.background.gpgGenKeyProgress, false);
             webpg.plugin.addEventListener("keygencomplete", webpg.background.gpgGenKeyComplete, false);
             webpg.plugin.addEventListener("statusprogress", webpg.background.keylistProgress, false);
 
-            /* Check to make sure all of the enabled_keys are private keys 
+            /* Check to make sure all of the enabled_keys are private keys
                 this would occur if the key was enabled and then the secret key was deleted. */
             webpg.default_key = webpg.preferences.default_key.get();
             webpg.public_keys = {};
@@ -142,9 +238,10 @@ webpg.background = {
         }
     },
 
-    /*
-        Function: _onRequest
+    /**
+        @method _onRequest
             Called when a message is passed to the page
+        @member webpg.background
     */
     // Called when a message is passed.
     _onRequest: function(request, sender, sendResponse) {
@@ -193,7 +290,8 @@ webpg.background = {
             case 'gmail_integration':
                 response = {'gmail_integration':
                     webpg.preferences.gmail_integration.get(),
-                    'sign_gmail': webpg.preferences.sign_gmail.get()
+                    'sign_gmail': webpg.preferences.sign_gmail.get(),
+                    'encrypt_to_self': webpg.preferences.encrypt_to_self.get()
                 };
                 break;
 
@@ -206,7 +304,9 @@ webpg.background = {
                 break;
 
             case 'public_keylist':
-                response = webpg.plugin.getPublicKeyList();
+                webpg.background.keylist_tab = sender.tab.id;
+                webpg.background.requesting_iframe = request.iframe_id;
+                response = webpg.plugin.getPublicKeyList(request.fastlistmode, request.threaded);
                 break;
 
             case 'private_keylist':
@@ -218,7 +318,7 @@ webpg.background = {
                 if (typeof(sender)!=='undefined' && sender.tab) {
                     index = sender.tab.index;
                 } else {
-                    chrome.tabs.getSelected(null, function(tab) { 
+                    chrome.tabs.getSelected(null, function(tab) {
                         webpg.utils.openNewTab(request.url, tab.index);
                     });
                     break;
@@ -260,7 +360,7 @@ webpg.background = {
             case 'sign':
                 var signers = (typeof(request.signers)!=='undefined' &&
                         request.signers !== null &&
-                        request.signers.length > 0) ? request.signers : 
+                        request.signers.length > 0) ? request.signers :
                         webpg.preferences.default_key.get() !== "" ?
                             [webpg.preferences.default_key.get()] : [];
                 var sign_status = webpg.plugin.gpgSignText(request.selectionData.selectionText,
@@ -278,22 +378,26 @@ webpg.background = {
                 break;
 
             case 'verify':
+                var content,
+                    plaintext = (request.plaintext!==undefined) ?
+                      request.plaintext : null;
                 if (request.data && request.data.length > 0) {
-                    var content = request.data;
+                    content = request.data.replace(/^([-]+)(?=[\r\n]|\s\n)/gm, '\\$1');
                     var lowerBlock = content.match(/(-----BEGIN PGP.*?)\n.*?\n\n/gim);
                     if (lowerBlock && lowerBlock.length > 1) {
-                        content.substr(0, content.indexOf(lowerBlock[1]) + lowerBlock[1].length) + 
+                        content.substr(0, content.indexOf(lowerBlock[1]) + lowerBlock[1].length) +
                             content.substr(content.indexOf(lowerBlock[1]) + lowerBlock[1].length, content.length).replace(/\n\n/gim, "\n");
                     }
                     request.data = content;
                 }
                 if (request.message_event && request.message_event === "context") {
-                    var content = (request.data) ? request.data :
+                    content = (request.data) ? request.data :
                         request.selectionData.selectionText;
-                    response = webpg.plugin.gpgVerify(content);
+                    content = content.replace(/^([-]+)(?=[\r\n]|\s\n)/gm, '\\$1');
+                    response = webpg.plugin.gpgVerify(content, plaintext);
                     response.original_text = content;
                 } else {
-                    response = webpg.plugin.gpgVerify(request.data);
+                    response = webpg.plugin.gpgVerify(request.data, plaintext);
                     response.original_text = request.data;
                 }
                 for (var sig in response.signatures) {
@@ -424,7 +528,7 @@ webpg.background = {
                     response = "";
                 }
                 if (typeof(request.message_event)==='undefined' ||
-                request.message_event !== "gmail" && 
+                request.message_event !== "gmail" &&
                 response && !response.error)
                     webpg.utils.tabs.sendRequest(sender.tab, {
                         "msg": "insertEncryptedData", "data": response.data,
@@ -572,6 +676,11 @@ webpg.background = {
                 chrome.contextMenus.removeAll();
                 break;
 
+            case 'execScript':
+                console.log(sender, request);
+                chrome.tabs.executeScript(sender.tab.id, {'code': request.code});
+                break;
+
         }
         // Return the response and let the connection be cleaned up.
         sendResponse({'result': response});
@@ -584,32 +693,45 @@ webpg.background = {
           var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                      .getService(Components.interfaces.nsIWindowMediator);
           var enumerator = wm.getEnumerator(null);
+          var win;
 
-          while(enumerator.hasMoreElements()) {
-              var win = enumerator.getNext().QueryInterface(
-                  Components.interfaces.nsIDOMChromeWindow
-              );
+          if (webpg.background.requesting_iframe !== undefined) {
+              win = webpg.utils.getFrameById(webpg.background.requesting_iframe);
+              var contentWindow = win.contentWindow;
+              var doc = win.contentDocument;
+          } else {
+              while(enumerator.hasMoreElements()) {
+                  var win = enumerator.getNext().QueryInterface(
+                      Components.interfaces.nsIDOMChromeWindow
+                  );
 
-              if (win.content && win.content.document.location.href.search(
-              "chrome://webpg-firefox/content/key_manager.html") > -1) {
-                  var contentWindow = win.content;
-                  var doc = win.content.document;
-
-                  // Attempt to remove the old listener
-                  try {
-                      doc.body.removeEventListener('gpgkeylistprogress', contentWindow.webpg.keymanager.keylistprogress);
-                  } catch (err) {
-                      // We don't really care if it didn't already exist
-                      console.log(err.message);
-                  } finally { 
-                      // Add the listener
-                      doc.body.addEventListener('gpgkeylistprogress', contentWindow.webpg.keymanager.keylistprogress);
+                  if (win.content && (win.content.document.location.href.search(
+                  "chrome://webpg-firefox/content/key_manager.html") > -1)) {
+                      var contentWindow = win.content;
+                      var doc = win.content.document;
+                      break;
                   }
-
-                  var evtObj = doc.createEvent('CustomEvent');
-                  evtObj.initCustomEvent("gpgkeylistprogress", true, true, {'type': msgType, 'data': data});
-                  doc.body.dispatchEvent(evtObj);
               }
+          }
+
+          if (data === '{"status": "complete"}')
+              delete webpg.background.requesting_iframe;
+
+          if (doc) {
+              // Attempt to remove the old listener
+              try {
+                  doc.body.removeEventListener('gpgkeylistprogress', contentWindow.webpg.keymanager.keylistprogress);
+              } catch (err) {
+                  // We don't really care if it didn't already exist
+                  console.log(err);
+              } finally {
+                  // Add the listener
+                  doc.body.addEventListener('gpgkeylistprogress', contentWindow.webpg.keymanager.keylistprogress);
+              }
+
+              var evtObj = doc.createEvent('CustomEvent');
+              evtObj.initCustomEvent("gpgkeylistprogress", true, true, {'type': msgType, 'data': data});
+              doc.body.dispatchEvent(evtObj);
           }
           delete data, evtObj;
       } else if (webpg.utils.detectedBrowser.product === "chrome") {
@@ -618,19 +740,27 @@ webpg.background = {
         } catch (e) {
           if (webpg.background.keylistProgressPort !== undefined)
             webpg.background.keylistProgressPort.disconnect();
-          webpg.background.keylistProgressPort = chrome.runtime.connect({name: "gpgKeyListProgress"});
+          if (webpg.background.keylist_tab !== undefined)
+            webpg.background.keylistProgressPort = chrome.tabs.connect(webpg.background.keylist_tab, {name: "gpgKeyListProgress"});
+          else
+            webpg.background.keylistProgressPort = chrome.runtime.connect({name: "gpgKeyListProgress"});
           webpg.background.keylistProgressPort.postMessage({"type": msgType, "data": data});
         }
+
+        if (data === '{"status": "complete"}')
+          delete webpg.background.keylist_tab;
+
         delete data;
       }
     },
 
-    /*
-        Function: gpgGenKeyProgress
+    /**
+        @method gpgGenKeyProgress
             Called by webpg-npapi to update the current status of the key generation operation
 
-        Parameters:
-            data - <str> The ASCII representation of the current operation status
+        @param {String} data The ASCII representation of the current operation status
+
+        @member webpg.background
     */
     gpgGenKeyProgress: function(data) {
         if (webpg.utils.detectedBrowser.vendor === "mozilla") {
@@ -655,7 +785,7 @@ webpg.background = {
                     } catch (err) {
                         // We don't really care if it didn't already exist
                         console.log(err.message);
-                    } finally { 
+                    } finally {
                         // Add the listener
                         doc.body.addEventListener('progress', contentWindow.webpg.keymanager.progressMsg);
                     }
@@ -672,12 +802,13 @@ webpg.background = {
         }
     },
 
-    /*
-        Function: gpgGenKeyComplete
+    /**
+        @method gpgGenKeyComplete
             Called by webpg-npapi when a given key generation option has completed
 
-        Parameters:
-            data - <str> The ASCII representation of the current operation status
+        @param {String} data The ASCII representation of the current operation status
+
+        @member webpg.background
     */
     gpgGenKeyComplete: function(data) {
         var _ = webpg.utils.i18n.gettext;
