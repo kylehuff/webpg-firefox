@@ -983,7 +983,7 @@ webpg.gmail = {
 
         } else if (e.target &&
             e.target.className === 'gs') {
-            webpg.node = e.previousSibling;
+            webpg.utils.gmailNotify("WebPG is checking this message for signatures", 8000);
             // A message is being displayed
             var node = e.previousSibling,
                 msgObj,
@@ -998,7 +998,6 @@ webpg.gmail = {
           // Check if the PGP data is already present for this message
           if (hasPGPData === true || (hasPGPData === false && hasAttachment === true)) {
             // Notify the user something is going on
-            webpg.utils.gmailNotify("WebPG is checking this message for signatures", 5000);
             // lets get information about the current email message
             if (webpg.utils.detectedBrowser['vendor'] === 'mozilla') {
               var GLOBALS = node.ownerDocument.defaultView.wrappedJSObject.GLOBALS;
@@ -1035,13 +1034,14 @@ webpg.gmail = {
                         if (msgObj.parts[0].multipart === true) {
                           signature = msgObj.parts[1].body;
                           data = msgObj.parts[0].parts[0].headers.full_headers + msgObj.parts[0].parts[0].content;
-                          encoding = msgObj.parts[0].parts[0].headers.content_transfer_encoding
+                          encoding = (msgObj.parts[0].parts[0].headers.content_transfer_encoding || "").toLowerCase()
                         } else {
                           signature = msgObj.parts[1].body;
                           data = msgObj.parts[0].headers.full_headers + msgObj.parts[0].content;
-                          encoding = msgObj.parts[0].headers.content_transfer_encoding;
+                          encoding = (msgObj.parts[0].headers.content_transfer_encoding || "").toLowerCase()
                         }
-                        if (encoding === 'quoted_printable') {
+                        if (encoding === 'quoted_printable' ||
+                            encoding === 'quoted-printable') {
                           data = webpg.utils.quoted_printable_decode(data);
                           signature = webpg.utils.quoted_printable_decode(signature);
                         }
@@ -1077,20 +1077,30 @@ webpg.gmail = {
                       webpg.jq(node.firstChild).text(msgObj.parts[0].content);
                       webpg.utils.gmailCancelNotify();
                     }
+                    var doc = (node.ownerDocument || webpg.inline.doc || content.document || document);
+                    webpg.inline.PGPDataSearch(doc, false, true, node);
+                  } else {
+                    webpg.utils.gmailCancelNotify();
                   }
                 },
                 'async': true
               });
             }
+          } else {
+            webpg.utils.gmailCancelNotify();
           }
         // A normal document load
         } else {
+            if (e.target.getAttribute && e.target.getAttribute("role") !== null)
+                return;
+
             var dW = webpg.gmail.getCanvasFrameDocument()
                 .querySelectorAll("div>.dW.E>.J-Jw, div>.nH.nH");
 
             for (var i in dW) {
-                if (typeof(dW[i])!="object")
+                if (typeof(dW[i])!=="object")
                     break;
+
                 if (dW[i].querySelectorAll("[id*='webpg-send-btn']").length < 1) {
                     var btn = dW[i].querySelector('div>.dW.E>.J-Jw>.T-I.J-J5-Ji.Bq.T-I-ax7.L3, div>.nH.nH .T-I.J-J5-Ji.aoO.T-I-atl');
                     if (btn) {

@@ -47,7 +47,8 @@ webpg.inline = {
         if (doc.location && doc.location.pathname.substr(-4) === '.pdf')
             return false;
 
-        if (window.location.host === "mail.google.com") {
+        if (window.location.host === "mail.google.com" &&
+            webpg.utils.detectedBrowser.vendor !== "mozilla") { // Get the GLOBALS page variable
           var globals_eventID = "webpg_globals_" + new Date().getTime();
           document.addEventListener(globals_eventID, function(e) {
             if (webpg.gmail !== undefined)
@@ -139,16 +140,16 @@ webpg.inline = {
                         } catch (err) {
                         }
                         // check if gmail message appears
-                        if (webpg.jq(mutation.target).parent().is('.ii.gt.adP.adO') ||
-                        webpg.jq(mutation.target).parent().is('.adn.ads')) {
-                            if (mutation.target.className.indexOf("webpg-") === -1 &&
-                            webpg.jq(mutation.target).find(".webpg-node-odata").length < 1) {
-                                if (webpg.jq(mutation.target).parent().is('.adn.ads'))
-                                    if (webpg.jq(mutation.target).find('.ii.gt.adP.adO').length < 1)
-                                        return false;
-                                webpg.inline.PGPDataSearch(doc, false, true, mutation.target);
-                            }
-                        }
+//                        if (webpg.jq(mutation.target).parent().is('.ii.gt.adP.adO') ||
+//                        webpg.jq(mutation.target).parent().is('.adn.ads')) {
+//                            if (mutation.target.className.indexOf("webpg-") === -1 &&
+//                            webpg.jq(mutation.target).find(".webpg-node-odata").length < 1) {
+//                                if (webpg.jq(mutation.target).parent().is('.adn.ads'))
+//                                    if (webpg.jq(mutation.target).find('.ii.gt.adP.adO').length < 1)
+//                                        return;
+//                                webpg.inline.PGPDataSearch(doc, false, true, mutation.target);
+//                            }
+//                        }
                     } else {
                         if (mutation.addedNodes.length > 0) {
                             if (mutation.addedNodes[0].textContent.search(/-----BEGIN PGP.*?-----/gim) > -1)
@@ -295,6 +296,10 @@ webpg.inline = {
                         if ("version" in topwinjs && topwinjs.version.title === "TiddlyWiki")
                             break; // It is, bail out
                     }
+
+                    if (doc.location.host === "mail.google.com" &&
+                        node.parentNode.getAttribute("role") === "textbox") // This is a reply or draft in GMAIL, don't parse
+                        break;
 
                     if (node.textContent.search(/^.*?(-----BEGIN PGP.*?).*?(-----)/gim) < 0 ||
                     !node.textContent.search(/^.*?(-----END PGP.*?).*?(-----)/gim) < 0)
@@ -446,7 +451,8 @@ webpg.inline = {
             html = html.substring(0, html.lastIndexOf("\n")).replace(wbrReg, "");
         }
 
-        var scontent = webpg.utils.getInnerText(node.parentNode);
+        var scontent = (webpg.utils.detectedBrowser.product === 'chrome') ?
+              webpg.jq(d).text() : webpg.utils.getInnerText(node.parentNode);
 //        if (scontent.search(/^\s*?(-----BEGIN PGP.*?)/gi) < 0)
 //            scontent = webpg.utils.clean(str);
 
