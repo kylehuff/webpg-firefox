@@ -41,7 +41,7 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
       });
     }
 
-    webpg.plugin.getPrivateKeyList(true, true);
+    webpg.plugin.getPrivateKeyList(false, true);
 
     webpg.utils.extension.version(function(version) {
       webpg.jq("#webpg-info-version-string").text(
@@ -77,10 +77,10 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
     /**
       @method keylistprogress
         Listens for threaded keylist progress events
-      
+
       @param {Event} evt The event object
-      @param {port} [port] The port (only available in chrome/chromium)
-      
+      @param {Object} [port] The port (only available in chrome/chromium)
+
       @extends webpg.keymanager
     */
     webpg.keymanager.keylistprogress = function(evt, port) {
@@ -138,9 +138,9 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
     /**
       @method progressMsg
         Listens for key generation progress events
-      
+
       @param {Event} evt The event object
-      
+
       @extends webpg.keymanager
     */
     webpg.keymanager.progressMsg = function(evt) {
@@ -210,7 +210,7 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
       .text(_("Private Keys"))
       .click(function() {
         if (webpg.seckeylist_built !== true)
-          webpg.plugin.getPrivateKeyList(true, true);
+          webpg.plugin.getPrivateKeyList(false, true);
         webpg.private_scope.search(webpg.private_scope.currentPage);
         webpg.private_scope.$apply();
       });
@@ -354,9 +354,9 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
     /**
       @method keyaction
         Decides the correct action to perform based on the keyaction button clicked
-      
+
       @param {Event} e The event object
-      
+
       @extends webpg.keymanager
     */
     webpg.keymanager.keyaction = function(e) {
@@ -846,7 +846,7 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
                 var desc = webpg.jq('#revkey-desc')[0].value;
                 var revkey_result = webpg.plugin.gpgRevokeKey(params[2],
                     parseInt(params[3], 10), parseInt(reason, 10), desc);
-                webpg.secret_keys = webpg.plugin.getPrivateKeyList(true, true);
+                webpg.secret_keys = webpg.plugin.getPrivateKeyList(false, true);
                 webpg.private_scope.search(webpg.private_scope.currentPage);
                 webpg.private_scope.$apply();
                 webpg.jq("#revkey-confirm").dialog("close");
@@ -1002,7 +1002,7 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
                         var revuid_result = webpg.plugin.gpgRevokeUID(params[2],
                             parseInt(params[3], 10) + 1, parseInt(reason, 10), desc);
                         if (params[1] === 'private') {
-                          webpg.secret_keys = webpg.plugin.getPrivateKeyList(true, true);
+                          webpg.secret_keys = webpg.plugin.getPrivateKeyList(false, true);
                           webpg.private_scope.search(webpg.private_scope.currentPage);
                           webpg.private_scope.$apply();
                         }
@@ -1105,7 +1105,7 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
                     } else {
                       refresh = true;
                       if (params[1] === 'private') {
-                        webpg.secret_keys = webpg.plugin.getPrivateKeyList(true, true);
+                        webpg.secret_keys = webpg.plugin.getPrivateKeyList(false, true);
                         webpg.private_scope.search();
                         webpg.private_scope.$apply();
                       }
@@ -1146,7 +1146,7 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
       console.log(".*-key-option-button pressed..", params);
       if (refresh) {
         if (params[1] === 'private') {
-          webpg.secret_keys = webpg.plugin.getPrivateKeyList(true, true);
+          webpg.secret_keys = webpg.plugin.getPrivateKeyList(false, true);
           webpg.private_scope.search(webpg.private_scope.currentPage);
           webpg.private_scope.$apply();
         } else {
@@ -1161,9 +1161,9 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
     /**
       @event change
         tied to the keyserver-search input box
-      
+
       @param {Event} e The event object
-      
+
       @extends webpg.keymanager
     */
     webpg.jq("#keyserver-search").unbind("change").bind("change", function(e) {
@@ -1727,6 +1727,7 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
                     </span>\
                     <span class="missing-signature-text" ng-if="uid.missing_signatures">* ' + _("Signatures made with keys not in your keyring are omitted") + '.</span>\
                   </div>\
+                  <br style="clear:both"/>\
                   <div id="sig-{{key.id}}-{{$index}}" ng-repeat="sig in uid.signatures track by $index" class="signature-box" ng-class="sig.revoked? \'sig-revoked\': sig.invalid? \'sig-invalid\' : \'sig-good\'">\
                     <img src="../skin/images/menumask.png" width="0" height="0"/>\
                     <div class="signature-text-box">\
@@ -2108,7 +2109,7 @@ webpg.keymanager = angular.module("webpg.keymanager", [])
                             gpgDeleteUIDSign(params[2], parseInt(params[3], 10) + 1,
                             parseInt(params[4], 10) + 1);
                         if (params[1] === 'private') {
-                          webpg.secret_keys = webpg.plugin.getPrivateKeyList(true, true);
+                          webpg.secret_keys = webpg.plugin.getPrivateKeyList(false, true);
                           webpg.private_scope.search(webpg.private_scope.currentPage);
                           webpg.private_scope.$apply();
                         }

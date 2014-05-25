@@ -153,14 +153,16 @@ webpg.utils = {
 
     /*
         Function: getParameterByName
-            Searches the location.search query string for a named parameter
+            Searches the query string for a named parameter
 
         Parameters:
             parameterName - The name of the parameter to return
+            queryString - optional querystring to parse
     */
-    getParameterByName: function(parameterName) {
+    getParameterByName: function(parameterName, queryString) {
+        queryString = (queryString || window.location.search);
         var match = RegExp('[?&]' + parameterName + '=([^&]*)')
-                        .exec(window.location.search);
+                        .exec(queryString);
         return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     },
 
@@ -721,14 +723,12 @@ webpg.utils = {
         .find(".J-J5-Ji .vh")
           .first()
             .text(text)
-            .css('visibility', 'visible');
+              .parent()
+                .parent()
+                  .css('top', '');
 
       setTimeout(function(e) {
-        webpg.jq(doc)
-          .find(".J-J5-Ji .vh")
-            .first()
-              .text('')
-              .css('visibility', 'hidden');
+        webpg.utils.gmailCancelNotify();
       }, timeout);
     },
 
@@ -738,7 +738,9 @@ webpg.utils = {
         .find(".J-J5-Ji .vh")
           .first()
             .text('')
-            .css('visibility', 'hidden');
+              .parent()
+                .parent()
+                  .css({'position': 'relative', 'top': '-10000px'});
     },
 
     /*
@@ -787,11 +789,16 @@ webpg.utils = {
         regex = /<a(.+?href=[\"|\']([^\"|^\']+?)[\"|\']+?)>/gim;
         replacedText = inputText.replace(regex, '<a href="$2" target="_blank">');
 
-        //Change email addresses to mailto:: links.
-        regex = /(\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b)/gim;
-        replacedText = replacedText.replace(regex, '<a href="mailto:$1" target="_blank">$1</a>');
+        // Change email addresses to mailto:: links.
+        regex = /((\:)?\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b)/gim;
+        replacedText = replacedText.replace(regex, function(match_i, email, prefix) {
+          if (prefix === undefined)
+            return '<a href="mailto:' + email + '" target="_blank">' + email + '</a>';
+          else
+            return match_i
+        });
 
-        regex = new RegExp("(\\b([a-z\\-]+:\\/\\/)?((?:(?:(?:[a-z\\d]+(?:[a-z\\d\\-@]{1,2}[a-z\\d]){1,10}\\.))+[a-z]{2,4}(?![\\\"|\\'|@|<]|[\\/][\\\"])|(?:(?:\\d{1,3}\\.){3}\\d{1,3}))(?:\\:\\d+)?(?:\\/[\\-a-z\\d%_.~+]{1,10})*(?:\\?[;&a-z\\d%_.~+=\\-]+)?(?:\\#[\\-a-z\\d_]+)?)\\b)", "gim");
+        regex = new RegExp("(\\b([a-z\\-]+:\\/\\/)?(?:(?:(?:[a-z\\d]+[\:]?(?:[a-z\\d\\-@]{1,2}[a-z\\d]){1,10}\\.))+[a-z]{2,4}(?![\\\"|\\'|@|<]|[\\/][\\\"])|(?:(?:\\d{1,3}\\.){3}\\d{1,3}))(?:\\:\\d+)?(?:\\/[\\-a-z\\d%_.~+]{1,20})*(?:\\?[;\\&a-z\\d\\%_\\.~+=\\-]+)?(?:#[\\-a-z\\d_]+)?)\\b", "gim");
         replacedText = replacedText.replace(regex, function(match_i, url, protocol, a) {
             return "<a href=\"" + ((!protocol) ? "http://" : "") +
                 url + "\" target=\"_blank\">" + url + "</a>";
@@ -874,7 +881,7 @@ webpg.utils = {
 
       parsedMsg.headers = parseHeaders(theaders);
       parsedMsg.headers.full_headers = (theaders[0] || theaders);
-      parsedMsg.content = parts.join('\r\n\r\n').split(/[\r\n]{4}/)[0].trim();
+      parsedMsg.content = parts.join('\r\n\r\n').split(/[\r\n]{4}\b/)[0].slice(0, -1);
 
       parsedMsg.parts = [];
 
@@ -1311,7 +1318,7 @@ webpg.utils = {
                 chrome.tabs.getSelected(tab, callback);
             } else if (webpg.utils.detectedBrowser.vendor === 'mozilla') {
                 if (!gBrowser) {
-                    webpg.utils.mozilla.getChromeWindow().gBrowser;
+                    var gBrowser = webpg.utils.mozilla.getChromeWindow().gBrowser;
                 }
                 var tabID = gBrowser.getBrowserForDocument(content.document)._webpgTabID;
                 callback({'url': content.document.location.href, 'id': tabID});
@@ -1629,6 +1636,14 @@ webpg.utils = {
     },
 
     extension: {
+        id: function(callback) {
+            if (navigator.userAgent.toLowerCase().search("chrome") > -1) {
+                return (callback) ? callback(chrome.app.getDetails().id) : chrome.app.getDetails().id;
+            } else {
+                return "webpg-mozilla@webpg.org";
+            }
+        },
+
         version: function(callback) {
             if (navigator.userAgent.toLowerCase().search("chrome") > -1) {
                 callback(chrome.app.getDetails().version);
@@ -1670,8 +1685,86 @@ webpg.utils = {
 
     },
 
+    requestListener: {
+        supported: function() {
+            return webpg.utils.detectedBrowser['product'] == 'chrome' ?
+                typeof(chrome.webNavigation)!=='undefined' : true;
+        },
+
+        add: function(callback) {
+            if (!callback)
+                return "No callback provided";
+
+            if (webpg.utils.detectedBrowser['product'] == 'chrome') {
+                chrome.webNavigation.onCompleted.addListener(function(details) {
+                    callback(details);
+                });
+            } else {
+                var httpRequestObserver = {
+                    observe: function(subject, topic, data) {
+                        if (topic == "http-on-examine-response") {
+                            subject.QueryInterface(Components.interfaces.nsIHttpChannel);
+                            var details = {
+                              url: subject.URI,
+                              domain: subject.URI.host,
+                              protocol: subject.URI.scheme,
+                              tabId: webpg.utils.requestListener.getTabIDfromDOM(subject, subject),
+                              headers: {},
+                            };
+
+                            subject.visitResponseHeaders(
+                                function(header) {
+                                    details.headers[header] = subject.getResponseHeader(header);
+                                }
+                            );
+                            callback(details);
+                        }
+                    },
+
+                    get observerService() {
+                        return Components.classes["@mozilla.org/observer-service;1"]
+                            .getService(Components.interfaces.nsIObserverService);
+                    },
+
+                    register: function() {
+                        this.observerService.addObserver(this, "http-on-examine-response", false);
+                    },
+
+                    unregister: function() {
+                        this.observerService.removeObserver(this, "http-on-examine-response");
+                    }
+                };
+
+                httpRequestObserver.register();
+            }
+        },
+
+        getTabIDfromDOM : function(aChannel, aSubject) {
+            try {
+                var notificationCallbacks =
+                    aChannel.notificationCallbacks ? aChannel.notificationCallbacks : aSubject.loadGroup.notificationCallbacks;
+
+                if (!notificationCallbacks)
+                    return null;
+
+                var callback = notificationCallbacks.getInterface(Components.interfaces.nsIDOMWindow);
+
+                return callback.top.document ? gBrowser.getBrowserForDocument(callback.top.document)._webpgTabID : null;
+
+             } catch(e) {
+                return null;
+             }
+       },
+
+    },
+
     tabListener: {
         add: function(openListener, closeListener) {
+            if (openListener === undefined)
+              openListener = webpg.utils.tabListener.openListener;
+            if (closeListener === undefined)
+              closeListener = webpg.utils.tabListener.closeListener;
+
             if (webpg.utils.detectedBrowser.vendor === 'mozilla') {
                 if (gBrowser===undefined) {
                     gBrowser = webpg.utils.mozilla.getChromeWindow().gBrowser;
@@ -1681,13 +1774,15 @@ webpg.utils = {
                     return;
 
                 var container = gBrowser.tabContainer;
-                container.addEventListener("TabOpen", webpg.utils.tabListener.openListener, false);
+                container.addEventListener("TabOpen", openListener, false);
                 //container.addEventListener("TabSelect", webpg.utils.tabListener.selectListener, false);
-                container.addEventListener("TabClose", webpg.utils.tabListener.closeListener, false);
+                if (closeListener !== null)
+                  container.addEventListener("TabClose", closeListener, false);
             } else if (webpg.utils.detectedBrowser.product === 'chrome') {
-                chrome.tabs.onCreated.addListener(webpg.utils.tabListener.openListener);
+                chrome.tabs.onCreated.addListener(openListener);
                 //chrome.tabs.onActivated.addListener(webpg.utils.tabListener.selectListener);
-                chrome.tabs.onRemoved.addListener(webpg.utils.tabListener.closeListener);
+                if (closeListener !== null)
+                  chrome.tabs.onRemoved.addListener(closeListener);
             }
         },
 
@@ -1820,7 +1915,7 @@ webpg.utils = {
 
 };
 
-webpg.descript = function(html) { return html.replace(/\<script(.|\n)*?\>(.|\n)*?\<\/script\>/g, ""); };
+webpg.descript = function(html) { return (html || "").replace(/\<script(.|\n)*?\>(.|\n)*?\<\/script\>/g, ""); };
 
 webpg.utils.init();
 

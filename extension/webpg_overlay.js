@@ -70,7 +70,7 @@ webpg.overlay = {
             webpg.overlay.block_target = null;
         }
 
-        function hideContextmenu(e){
+        function hideContextmenu(e) {
             if (!(e.which === 3 || e.button === 2))
                 webpg.overlay.isContextMenuOpen = false;
         }
@@ -216,7 +216,8 @@ webpg.overlay = {
             if (webpg.overlay.prior_insert_target === null)
                 return false;
 
-            if (webpg.overlay.insert_target !== null && request.data) {
+            if (webpg.overlay.insert_target !== undefined &&
+                webpg.overlay.insert_target !== null && request.data) {
                 if (webpg.overlay.insert_range !== null &&
                 (webpg.overlay.insert_target.nodeName !== 'TEXTAREA' &&
                 webpg.overlay.insert_target.nodeName !== 'INPUT')) {
@@ -529,14 +530,17 @@ webpg.overlay = {
                 break;
 
             case webpg.constants.overlayActions.SYMCRYPT:
+            case webpg.constants.overlayActions.SYMCRYPTSIGN:
                 if (event === 'context-menu')
                     webpg.overlay.block_target = true;
+
                 webpg.utils.sendRequest({
                     'msg': 'symmetricEncrypt',
                     'data': selection.selectionText,
                     'pre_selection': selection.pre_selection,
                     'post_selection': selection.post_selection,
                     'message_event': 'context',
+                    "signers": (action === webpg.constants.overlayActions.SYMCRYPTSIGN) ? sender.signers : [],
                     'dialog_type': 'symcrypt'}
                 );
                 break;

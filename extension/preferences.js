@@ -516,17 +516,17 @@ webpg.preferences = {
 
             Parameters:
                 group - <str> The group to add the recipient to
-                recipient - <str> The recipient to add to the group  
+                recipient - <str> The recipient to add to the group
         */
         add: function(group, recipient) {
             if (!group && !recipient)
                 return "usage: add('group', 'recipient')";
-            
+
             // Get the currently defined group object (if any) and convert it
             //  to an object
             var groups = webpg.localStorage.getItem('groups');
             groups = (groups && groups.length > 1) ? JSON.parse(groups) : {};
-            
+
             groups = (groups !== null) ? groups : {};
 
             // Check if the groups object contains the named group, if not
@@ -543,9 +543,9 @@ webpg.preferences = {
 
             // Convert the groups object back to a string and store it
             webpg.localStorage.setItem('groups', JSON.stringify(groups));
-            
+
             // Set the group via gpgconf
-            var groupstr = 
+            var groupstr =
                 this.get(group).toString().replace(RegExp(",", "g"), " ");
 
             webpg.plugin.gpgSetGroup(group, groupstr);
@@ -559,7 +559,7 @@ webpg.preferences = {
 
             Parameters:
                 group - <str> The group to remove the recipient from
-                recipient - <str> The recipient to remove from the group  
+                recipient - <str> The recipient to remove from the group
         */
         remove: function(group, recipient) {
             // Get the currently defined group object (if any) and convert it
@@ -685,7 +685,7 @@ webpg.preferences = {
     /*
         Class: webpg.preferences.banner_version
             Provides methods to get/set the "banner_version" preference
-            
+
     */
     banner_version: {
         /*

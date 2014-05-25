@@ -109,6 +109,7 @@ webpg.background = {
         @member webpg.background
     */
     init: function() {
+        webpg.extensionid = webpg.utils.extension.id();
         var _ = webpg.utils.i18n.gettext;
 
         var gnupghome = webpg.preferences.gnupghome.get();
@@ -245,6 +246,10 @@ webpg.background = {
     */
     // Called when a message is passed.
     _onRequest: function(request, sender, sendResponse) {
+        if (webpg.utils.detectedBrowser.vendor === 'google' &&
+            sender.id !== webpg.extensionid)
+          return;
+
         // refresh the value of gnupghome
         var gnupghome = webpg.preferences.gnupghome.get(),
             tabID = -1;
@@ -277,6 +282,20 @@ webpg.background = {
             // Show the page action for the tab that the sender (content script) was on.
             case 'enabled':
                 response = {'enabled': webpg.preferences.webpg_enabled.get() };
+                break;
+
+            case 'preferences':
+                response = {'error': false};
+                if (webpg.preferences.hasOwnProperty(request.item) === false) {
+                    response.error = true;
+                    response.result = "No preference matching " + request.action;
+                } else {
+                  if (request.action === 'set') {
+                      response.result = webpg.preferences[request.item].set(request.value || '');
+                  } else if (request.action === 'get') {
+                      response = webpg.preferences[request.item].get(request.param);
+                  }
+                }
                 break;
 
             case 'decorate_inline':
@@ -366,7 +385,6 @@ webpg.background = {
                 var sign_status = webpg.plugin.gpgSignText(request.selectionData.selectionText,
                     signers, 2);
                 response = sign_status;
-                console.log(request.selectionData.selectionText);
                 if (!sign_status.error && sign_status.data.length > 0) {
                     if (typeof(request.message_event)==='undefined' ||
                         request.message_event !== "gmail" ||
@@ -540,7 +558,11 @@ webpg.background = {
 
             case 'symmetricEncrypt':
                 //console.log("symmetric encryption requested");
-                response = webpg.plugin.gpgSymmetricEncrypt(request.data, 0, []);
+                var signers = (typeof(request.signers)!=='undefined' &&
+                        request.signers !== null &&
+                        request.signers.length > 0) ? request.signers : [];
+                var sign = (signers.length > 0) ? 1 : 0;
+                response = webpg.plugin.gpgSymmetricEncrypt(request.data, sign, signers);
                 if (request.message_event === "context" || request.message_event === "editor")
                     webpg.utils.tabs.sendRequest(sender.tab, {
                         "msg": "insertEncryptedData",
@@ -678,9 +700,8 @@ webpg.background = {
                 chrome.contextMenus.removeAll();
                 break;
 
-            case 'execScript':
-                console.log(sender, request);
-                chrome.tabs.executeScript(sender.tab.id, {'code': request.code});
+            case 'sendPGPMIMEMessage':
+                response = webpg.plugin.sendMessage(request.params);
                 break;
 
         }
@@ -689,6 +710,14 @@ webpg.background = {
         delete request, response;
     },
 
+    /**
+        @method keylistProgress
+            Called by webpg-npapi when a given key generation event is emitted
+
+        @param {String} data The ASCII representation of the current operation status
+
+        @member webpg.background
+    */
     keylistProgress: function(data) {
       var msgType = (data.substr(2, 6) === "status") ? "progress" : "key";
       if (webpg.utils.detectedBrowser.vendor === "mozilla") {

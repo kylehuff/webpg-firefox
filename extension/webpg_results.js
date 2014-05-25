@@ -3,9 +3,9 @@ if (typeof(webpg)=='undefined') { webpg = {}; }
 // Enforce jQuery.noConflict if not already performed
 if (typeof(jQuery)!='undefined') { webpg.jq = jQuery.noConflict(true); }
 
-/*
-   Class: webpg.inline_results
-    This class implements the inline results iframe
+/**
+    @class webpg.inline_results
+      This class implements the inline results iframe
 */
 webpg.inline_results = {
 
@@ -42,13 +42,12 @@ webpg.inline_results = {
         );
     },
 
-    /*
-        Function: doResize
+    /**
+        @method doResize
             Resizes the parent iframe by sending a request to the listener of
             the webpg.background object
 
-        Parameters:
-            scrollTop - <bool> Indicates if the parent window should scroll to the top of the frame
+        @param {Boolean} scrollTop Indicates if the parent window should scroll to the top of the frame
     */
     doResize: function(scrollTop) {
         if (webpg.utils.isRTL()) {
@@ -74,13 +73,12 @@ webpg.inline_results = {
         });
     },
 
-    /*
-        Function: createSignatureBox
+    /**
+        @method createSignatureBox
             Creates an HTML element with information concerning a signature
 
-        Parameters:
-            sigObj - <obj> An object with information about a signature
-            sigIdx - <int> The index of the signature within the keyring
+        @param {Object} sigObj An object with information about the signature
+        @param {Integer} sigIdx The index of the signature within the keyring
     */
     // TODO: Maybe move this to some place generic so we can use the same
     //  generator on the key manager
@@ -167,9 +165,9 @@ webpg.inline_results = {
                         webpg.jq('#footer .content').html(descText + "<br/>");
                     }
                     if (request.verify_result.error) {
-                        webpg.jq('#signature_text')[0].textContent = request.verify_result.original_text;
+                        webpg.jq('#signature_text')[0].textContent = request.verify_result.original_text.trim();
                     } else {
-                        webpg.jq('#signature_text')[0].textContent = request.verify_result.data;
+                        webpg.jq('#signature_text')[0].textContent = request.verify_result.data.trim();
                     }
                     if (request.message_event === "manual" &&
                     request.verify_result.original_text.substr(0,5) === "-----") {
@@ -241,7 +239,8 @@ webpg.inline_results = {
                         webpg.jq('#signature_text')[0].textContent = request.verify_result.original_text;
                     } else {
                         var contents = webpg.utils.linkify(webpg.descript((request.verify_result.data || "")))
-                              .replace(/(<|<\/)(textarea|button|input|iframe|frame)(.*?)(>)/gm, "&lt;$2$3&gt;");
+                              .replace(/(<|<\/)(textarea|button|input|iframe|frame)(.*?)(>)/gm, "&lt;$2$3&gt;")
+                              .replace(/\r\n/gm, "<br>");
                         webpg.jq('#signature_text').html(contents);
                     }
                     webpg.jq('#clipboard_input')[0].textContent = request.verify_result.original_text;
@@ -446,8 +445,6 @@ webpg.inline_results = {
                                             webpg.jq('#header .title').append(" (" + scrub(keyobj.subkeys[0].size) + scrub(key_algo.abbr) + "/" + keyobj.fingerprint.substr(-8) + ")<br/>");
                                             created = new Date();
                                             created.setTime(keyobj.subkeys[0].created*1000);
-//                                                expires = new Date();
-//                                                expires.setTime(keyobj.subkeys[0].expires*1000);
                                             webpg.jq('#signature_text').append(_("Created") + ": " + created.toUTCString() + "<br/>");
                                             var expires = (keyobj.subkeys[0].expires === 0) ? 'Never' : new Date(keyobj.subkeys[0].expires * 1000).toUTCString();
                                             webpg.jq('#signature_text').append(_("Expires") + ": " + expires + "<br/>");
@@ -612,7 +609,10 @@ webpg.inline_results = {
                                 webpg.jq("<span class='decrypt_status'>" + _("DECRYPTION FAILED") + "; " + _("BAD PASSPHRASE") + "<br/></span>").insertBefore(webpg.jq(webpg.jq('#footer .content')[0].firstChild));
                             }
                         } else {
-                            webpg.jq('#signature_text').html(webpg.descript(response.result.data));
+                            var contents = webpg.utils.linkify(webpg.descript((response.result.data || "")))
+                                  .replace(/(<|<\/)(textarea|button|input|iframe|frame)(.*?)(>)/gm, "&lt;$2$3&gt;")
+                                  .replace(/\n/gm, "<br>");
+                            webpg.jq('#signature_text').html(contents);
                             if ((request.verify_result &&
                             request.verify_result.signatures &&
                             response.result.signatures.hasOwnProperty(0))
