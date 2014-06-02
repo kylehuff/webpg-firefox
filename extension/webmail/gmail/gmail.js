@@ -156,7 +156,8 @@ webpg.gmail = {
     },
 
     sendEmail: function(xoauth_data) {
-        var recipients = this.getRecipients(),
+        var _ = webpg.utils.i18n.gettext,
+            recipients = this.getRecipients(),
             username = this.getUserInfo().email;
             subject = this.getMsgSubject(),
             body = this.getContents(),

@@ -109,10 +109,9 @@ webpg.background = {
         @member webpg.background
     */
     init: function() {
+        var _ = webpg.utils.i18n.gettext,
+            gnupghome = webpg.preferences.gnupghome.get();
         webpg.extensionid = webpg.utils.extension.id();
-        var _ = webpg.utils.i18n.gettext;
-
-        var gnupghome = webpg.preferences.gnupghome.get();
 
         // information and source code for the plugin can be found here:
         //      https://github.com/kylehuff/webpg-npapi
